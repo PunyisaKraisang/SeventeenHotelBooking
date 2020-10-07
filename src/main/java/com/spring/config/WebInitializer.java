@@ -1,4 +1,4 @@
-package com.spring.seventeen.config;
+package com.spring.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -10,7 +10,8 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[0];
+		LOGGER.info("Mapping hibernate configuration class on root");
+		return new Class[] { HibernateConfig.class };
 	}
 
 	@Override

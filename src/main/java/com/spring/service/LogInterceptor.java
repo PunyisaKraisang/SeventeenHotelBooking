@@ -1,4 +1,4 @@
-package com.spring.seventeen.service;
+package com.spring.service;
 
 
 import javax.servlet.http.HttpServletRequest;

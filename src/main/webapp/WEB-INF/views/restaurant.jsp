@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +52,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
@@ -61,137 +63,29 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<div class="row">
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-1.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and supplies A small river named Duden flows by their place and supplies
-										A small river named Duden flows by their place and supplies A small river named Duden flows by their place and supplies
-									</p>
-								</div>
-							</div>
-
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-2.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$29.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
+					
+						<c:forEach items="${menuList}" var="menu" varStatus="status">
+							<div class="pricing-entry col-11 d-flex ftco-animate">
+								<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-1.jpg);"></div>
+								<div class="desc pl-3">
+									<div class="d-flex text align-items-center">
+										<h3>
+											<span>${menu.name}</span>
+										</h3>
+										<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
+									</div>
+									<div class="d-flex">
+										<p class="col-10" style="text-align: justify;">
+											${menu.description}
+										</p>
+										<p class="col-2" style="text-align: right;">
+											<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
+										</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-3.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-4.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-5.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$49.91</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-6.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Ultimate Overload</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-7.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Grilled Beef with potatoes</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
-						<div class="pricing-entry col-11 d-flex ftco-animate">
-							<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-8.jpg);"></div>
-							<div class="desc pl-3">
-								<div class="d-flex text align-items-center">
-									<h3>
-										<span>Ham &amp; Pineapple</span>
-									</h3>
-									<span class="price">$20.00</span>
-								</div>
-								<div class="d-block">
-									<p class="col-10" style="text-align: justify;">
-										A small river named Duden flows by their place and
-										supplies</p>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						
 					</div>
 				</div>
 				<div class="col-lg-3 sidebar">
@@ -292,6 +186,11 @@
 	</div>
 
 
+	<script>
+		function clickMe(id) {
+			alert(id);
+		}
+	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
