@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +67,8 @@
 					
 						<c:forEach items="${menuList}" var="menu" varStatus="status">
 							<div class="pricing-entry col-11 d-flex ftco-animate">
-								<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/images/menu-1.jpg);"></div>
+								<div class="img" 
+									 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
 								<div class="desc pl-3">
 									<div class="d-flex text align-items-center">
 										<h3>

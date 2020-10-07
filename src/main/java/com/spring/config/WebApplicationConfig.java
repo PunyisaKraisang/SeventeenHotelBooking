@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,6 +19,7 @@ import com.spring.service.LogInterceptor;
 @ComponentScan(basePackages = {
 		"com.spring.controller",
 		"com.spring.service" })
+@PropertySource(value = "classpath:s3.properties")
 public class WebApplicationConfig implements WebMvcConfigurer{
 	
 	private static final Logger LOGGER = Logger.getLogger(WebApplicationConfig.class);
