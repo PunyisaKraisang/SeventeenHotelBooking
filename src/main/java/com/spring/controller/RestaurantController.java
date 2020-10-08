@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.model.MenuModel;
@@ -23,12 +24,10 @@ public class RestaurantController {
 	RestaurantService service;
 	
 	@GetMapping("/restaurant")
-	public String goToRestaurantPage(@ModelAttribute SearchMenuModel searchModel, Model model) {
+	public String goToRestaurantPage(@ModelAttribute(name = "searchModel") SearchMenuModel searchModel, Model model) {
 		
-		if (!searchModel.hasValue()) {
-			LOGGER.info("Enter first time without search criteria, default as recommended");
-			searchModel.setRecommended(true);
-		} 
+		LOGGER.info("Enter first time without search criteria, default as recommended");
+		searchModel.setRecommended(true);
 		
 		LOGGER.info("Fetch menu list with criteria: " + searchModel);
 		List<MenuModel> menuList = service.fetchMenu(searchModel);
@@ -39,4 +38,15 @@ public class RestaurantController {
 		return "restaurant";
 	}
 	
+	@PostMapping("/restaurant")
+	public String searchMenu(@ModelAttribute(name = "searchModel") SearchMenuModel searchModel, Model model) {
+		
+		LOGGER.info("Fetch menu list with criteria: " + searchModel);
+		List<MenuModel> menuList = service.fetchMenu(searchModel);
+		
+		LOGGER.info("Pass menu list through model");
+		model.addAttribute("menuList", menuList);
+		
+		return "restaurant";
+	}
 }

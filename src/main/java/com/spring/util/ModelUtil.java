@@ -35,6 +35,8 @@ public final class ModelUtil {
 	}
 	
 	public static SearchMenu parse(SearchMenuModel from) {
-		return new SearchMenu(from.isRecommended());
+		return new SearchMenu(
+				from.getName(),
+				from.isRecommended());
 	}
 }

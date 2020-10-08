@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,16 +108,11 @@
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Advanced Search</h3>
-						<form action="#">
+						<form:form action="restaurant" method="post" modelAttribute="searchModel">
 							<div class="fields">
 								<div class="form-group">
-									<input type="text" id="checkin_date"
-										class="form-control checkin_date" placeholder="Check In Date">
-								</div>
-								<div class="form-group">
-									<input type="text" id="checkin_date"
-										class="form-control checkout_date"
-										placeholder="Check Out Date">
+									<form:input type="text" path="name"
+										class="form-control" placeholder="Search by name" />
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">
@@ -182,7 +178,7 @@
 										class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>

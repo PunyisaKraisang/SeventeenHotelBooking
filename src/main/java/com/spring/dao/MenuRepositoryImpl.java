@@ -63,6 +63,14 @@ public class MenuRepositoryImpl extends BaseRepository implements MenuRepository
 			predicates.add(builder.equal(root.get("isRecommended"), 1));
 		}
 		
+		if (searchMenu.getName() != null && !searchMenu.getName().isEmpty()) {
+			LOGGER.info("> Add name criteria");
+			predicates.add(
+					builder.like(
+							builder.lower(root.get("name")), 
+							"%" + searchMenu.getName().toLowerCase() + "%"));
+		}
+		
 		return predicates;
 	}
 }
