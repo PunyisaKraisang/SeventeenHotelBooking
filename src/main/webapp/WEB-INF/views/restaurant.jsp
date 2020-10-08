@@ -32,6 +32,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-style.css">
 </head>
 <body>
 
@@ -72,14 +74,26 @@
 								<div class="desc pl-3">
 									<div class="d-flex text align-items-center">
 										<h3>
-											<span>${menu.name}</span>
+											<span>
+												${menu.name} 
+												<c:if test="${menu.recommended}">
+													<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
+												</c:if>
+											</span>
 										</h3>
 										<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
 									</div>
 									<div class="d-flex">
-										<p class="col-10" style="text-align: justify;">
+										<div class="col-10" style="text-align: justify;">
+											<div class="menu-keyword">
+												<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
+													${ key.value }  
+													<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
+												</c:forEach>
+											</div>
+											
 											${menu.description}
-										</p>
+										</div>
 										<p class="col-2" style="text-align: right;">
 											<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
 										</p>

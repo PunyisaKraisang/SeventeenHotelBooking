@@ -1,6 +1,7 @@
 package com.spring.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.dao.MenuRepository;
 import com.spring.entity.MenuEntity;
 import com.spring.model.MenuModel;
+import com.spring.model.SearchMenuModel;
 import com.spring.util.ModelUtil;
 
 @Service
@@ -22,10 +24,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	MenuRepository menuRepository;
 	
 	@Transactional
-	public List<MenuModel> fetchMenu() {
+	public List<MenuModel> fetchMenu(SearchMenuModel searchModel) {
 		
-		LOGGER.info("Fetch all menu");
-		List<MenuEntity> entityList = menuRepository.fetch();
+		Set<MenuEntity> entityList = menuRepository.fetch(ModelUtil.parse(searchModel));
 		List<MenuModel> modelList = entityList.stream().map(ModelUtil::parse).collect(Collectors.toList());
 
 		LOGGER.info("Fetch all menu success");

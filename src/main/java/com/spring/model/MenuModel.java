@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class MenuModel implements Serializable {
 
@@ -10,7 +11,8 @@ public class MenuModel implements Serializable {
 	private String name;
 	private double price;
 	private String description;
-	private boolean isRecommended;
+	private boolean recommended;
+	private Set<MenuKeywordModel> keywords;
 	
 	public int getMenuId() {
 		return menuId;
@@ -45,11 +47,20 @@ public class MenuModel implements Serializable {
 	}
 	
 	public boolean isRecommended() {
-		return isRecommended;
+		return recommended;
 	}
 	
 	public void setRecommended(boolean isRecommended) {
-		this.isRecommended = isRecommended;
+		this.recommended = isRecommended;
 	}
+
+	public Set<MenuKeywordModel> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(Set<MenuKeywordModel> keywords) {
+		this.keywords = keywords;
+	}
+	
 	
 }

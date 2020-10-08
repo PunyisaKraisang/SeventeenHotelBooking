@@ -1,3 +1,5 @@
+drop table menu_keyword_map;
+drop table menu_keyword;
 drop table menu;
 
 -- create menu related tables ---------------------------------------------------------------------------
@@ -25,11 +27,11 @@ create table menu_keyword_map (
 insert into menu (menu_id, name, price, description) 
 values ( 1, 'Chicano Chicken Burrito', 11.5,
     'Grilled chicken thigh in our achiote marinade, black beans, Spanish rice, and pico de gallo. Contains gluten and nightshades. We cannot make substitutions.');
-insert into menu (menu_id, name, price, description) 
-values ( 2, 'Gambler Roll', 16.5,
+insert into menu (menu_id, name, price, recommended, description) 
+values ( 2, 'Gambler Roll', 16.5, 1,
     'Spicy white tuna topped with salmon, pineapple with spicy mayo, and house special spicy sauce. One of the pieces is extremely spicy.');
-insert into menu (menu_id, name, price, description) 
-values ( 3, 'Omakase Sashimi 20 pcs', 99.99,
+insert into menu (menu_id, name, price, recommended, description) 
+values ( 3, 'Omakase Sashimi 20 pcs', 99.99, 1,
     'Chef''s choice assorted sashimi');
 insert into menu (menu_id, name, price, description) 
 values ( 4, 'House Special Fried Rice with Pork Bundle', 14.99,
@@ -40,17 +42,17 @@ values ( 5, 'Voodoo and Salad Bundle for 2', 45.85,
 insert into menu (menu_id, name, price, description) 
 values ( 6, 'Vegan Mac', 12.5,
     'Rich, creamy and dairy-free! Our homemade sauce has tofu, soy sauce and our secret spice blend. Top with Crispy Breadcrumbs. Vegan. Contains gluten, soy, and nightshades. We cannot make substitutions.');
-insert into menu (menu_id, name, price, description) 
-values ( 7, 'Green Papaya Salad', 11,
+insert into menu (menu_id, name, price, recommended, description) 
+values ( 7, 'Green Papaya Salad', 11, 1,
     'Mixture of fresh green papaya, garlic, Thai chili, tomatoes, and peanuts in lime dressing. Served with side cabbage.');
 insert into menu (menu_id, name, price, description) 
 values ( 8, 'Chardonnay', 28,
     'Sycamore Lane, Napa, California 2013, 750ml White Wine (13.5% ABV)');
-insert into menu (menu_id, name, price, description) 
-values ( 9, 'Pepperoni, Sausage, and Six Cheese', 17.99,
+insert into menu (menu_id, name, price, recommended,  description) 
+values ( 9, 'Pepperoni, Sausage, and Six Cheese', 17.99, 1,
     '');
-insert into menu (menu_id, name, price, description) 
-values ( 10, 'Chocolate Overload', 19.8,
+insert into menu (menu_id, name, price, recommended, description) 
+values ( 10, 'Chocolate Overload', 19.8, 1,
     'Alternating layers of chocolate cake and chocolate mousse are topped');
 
 

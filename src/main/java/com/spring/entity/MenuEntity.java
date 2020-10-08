@@ -1,12 +1,18 @@
 package com.spring.entity;
 
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -32,8 +38,14 @@ public class MenuEntity implements Serializable {
 	private String description;
 	
 	@Column(name = "recommended")
-	@Type(type = "true_false")
+	@Type(type = "numeric_boolean")
 	private boolean isRecommended;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "menu_keyword_map",
+			joinColumns = {@JoinColumn(name = "menu_id")},
+			inverseJoinColumns = {@JoinColumn(name = "keyword_id")})
+	private Set<MenuKeywordEntity> keywords = new LinkedHashSet<MenuKeywordEntity>();
 
 	public int getMenuId() {
 		return menuId;
@@ -73,6 +85,14 @@ public class MenuEntity implements Serializable {
 
 	public void setRecommended(boolean isRecommended) {
 		this.isRecommended = isRecommended;
+	}
+
+	public Set<MenuKeywordEntity> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(Set<MenuKeywordEntity> keywords) {
+		this.keywords = keywords;
 	}
 	
 }
