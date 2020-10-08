@@ -18,7 +18,8 @@ import com.spring.service.LogInterceptor;
 @EnableWebMvc
 @ComponentScan(basePackages = {
 		"com.spring.controller",
-		"com.spring.service" })
+		"com.spring.service",
+		"com.spring.admin"})
 @PropertySource(value = "classpath:s3.properties")
 public class WebApplicationConfig implements WebMvcConfigurer{
 	
