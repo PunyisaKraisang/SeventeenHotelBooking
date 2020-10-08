@@ -1,26 +1,30 @@
+drop table room_property;
 -- Table creation
 -- Room table
 CREATE TABLE Room (
     Room_id NUMBER,
     Room_floor NUMBER,
     Room_price FLOAT,
-    Room_type NUMBER,
+    Room_type VARCHAR(20),
     Room_number NUMBER,
     Room_status VARCHAR(256),
     Hotel_id NUMBER,
-    CONSTRAINT pk_room_id PRIMARY KEY(Room_id),
-    CONSTRAINT fk_hotel_id FOREIGN KEY(Hotel_id) REFERENCES Hotel(Hotel_id),
-    CONSTRAINT fk_room_type FOREIGN KEY(Room_type) REFERENCES Room_Property(Room_type)
-);
--- Room property table
-CREATE TABLE Room_Property (
-    Room_type NUMBER,
     Bed_number NUMBER,
     Room_view VARCHAR(256),
     Max_capacity NUMBER,
     Bathtub VARCHAR(20),
-    CONSTRAINT pk_room_type PRIMARY KEY (Room_type)
+    CONSTRAINT pk_room_id PRIMARY KEY(Room_id),
+    CONSTRAINT fk_hotel_id FOREIGN KEY(Hotel_id) REFERENCES Hotel(Hotel_id)
 );
+-- Room property table
+--CREATE TABLE Room_Property (
+--    Room_type NUMBER,
+--    Bed_number NUMBER,
+--    Room_view VARCHAR(256),
+--    Max_capacity NUMBER,
+--    Bathtub VARCHAR(20),
+--    CONSTRAINT pk_room_type PRIMARY KEY (Room_type)
+--);
 -- Room reservatio table
 CREATE TABLE Room_Reservation (
     Reservation_id NUMBER,
