@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-9">
+				<div class="col-lg-7">
 					<div class="row">
 						
 						<c:if test="${ menuList != null && menuList.size() > 0 }">
@@ -98,7 +98,9 @@
 												${menu.description}
 											</div>
 											<p class="col-2" style="text-align: right;">
-												<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
+												<a onClick="addCart(${menu.menuId}, '${menu.name}', ${menu.price})" title="Add to cart">
+													<span class="icon-shopping-cart"></span>
+												</a>
 											</p>
 										</div>
 									</div>
@@ -112,7 +114,7 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="col-lg-3 sidebar">
+				<div class="col-lg-5 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Search</h3>
 						<form:form action="restaurant" method="post" modelAttribute="searchModel">
@@ -165,7 +167,17 @@
 					</div>
 					
 					<div class="sidebar-wrap bg-light ftco-animate">
-						Test
+						<h3 class="heading mb-4">Cart</h3>
+						<div>
+							<div id="cart-result">
+								
+							</div>
+							
+							<div class="form-group" style="padding-top: 1.5rem">
+								<input type="submit" value="Checkout"
+									class="btn btn-primary py-3 px-5">
+							</div>
+						</div>
 					</div>
 					
 				</div>
@@ -185,12 +197,6 @@
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
-
-	<script>
-		function clickMe(id) {
-			alert(id);
-		}
-	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
@@ -205,6 +211,8 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/custom-script.js"></script>
 
 </body>
 </html>
