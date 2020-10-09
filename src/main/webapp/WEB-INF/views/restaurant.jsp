@@ -67,42 +67,49 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<div class="row">
-					
-						<c:forEach items="${menuList}" var="menu" varStatus="status">
-							<div class="pricing-entry col-11 d-flex ftco-animate">
-								<div class="img" 
-									 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
-								<div class="desc pl-3">
-									<div class="d-flex text align-items-center">
-										<h3>
-											<span>
-												${menu.name} 
-												<c:if test="${menu.recommended}">
-													<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
-												</c:if>
-											</span>
-										</h3>
-										<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
-									</div>
-									<div class="d-flex">
-										<div class="col-10" style="text-align: justify;">
-											<div class="menu-keyword">
-												<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
-													${ key.value }  
-													<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
-												</c:forEach>
-											</div>
-											
-											${menu.description}
+						
+						<c:if test="${ menuList != null && menuList.size() > 0 }">
+						
+							<c:forEach items="${menuList}" var="menu" varStatus="status">
+								<div class="pricing-entry col-11 d-flex ftco-animate">
+									<div class="img" 
+										 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
+									<div class="desc pl-3">
+										<div class="d-flex text align-items-center">
+											<h3>
+												<span>
+													${menu.name} 
+													<c:if test="${menu.recommended}">
+														<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
+													</c:if>
+												</span>
+											</h3>
+											<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
 										</div>
-										<p class="col-2" style="text-align: right;">
-											<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
-										</p>
+										<div class="d-flex">
+											<div class="col-10" style="text-align: justify;">
+												<div class="menu-keyword">
+													<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
+														${ key.value }  
+														<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
+													</c:forEach>
+												</div>
+												
+												${menu.description}
+											</div>
+											<p class="col-2" style="text-align: right;">
+												<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
+											</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+							
+						</c:if>
 						
+						<c:if test="${ menuList == null || menuList.size() == 0 }">
+							<div class="ftco-animate" style="margin: 2rem auto;">0 result matches criteria</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="col-lg-3 sidebar">
@@ -156,6 +163,11 @@
 							</div>
 						</form:form>
 					</div>
+					
+					<div class="sidebar-wrap bg-light ftco-animate">
+						Test
+					</div>
+					
 				</div>
 			</div>
 		</div>
