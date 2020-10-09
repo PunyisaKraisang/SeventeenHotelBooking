@@ -112,7 +112,7 @@
 							<div class="fields">
 								<div class="form-group">
 									<form:input type="text" path="name"
-										class="form-control" placeholder="Search by name" />
+										class="form-control" placeholder="By name" />
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">
@@ -120,7 +120,7 @@
 											<span class="ion-ios-arrow-down"></span>
 										</div>
 										<form:select path="ethnic" class="form-control">
-											<option value="">Search by ethnic</option>
+											<option value="">By ethnic</option>
 											<c:forEach items="${ keywordList.ethnicKeywords }" var="keyword">
 												<option value="${ keyword.keywordId }">${ keyword.value }</option>
 											</c:forEach>
@@ -133,7 +133,7 @@
 											<span class="ion-ios-arrow-down"></span>
 										</div>
 										<form:select path="dietary" class="form-control">
-											<option value="">Search by dietary</option>
+											<option value="">By dietary</option>
 											<c:forEach items="${ keywordList.dietaryKeywords }" var="keyword">
 												<option value="${ keyword.keywordId }">${ keyword.value }</option>
 											</c:forEach>
@@ -142,16 +142,14 @@
 								</div>
 								<div class="form-group">
 									<div class="range-slider">
-										<span> <input type="number" value="25000" min="0"
-											max="120000" /> - <input type="number" value="50000" min="0"
-											max="120000" />
-										</span> <input value="1000" min="0" max="120000" step="500"
-											type="range" /> <input value="50000" min="0" max="120000"
-											step="500" type="range" />
-										</svg>
+										<div>By price</div>
+										<span> 
+											<form:input path="min" type="number" value="5" min="0" max="1200" class="form-number"/> - 
+											<form:input path="max" type="number" value="100" min="0" max="1200" class="form-number"/>
+										</span> 
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" style="padding-top: 1.5rem">
 									<input type="submit" value="Search"
 										class="btn btn-primary py-3 px-5">
 								</div>
@@ -193,10 +191,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
-	<!-- <script src="${pageContext.request.contextPath}/resources/js/jquery.timepicker.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script> -->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 </body>

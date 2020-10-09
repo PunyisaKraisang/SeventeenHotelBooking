@@ -9,6 +9,8 @@ public class SearchMenuModel implements Serializable {
 	private String name;
 	private String ethnic;
 	private String dietary;
+	private int min;
+	private int max;
 	private boolean isRecommended;
 
 	public String getName() {
@@ -35,6 +37,22 @@ public class SearchMenuModel implements Serializable {
 		this.dietary = dietary;
 	}
 	
+	public int getMin() {
+		return min;
+	}
+
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+	
 	public boolean isRecommended() {
 		return isRecommended;
 	}
@@ -47,6 +65,8 @@ public class SearchMenuModel implements Serializable {
 	public String toString() {
 		return "SearchMenuModel [" + (name != null ? "name=" + name + ", " : "")
 				+ (ethnic != null ? "ethnic=" + ethnic + ", " : "")
-				+ (dietary != null ? "dietary=" + dietary + ", " : "") + "isRecommended=" + isRecommended + "]";
+				+ (dietary != null ? "dietary=" + dietary + ", " : "") + "min=" + min + ", max="
+				+ max + ", isRecommended=" + isRecommended + "]";
 	}
+
 }

@@ -160,6 +160,15 @@ public class MenuRepositoryImpl extends BaseRepository implements MenuRepository
 			predicates.add(builder.equal(menuKeyword.get("keywordId"), searchMenu.getDietaryId()));
 		}
 		
+		if (searchMenu.getMin() != 0 && searchMenu.getMax() != 0) {
+			LOGGER.info("> Add min criteria");
+			predicates.add(builder.greaterThanOrEqualTo(root.get("price"), searchMenu.getMin()));
+
+			LOGGER.info("> Add max criteria");
+			predicates.add(builder.lessThanOrEqualTo(root.get("price"), searchMenu.getMax()));
+			
+		}
+		
 		return predicates;
 	}
 }
