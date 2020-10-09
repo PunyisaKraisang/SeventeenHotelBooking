@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +33,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom-style.css">
 </head>
 <body>
 
@@ -72,14 +75,26 @@
 								<div class="desc pl-3">
 									<div class="d-flex text align-items-center">
 										<h3>
-											<span>${menu.name}</span>
+											<span>
+												${menu.name} 
+												<c:if test="${menu.recommended}">
+													<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
+												</c:if>
+											</span>
 										</h3>
 										<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
 									</div>
 									<div class="d-flex">
-										<p class="col-10" style="text-align: justify;">
+										<div class="col-10" style="text-align: justify;">
+											<div class="menu-keyword">
+												<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
+													${ key.value }  
+													<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
+												</c:forEach>
+											</div>
+											
 											${menu.description}
-										</p>
+										</div>
 										<p class="col-2" style="text-align: right;">
 											<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
 										</p>
@@ -93,16 +108,11 @@
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Advanced Search</h3>
-						<form action="#">
+						<form:form action="restaurant" method="post" modelAttribute="searchModel">
 							<div class="fields">
 								<div class="form-group">
-									<input type="text" id="checkin_date"
-										class="form-control checkin_date" placeholder="Check In Date">
-								</div>
-								<div class="form-group">
-									<input type="text" id="checkin_date"
-										class="form-control checkout_date"
-										placeholder="Check Out Date">
+									<form:input type="text" path="name"
+										class="form-control" placeholder="Search by name" />
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">
@@ -168,7 +178,7 @@
 										class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>
