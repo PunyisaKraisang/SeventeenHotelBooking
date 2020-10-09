@@ -107,7 +107,7 @@
 				</div>
 				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Advanced Search</h3>
+						<h3 class="heading mb-4">Search</h3>
 						<form:form action="restaurant" method="post" modelAttribute="searchModel">
 							<div class="fields">
 								<div class="form-group">
@@ -119,15 +119,12 @@
 										<div class="icon">
 											<span class="ion-ios-arrow-down"></span>
 										</div>
-										<select name="" id="" class="form-control">
-											<option value="">Room Type</option>
-											<option value="">Suite</option>
-											<option value="">Family Room</option>
-											<option value="">Deluxe Room</option>
-											<option value="">Classic Room</option>
-											<option value="">Superior Room</option>
-											<option value="">Luxury Room</option>
-										</select>
+										<form:select path="ethnic" class="form-control">
+											<option value="">Search by ethnic</option>
+											<c:forEach items="${ keywordList.ethnicKeywords }" var="keyword">
+												<option value="${ keyword.keywordId }">${ keyword.value }</option>
+											</c:forEach>
+										</form:select>
 									</div>
 								</div>
 								<div class="form-group">
@@ -135,31 +132,12 @@
 										<div class="icon">
 											<span class="ion-ios-arrow-down"></span>
 										</div>
-										<select name="" id="" class="form-control">
-											<option value="">0 Adult</option>
-											<option value="">1 Adult</option>
-											<option value="">2 Adult</option>
-											<option value="">3 Adult</option>
-											<option value="">4 Adult</option>
-											<option value="">5 Adult</option>
-											<option value="">6 Adult</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="select-wrap one-third">
-										<div class="icon">
-											<span class="ion-ios-arrow-down"></span>
-										</div>
-										<select name="" id="" class="form-control">
-											<option value="">0 Children</option>
-											<option value="">1 Children</option>
-											<option value="">2 Children</option>
-											<option value="">3 Children</option>
-											<option value="">4 Children</option>
-											<option value="">5 Children</option>
-											<option value="">6 Children</option>
-										</select>
+										<form:select path="dietary" class="form-control">
+											<option value="">Search by dietary</option>
+											<c:forEach items="${ keywordList.dietaryKeywords }" var="keyword">
+												<option value="${ keyword.keywordId }">${ keyword.value }</option>
+											</c:forEach>
+										</form:select>
 									</div>
 								</div>
 								<div class="form-group">
