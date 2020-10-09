@@ -98,7 +98,7 @@
 												${menu.description}
 											</div>
 											<p class="col-2" style="text-align: right;">
-												<a onClick="addCart(${menu.menuId}, '${menu.name}', ${menu.price})" title="Add to cart">
+												<a onClick="addToCart(${menu.menuId}, '${menu.name}', ${menu.price})" title="Add to cart">
 													<span class="icon-shopping-cart"></span>
 												</a>
 											</p>
@@ -170,11 +170,10 @@
 						<h3 class="heading mb-4">Cart</h3>
 						<div>
 							<div id="cart-result">
-								
 							</div>
 							
 							<div class="form-group" style="padding-top: 1.5rem">
-								<input type="submit" value="Checkout"
+								<input type="submit" value="Checkout" id="checkout-btn"
 									class="btn btn-primary py-3 px-5">
 							</div>
 						</div>

@@ -1,20 +1,11 @@
 window.onload = (event) => {
 
-	let cartSession = sessionStorage.cartMap;
-	let cartMap;
-	
-	if (typeof cartSession == 'undefined') {
-		cartMap = new Map();
-		
-	} else {
-		cartMap = new Map(JSON.parse(cartSession));
-	}
-	
+	let cartMap = getCartMapInSession();
 	populateCart(cartMap);
 };
 
 
-function addCart(id, name, price) {
+function getCartMapInSession() {
 	let cartSession = sessionStorage.cartMap;
 	let cartMap;
 	
@@ -24,6 +15,13 @@ function addCart(id, name, price) {
 	} else {
 		cartMap = new Map(JSON.parse(cartSession));
 	}
+	
+	return cartMap;
+}
+
+
+function addToCart(id, name, price) {
+	let cartMap = getCartMapInSession();
 	
 	if (cartMap.get(id) != null && (typeof cartMap.get(id) !== 'undefined')){
 		let menu = cartMap.get(id);
@@ -50,6 +48,8 @@ function populateCart(cartMap) {
 			+ "</div>";
 			
 		document.querySelector("#cart-result").innerHTML = html;
+		document.querySelector("#checkout-btn").disabled = true;
+		document.querySelector("#checkout-btn").classList.add('disabled');
 		return;
 	}
 	
@@ -63,7 +63,7 @@ function populateCart(cartMap) {
 				+ "<div class='col-7'>" + menu.name + "</div>"
 				+ "<div class='col-2'>x " + menu.qtt + "</div>" 
 				+ "<div class='col-2'>$" + price.toFixed(2) + "</div>" 
-				+ "<div class='col-1'><a onClick='deleteCart(" + id + ")'><span class='icon-delete'></span></a></div>" 
+				+ "<div class='col-1'><a onClick='deleteFromCart(" + id + ")' title='Delete'><span class='icon-delete'></span></a></div>" 
 			+ "</div>";
 	}
 	
@@ -76,11 +76,18 @@ function populateCart(cartMap) {
 		+ "</div>";
 	
 	document.querySelector("#cart-result").innerHTML = html;
+	
+	document.querySelector("#checkout-btn").disabled = false;
+	document.querySelector("#checkout-btn").classList.remove('disabled');
 }
 
-function deleteCart(id) {
-
-	alert(id);
+function deleteFromCart(id) {
+	let cartMap = getCartMapInSession();
+	cartMap.delete(id);
+	
+	sessionStorage.setItem("cartMap", JSON.stringify(Array.from(cartMap.entries())));
+	
+	populateCart(cartMap);
 }
 
 
