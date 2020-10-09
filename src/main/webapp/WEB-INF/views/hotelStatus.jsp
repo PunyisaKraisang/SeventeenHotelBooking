@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -48,13 +49,49 @@
                 <div class="col-md-12 ftco-animate text-center">
                     <div class="text mb-5 pb-3">
                         <h1 class="mb-3">Hotel Status</h1>
-                        <h2>Hotels &amp; Resorts</h2>
+                        <h2>Summary Information of Hotel</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div>
+    <table>
+        <tr>
+            <td>Hotel Status</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <th>Rooms:</th>
+                    </tr>
+                    <tr>
+                        <td>Number of rooms:</td>
+                        <td>${roomNums}</td>
+                    </tr>
+                    <tr>
+                        <td>Occupied rooms:</td>
+                        <td>${occupiedNums}</td>
+                    </tr>
+                    <tr>
+                        <td>Available rooms:</td>
+                        <td>${availableNums}</td>
+                    </tr>
+                    <tr>
+                        <td>Cleaning rooms:</td>
+                        <td>${cleaningNums}</td>
+                    </tr>
+                    <tr>
+                        <td>Maintaining rooms:</td>
+                        <td>${maintainingNums}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>
