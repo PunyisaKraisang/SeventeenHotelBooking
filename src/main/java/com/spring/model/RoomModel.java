@@ -9,7 +9,7 @@ public class RoomModel implements Serializable {
     private double roomPrice;
     private String roomType;
     private int roomNumber;
-    private boolean roomStatus;
+    private String roomStatus;
     private int bedNumber;
     private String roomView;
     private int maxCapacity;
@@ -58,10 +58,10 @@ public class RoomModel implements Serializable {
     }
 
 
-    public boolean isRoomStatus() {
+    public String getRoomStatus() {
         return roomStatus;
     }
-    public void setRoomStatus(boolean roomStatus) {
+    public void setRoomStatus(String roomStatus) {
         this.roomStatus = roomStatus;
     }
 

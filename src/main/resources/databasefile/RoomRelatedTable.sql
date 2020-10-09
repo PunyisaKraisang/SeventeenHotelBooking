@@ -57,7 +57,7 @@ INSERT INTO Room VALUES (9, 1, 176.2, 'Triple', 109, 'Available', 1, 2, 'Ocean',
 
 -- Room_Reservation
 INSERT INTO Room_Reservation VALUES (1, 5, '07-OCT-2020', '09-OCT-2020', 8.51, 20.1, 183.31, 'Complete');
-
+INSERT INTO Room_Reservation VALUES (2, 7, '09-OCT-2020', '11-OCT-2020', 10.3, 20.0, 247.86, 'Pending');
 -- Show data
 SELECT * FROM Room;
 SELECT * FROM Room_Reservation;

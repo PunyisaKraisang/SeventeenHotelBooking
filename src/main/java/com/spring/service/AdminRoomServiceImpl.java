@@ -5,6 +5,7 @@ import com.spring.entity.RoomEntity;
 import com.spring.model.RoomModel;
 import com.spring.util.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

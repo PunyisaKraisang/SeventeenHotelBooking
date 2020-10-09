@@ -34,6 +34,6 @@ public class AdminController {
             return "admin";
         }
         session.setAttribute("loggedAdmin", true);
-        return "redirect:/hotelStatus/";
+        return "redirect:/hotelStatus";
     }
 }

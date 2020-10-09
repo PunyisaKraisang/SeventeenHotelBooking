@@ -15,7 +15,6 @@ public class RoomEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomId;
 
-    @Id
     @Column(name = "room_floor")
     private int roomFloor;
 
@@ -25,22 +24,18 @@ public class RoomEntity implements Serializable {
     @Column(name = "room_type", nullable = false)
     private String roomType;
 
-    @Id
     @Column(name = "room_number")
     private int roomNumber;
 
     @Column(name = "room_status")
-    //@Type(type = "true_false")
     private String roomStatus;
 
-    @Id
     @Column(name = "bed_number")
     private int bedNumber;
 
     @Column(name = "room_View", nullable = false)
     private String roomView;
 
-    @Id
     @Column(name = "max_capacity")
     private int maxCapacity;
 
@@ -48,9 +43,11 @@ public class RoomEntity implements Serializable {
     @Type(type = "true_false")
     private boolean bathtub;
 
-    @Id
     @Column(name = "hotel_id")
     private int hotelId;
+
+    //@OneToOne(mappedBy = "roomEntity")
+    //private RoomReservationEntity roomReservationEntity;
 
 
     public int getRoomId() {

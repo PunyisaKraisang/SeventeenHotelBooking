@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="hotelStatus" class="nav-link">Hotel</a></li>
-                <li class="nav-item"><a href="roomStatus" class="nav-link">Room</a></li>
+                <li class="nav-item"><a href="adminRoom" class="nav-link">Room</a></li>
                 <li class="nav-item"><a href="carStatus" class="nav-link">Car</a></li>
                 <li class="nav-item"><a href="foodStatus" class="nav-link">Food</a></li>
                 <li class="nav-item"><a href="home" class="nav-link">Logout</a> </li>

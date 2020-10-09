@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hotelStatus")
+//@RequestMapping("/hotelStatus")
 public class HotelStatusController {
     @Autowired
     private HotelStatusService hotelStatusService;
 
-    @GetMapping("/")
+    //@GetMapping("/hotelStatus")
+    //public String hotelStatus() {
+    //    return "hotelStatus";
+    //}
+
+    @GetMapping("/hotelStatus")
     public String showHotelStatus(Model model) {
         List<RoomEntity> roomList = hotelStatusService.getAllRooms();
         int roomNums = 0;
