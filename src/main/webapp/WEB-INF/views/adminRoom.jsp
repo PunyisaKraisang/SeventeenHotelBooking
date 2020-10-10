@@ -32,7 +32,7 @@
 </head>
 <body>
     <!-- header nav bar -->
-    <jsp:include page="header.jsp" />
+    <jsp:include page="adminHeader.jsp" />
 
     <section class="home-slider owl-carousel">
         <div class="slider-item"
@@ -52,53 +52,112 @@
         </div>
     </section>
     <div>
-        <table>
-            <tr>
-                <div>Available Rooms</div>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Room Type</th>
-                <th>Max Capacity</th>
-                <th>Check in</th>
-            </tr>
-            <c:forEach var="room" items="${roomList}">
-                <c:url var="checkinLink" value="/adminRoom/checkin">
-                    <c:param name="roomId" value="${room.roomId}"/>
-                </c:url>
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>${room.roomPrice}</td>
-                    <td>${room.roomStatus}</td>
-                    <td>${room.roomType}</td>
-                    <td>${room.maxCapacity}</td>
-                    <td><a href="${checkinLink}">Check in</a></td>
+                    <div class="row justify-content-center mb-5 pb-3">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h3>Available Rooms</h3>
+                        </div>
+                    </div>
                 </tr>
-            </c:forEach>
+                <tr>
+                    <th scope="col">Room Id</th>
+                    <th scope="col">Room Number</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Room Type</th>
+                    <th scope="col">Max Capacity</th>
+                    <th scope="col">Check in</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="room" items="${roomList}">
+                    <c:url var="checkinLink" value="/adminRoom/checkin">
+                        <c:param name="roomId" value="${room.roomId}"/>
+                    </c:url>
+                    <tr>
+                        <td>${room.roomId}</td>
+                        <td>${room.roomNumber}</td>
+                        <td>${room.roomPrice}</td>
+                        <td>${room.roomStatus}</td>
+                        <td>${room.roomType}</td>
+                        <td>${room.maxCapacity}</td>
+                        <td><a href="${checkinLink}">Check in</a></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+
         </table>
-        <table>
+        <table class="table table-hover">
             <tr>
-                <div>Reservation Requests</div>
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h3>Reservation Requests</h3>
+                    </div>
+                </div>
             </tr>
             <tr>
                 <th>Reservation Id</th>
+                <th>Room Id</th>
                 <th>Check-in Date</th>
                 <th>Check-out Date</th>
                 <th>Bill</th>
                 <th>Status</th>
-                <th>Check In</th>
+                <th>Edit Status</th>
             </tr>
             <c:forEach var="reservation" items="${reservationList}">
-                <c:url var="checkinLink" value="/adminRoom/checkin">
+                <c:url var="checkinLink" value="/adminRoom/reservation/checkin">
                     <c:param name="reservationId" value="${reservation.reservationId}"/>
+                </c:url>
+                <c:url var="checkoutLink" value="/adminRoom/reservation/checkout">
+                    <c:param name="reservationId" value="${reservation.reservationId}" />
                 </c:url>
                 <tr>
                     <td>${reservation.reservationId}</td>
+                    <td>${reservation.roomId}</td>
                     <td>${reservation.checkinTime}</td>
                     <td>${reservation.checkoutTime}</td>
                     <td>${reservation.totalBill}</td>
                     <td>${reservation.reservationStatus}</td>
-                    <td><a href="${checkinLink}">Check In</a></td>
+                    <c:choose>
+                        <c:when test="${reservation.reservationStatus.equals('Pending')}">
+                            <td><a href=${checkinLink}>Check In</a></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td><a href=${checkoutLink}>Check Out</a></td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+        </table>
+        <table class="table table-hover">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h3>Non-Available Rooms</h3>
+                </div>
+            </div>
+            <tr>
+                <th scope="col">Room Id</th>
+                <th scope="col">Room Number</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Room Type</th>
+                <th scope="col">Max Capacity</th>
+                <th scope="col">Edit Status</th>
+            </tr>
+            <c:forEach var="room" items="${nonAvailableList}">
+                <c:url var="editRoomStatus" value="/adminRoom/editStatus">
+                    <c:param name="roomId" value="${room.roomId}"/>
+                </c:url>
+                <tr>
+                    <td>${room.roomId}</td>
+                    <td>${room.roomNumber}</td>
+                    <td>${room.roomPrice}</td>
+                    <td>${room.roomStatus}</td>
+                    <td>${room.roomType}</td>
+                    <td>${room.maxCapacity}</td>
+                    <td><a href="${editRoomStatus}">Edit</a></td>
                 </tr>
             </c:forEach>
         </table>

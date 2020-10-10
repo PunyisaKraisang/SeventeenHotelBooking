@@ -8,6 +8,6 @@ import java.util.List;
 public interface AdminRoomDAO {
     public List<RoomEntity> getAllRooms();
     public void saveUpdateRoom(RoomEntity room);
-    public List<RoomEntity> getOccupiedRooms();
+    public List<RoomEntity> getNonAvailableRooms();
     public List<RoomEntity> getAvailableRooms();
 }

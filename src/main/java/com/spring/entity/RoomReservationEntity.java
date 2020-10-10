@@ -29,6 +29,17 @@ public class RoomReservationEntity {
     @Column(name = "Reservation_status")
     private String reservationStatus;
 
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    @Column(name = "Room_id")
+    private int roomId;
+
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "room_id")
 //    private RoomEntity roomEntity;

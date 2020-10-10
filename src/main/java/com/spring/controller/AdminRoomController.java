@@ -29,10 +29,12 @@ public class AdminRoomController {
 
     @GetMapping("/adminRoom")
     public String roomList(Model model) {
-        List<RoomEntity> rooms = adminRoomService.getAvailableRooms();
+        List<RoomEntity> availableRooms = adminRoomService.getAvailableRooms();
+        List<RoomEntity> nonAvailableRooms = adminRoomService.getNonAvailableRooms();
         //System.out.println(rooms.size());
         List<RoomReservationEntity> reservations = adminRoomReservationService.getReservationList();
-        model.addAttribute("roomList", rooms);
+        model.addAttribute("roomList", availableRooms);
+        model.addAttribute("nonAvailableList", nonAvailableRooms);
         model.addAttribute("reservationList", reservations);
         return "adminRoom";
     }
@@ -41,5 +43,21 @@ public class AdminRoomController {
     @ResponseBody
     public String checkinTest() {
         return "link works";
+    }
+
+    @GetMapping("/adminRoom/editStatus")
+    @ResponseBody
+    public String editStatus() { return "link works"; }
+
+    @GetMapping("/adminRoom/reservation/checkin")
+    @ResponseBody
+    public String reservationCheckin() {
+        return "Check in... change reservation status";
+    }
+
+    @GetMapping("/adminRoom/reservation/checkout")
+    @ResponseBody
+    public String reservationCheckout() {
+        return "Check out... chenge reservation status";
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminRoomService {
     public List<RoomEntity> getAllRooms();
-    public List<RoomEntity> getOccupiedRooms();
+    public List<RoomEntity> getNonAvailableRooms();
     public List<RoomEntity> getAvailableRooms();
     public void saveUpdateRoom(RoomEntity room);
 }

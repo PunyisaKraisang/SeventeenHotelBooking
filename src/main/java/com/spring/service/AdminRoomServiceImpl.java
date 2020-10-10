@@ -23,8 +23,8 @@ public class AdminRoomServiceImpl implements AdminRoomService {
     }
 
     @Override @Transactional
-    public List<RoomEntity> getOccupiedRooms() {
-        return adminRoomDAO.getOccupiedRooms();
+    public List<RoomEntity> getNonAvailableRooms() {
+        return adminRoomDAO.getNonAvailableRooms();
     }
 
     @Override @Transactional
