@@ -35,8 +35,11 @@ public final class ModelUtil {
 	}
 	
 	public static SearchMenu parse(SearchMenuModel from) {
-		return new SearchMenu(
-				from.getName(),
+		return new SearchMenu(from.getName(),
+				(from.getEthnic() != null && !from.getEthnic().isEmpty()) ? Integer.parseInt(from.getEthnic()) : -1,
+				(from.getDietary() != null && !from.getDietary().isEmpty()) ? Integer.parseInt(from.getDietary()) : -1,
+				from.getMin(),
+				from.getMax(),
 				from.isRecommended());
 	}
 }
