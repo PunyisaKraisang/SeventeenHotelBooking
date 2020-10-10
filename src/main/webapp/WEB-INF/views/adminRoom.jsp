@@ -51,117 +51,173 @@
             </div>
         </div>
     </section>
-    <div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <div class="row justify-content-center mb-5 pb-3">
-                        <div class="col-md-7 heading-section text-center ftco-animate">
-                            <h3>Available Rooms</h3>
-                        </div>
-                    </div>
-                </tr>
-                <tr>
-                    <th scope="col">Room Id</th>
-                    <th scope="col">Room Number</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Room Type</th>
-                    <th scope="col">Max Capacity</th>
-                    <th scope="col">Check in</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="room" items="${roomList}">
-                    <c:url var="checkinLink" value="/adminRoom/checkin">
-                        <c:param name="roomId" value="${room.roomId}"/>
-                    </c:url>
-                    <tr>
-                        <td>${room.roomId}</td>
-                        <td>${room.roomNumber}</td>
-                        <td>${room.roomPrice}</td>
-                        <td>${room.roomStatus}</td>
-                        <td>${room.roomType}</td>
-                        <td>${room.maxCapacity}</td>
-                        <td><a href="${checkinLink}">Check in</a></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-
-        </table>
-        <table class="table table-hover">
-            <tr>
-                <div class="row justify-content-center mb-5 pb-3">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-                        <h3>Reservation Requests</h3>
-                    </div>
-                </div>
-            </tr>
-            <tr>
-                <th>Reservation Id</th>
-                <th>Room Id</th>
-                <th>Check-in Date</th>
-                <th>Check-out Date</th>
-                <th>Bill</th>
-                <th>Status</th>
-                <th>Edit Status</th>
-            </tr>
-            <c:forEach var="reservation" items="${reservationList}">
-                <c:url var="checkinLink" value="/adminRoom/reservation/checkin">
-                    <c:param name="reservationId" value="${reservation.reservationId}"/>
-                </c:url>
-                <c:url var="checkoutLink" value="/adminRoom/reservation/checkout">
-                    <c:param name="reservationId" value="${reservation.reservationId}" />
-                </c:url>
-                <tr>
-                    <td>${reservation.reservationId}</td>
-                    <td>${reservation.roomId}</td>
-                    <td>${reservation.checkinTime}</td>
-                    <td>${reservation.checkoutTime}</td>
-                    <td>${reservation.totalBill}</td>
-                    <td>${reservation.reservationStatus}</td>
-                    <c:choose>
-                        <c:when test="${reservation.reservationStatus.equals('Pending')}">
-                            <td><a href=${checkinLink}>Check In</a></td>
-                        </c:when>
-                        <c:otherwise>
-                            <td><a href=${checkoutLink}>Check Out</a></td>
-                        </c:otherwise>
-                    </c:choose>
-                </tr>
-            </c:forEach>
-        </table>
-        <table class="table table-hover">
+    <section class="ftco-section">
+        <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Non-Available Rooms</h3>
+                    <h2>Editing Status</h2>
                 </div>
             </div>
-            <tr>
-                <th scope="col">Room Id</th>
-                <th scope="col">Room Number</th>
-                <th scope="col">Price</th>
-                <th scope="col">Status</th>
-                <th scope="col">Room Type</th>
-                <th scope="col">Max Capacity</th>
-                <th scope="col">Edit Status</th>
-            </tr>
-            <c:forEach var="room" items="${nonAvailableList}">
-                <c:url var="editRoomStatus" value="/adminRoom/editStatus">
-                    <c:param name="roomId" value="${room.roomId}"/>
-                </c:url>
-                <tr>
-                    <td>${room.roomId}</td>
-                    <td>${room.roomNumber}</td>
-                    <td>${room.roomPrice}</td>
-                    <td>${room.roomStatus}</td>
-                    <td>${room.roomType}</td>
-                    <td>${room.maxCapacity}</td>
-                    <td><a href="${editRoomStatus}">Edit</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
+            <div class="container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <div class="row justify-content-center mb-5 pb-3">
+                                <div class="col-md-7 heading-section text-center ftco-animate">
+                                    <h3>Available Rooms</h3>
+                                </div>
+                            </div>
+                        </tr>
+                        <tr>
+                            <th scope="col">Room Id</th>
+                            <th scope="col">Room Number</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Room Type</th>
+                            <th scope="col">Max Capacity</th>
+                            <th scope="col">Check in</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="room" items="${roomList}">
+                            <c:url var="checkinLink" value="/adminRoom/checkin">
+                                <c:param name="roomId" value="${room.roomId}"/>
+                            </c:url>
+                            <tr>
+                                <td>${room.roomId}</td>
+                                <td>${room.roomNumber}</td>
+                                <td>${room.roomPrice}</td>
+                                <td>${room.roomType}</td>
+                                <td>${room.maxCapacity}</td>
+                                <td>${room.roomStatus}</td>
+                                <td><a href="${checkinLink}">Check in</a></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+
+                </table>
+                <table class="table table-hover">
+                    <tr>
+                        <div class="row justify-content-center mb-5 pb-3">
+                            <div class="col-md-7 heading-section text-center ftco-animate">
+                                <h3>Reservation Requests</h3>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr>
+                        <th>Reservation Id</th>
+                        <th>Room Id</th>
+                        <th>Check-in Date</th>
+                        <th>Check-out Date</th>
+                        <th>Bill</th>
+                        <th>Status</th>
+                        <th>Edit Status</th>
+                    </tr>
+                    <c:forEach var="reservation" items="${reservationList}">
+                        <c:url var="checkinLink" value="/adminRoom/reservation/checkin">
+                            <c:param name="reservationId" value="${reservation.reservationId}"/>
+                        </c:url>
+                        <c:url var="checkoutLink" value="/adminRoom/reservation/checkout">
+                            <c:param name="reservationId" value="${reservation.reservationId}" />
+                        </c:url>
+                        <tr>
+                            <td>${reservation.reservationId}</td>
+                            <td>${reservation.roomId}</td>
+                            <td>${reservation.checkinTime}</td>
+                            <td>${reservation.checkoutTime}</td>
+                            <td>${reservation.totalBill}</td>
+                            <td>${reservation.reservationStatus}</td>
+                            <c:choose>
+                                <c:when test="${reservation.reservationStatus.equals('Pending')}">
+                                    <td><a href=${checkinLink}>Check In</a></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a href=${checkoutLink}>Check Out</a></td>
+                                </c:otherwise>
+                            </c:choose>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <table class="table table-hover">
+                    <div class="row justify-content-center mb-5 pb-3">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h3>Non-Available Rooms</h3>
+                        </div>
+                    </div>
+                    <tr>
+                        <th scope="col">Room Id</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Room Type</th>
+                        <th scope="col">Max Capacity</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Edit Status</th>
+                    </tr>
+                    <c:forEach var="room" items="${nonAvailableList}">
+                        <c:url var="editRoomStatus" value="/adminRoom/editStatus">
+                            <c:param name="roomId" value="${room.roomId}"/>
+                        </c:url>
+                        <tr>
+                            <td>${room.roomId}</td>
+                            <td>${room.roomNumber}</td>
+                            <td>${room.roomPrice}</td>
+                            <td>${room.roomType}</td>
+                            <td>${room.maxCapacity}</td>
+                            <td>${room.roomStatus}</td>
+                            <td><a href="${editRoomStatus}">Edit</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h2>Delete Room</h2>
+                </div>
+            </div>
+            <div class="container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <div class="row justify-content-center mb-5 pb-3">
+                                <div class="col-md-7 heading-section text-center ftco-animate">
+                                    <h3>All Rooms</h3>
+                                </div>
+                            </div>
+                        </tr>
+                        <tr>
+                            <th scope="col">Room Id</th>
+                            <th scope="col">Room Number</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Room Type</th>
+                            <th scope="col">Max Capacity</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="room" items="${allRooms}">
+                            <c:url var="deleteLink" value="/adminRoom/delete">
+                                <c:param name="roomId" value="${room.roomId}"/>
+                            </c:url>
+                            <tr>
+                                <td>${room.roomId}</td>
+                                <td>${room.roomNumber}</td>
+                                <td>${room.roomPrice}</td>
+                                <td>${room.roomType}</td>
+                                <td>${room.maxCapacity}</td>
+                                <td>${room.roomStatus}</td>
+                                <td><a href="${deleteLink}">Delete</a></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
     <!-- footer -->
     <jsp:include page="footer.jsp"></jsp:include>
 

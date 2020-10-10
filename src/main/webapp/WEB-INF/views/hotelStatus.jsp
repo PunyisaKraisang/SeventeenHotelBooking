@@ -56,42 +56,50 @@
         </div>
     </div>
 </section>
-<div>
-    <table>
-        <tr>
-            <td>Hotel Status</td>
-        </tr>
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <th>Rooms:</th>
-                    </tr>
-                    <tr>
-                        <td>Number of rooms:</td>
-                        <td>${roomNums}</td>
-                    </tr>
-                    <tr>
-                        <td>Occupied rooms:</td>
-                        <td>${occupiedNums}</td>
-                    </tr>
-                    <tr>
-                        <td>Available rooms:</td>
-                        <td>${availableNums}</td>
-                    </tr>
-                    <tr>
-                        <td>Cleaning rooms:</td>
-                        <td>${cleaningNums}</td>
-                    </tr>
-                    <tr>
-                        <td>Maintaining rooms:</td>
-                        <td>${maintainingNums}</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>Hotel Room Information</h2>
+            </div>
+        </div>
+        <div class="container">
+    <div class="container">
+        <table class="table table-hover">
+<%--            <thead>--%>
+<%--                <tr>--%>
+<%--                    <div class="row justify-content-center mb-5 pb-3">--%>
+<%--                        <div class="col-md-7 heading-section text-center ftco-animate">--%>
+<%--                            <h3>Hotel Room Information</h3>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </tr>--%>
+<%--            </thead>--%>
+            <tbody>
+                <tr>
+                    <th>Total Rooms</th>
+                    <td>${roomNums}</td>
+                </tr>
+                <tr>
+                    <th>Available Rooms</th>
+                    <td>${availableNums}</td>
+                </tr>
+                <tr>
+                    <th>Occupied Room</th>
+                    <td>${occupiedNums}</td>
+                </tr>
+                <tr>
+                    <th>Room with Cleaning</th>
+                    <td>${cleaningNums}</td>
+                </tr>
+                <tr>
+                    <th>Room with Maintaining</th>
+                    <td>${maintainingNums}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>

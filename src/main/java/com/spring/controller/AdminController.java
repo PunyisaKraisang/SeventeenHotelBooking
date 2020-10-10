@@ -27,7 +27,7 @@ public class AdminController {
 
     @PostMapping("/adminLogin")
     public String verifyLogin(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-        System.out.println("u: " + username + ", p: " + password);
+        //System.out.println("u: " + username + ", p: " + password);
         //AdminEntity admin = adminLoginService.getAdmin(username, password);
         if (!adminLoginService.getAdmin(username, password)) {
             model.addAttribute("adminError", "Invalid Admin Login");
