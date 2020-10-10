@@ -93,8 +93,8 @@
                         <td>${food.price}</td>
                         <td>${food.recommended}</td>
                         <td>${food.description}</td>
-                        <td><a href="${editLink}">Edit</a></td>
-                        <td><a href="${deleteLink}">Delete</a></td>
+                        <td><a class="btn" href="${editLink}">Edit</a></td>
+                        <td><a class="btn" href="${deleteLink}">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

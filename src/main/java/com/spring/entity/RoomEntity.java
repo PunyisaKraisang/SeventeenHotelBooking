@@ -46,8 +46,8 @@ public class RoomEntity implements Serializable {
     @Column(name = "hotel_id")
     private int hotelId;
 
-    //@OneToOne(mappedBy = "roomEntity")
-    //private RoomReservationEntity roomReservationEntity;
+    @OneToOne(mappedBy = "roomEntity")
+    private RoomReservationEntity roomReservationEntity;
 
 
     public int getRoomId() {
@@ -135,5 +135,13 @@ public class RoomEntity implements Serializable {
     }
     public void setHotelId(int hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public RoomReservationEntity getRoomReservationEntity() {
+        return roomReservationEntity;
+    }
+
+    public void setRoomReservationEntity(RoomReservationEntity roomReservationEntity) {
+        this.roomReservationEntity = roomReservationEntity;
     }
 }

@@ -59,6 +59,15 @@
                 </div>
             </div>
             <div class="container">
+<%--                <%--%>
+<%--                    if (request.getAttribute("checkInFailed") != null) {--%>
+<%--                %>--%>
+<%--                <div class="alert alert-danger">--%>
+<%--                    <strong>Error!</strong> ${checkInFailed}--%>
+<%--                </div>--%>
+<%--                <%--%>
+<%--                    }--%>
+<%--                %>--%>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -72,9 +81,9 @@
                             <th scope="col">Room Id</th>
                             <th scope="col">Room Number</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Room Type</th>
                             <th scope="col">Max Capacity</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Check in</th>
                         </tr>
                     </thead>
@@ -90,7 +99,7 @@
                                 <td>${room.roomType}</td>
                                 <td>${room.maxCapacity}</td>
                                 <td>${room.roomStatus}</td>
-                                <td><a href="${checkinLink}">Check in</a></td>
+                                <td><a class="btn" href="${checkinLink}">Check in</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -129,10 +138,10 @@
                             <td>${reservation.reservationStatus}</td>
                             <c:choose>
                                 <c:when test="${reservation.reservationStatus.equals('Pending')}">
-                                    <td><a href=${checkinLink}>Check In</a></td>
+                                    <td><a class="btn" href=${checkinLink}>Check In</a></td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td><a href=${checkoutLink}>Check Out</a></td>
+                                    <td><a class="btn" href=${checkoutLink}>Check Out</a></td>
                                 </c:otherwise>
                             </c:choose>
                         </tr>
@@ -151,10 +160,18 @@
                         <th scope="col">Room Type</th>
                         <th scope="col">Max Capacity</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Edit Status</th>
+                        <th scope="col">Maintenance</th>
+                        <th scope="col">Cleaning</th>
+                        <th scope="col">Ready</th>
                     </tr>
                     <c:forEach var="room" items="${nonAvailableList}">
-                        <c:url var="editRoomStatus" value="/adminRoom/editStatus">
+                        <c:url var="roomMaintaining" value="/adminRoom/maintenance">
+                            <c:param name="roomId" value="${room.roomId}"/>
+                        </c:url>
+                        <c:url var="roomCleaning" value="/adminRoom/cleaning">
+                            <c:param name="roomId" value="${room.roomId}"/>
+                        </c:url>
+                        <c:url var="roomReady" value="/adminRoom/ready">
                             <c:param name="roomId" value="${room.roomId}"/>
                         </c:url>
                         <tr>
@@ -164,7 +181,23 @@
                             <td>${room.roomType}</td>
                             <td>${room.maxCapacity}</td>
                             <td>${room.roomStatus}</td>
-                            <td><a href="${editRoomStatus}">Edit</a></td>
+                            <c:choose>
+                                <c:when test="${room.roomStatus.equals('Occupied')}">
+                                    <td><a class="btn" href=${roomMaintaining}>Maintaining</a></td>
+                                    <td><a class="btn" href=${roomCleaning}>Cleaning</a></td>
+                                    <td><a class="btn disabled" href=${roomReady}>Ready</a></td>
+                                </c:when>
+                                <c:when test="${room.roomStatus.equals('Maintaining')}">
+                                    <td><a class="btn disabled" href=${roomMaintaining}>Maintaining</a></td>
+                                    <td><a class="btn" href=${roomCleaning}>Cleaning</a></td>
+                                    <td><a class="btn" href=${roomReady}>Ready</a></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a class="btn" href=${roomMaintaining}>Maintaining</a></td>
+                                    <td><a class="btn disabled" href=${roomCleaning}>Cleaning</a></td>
+                                    <td><a class="btn" href=${roomReady}>Ready</a></td>
+                                </c:otherwise>
+                            </c:choose>
                         </tr>
                     </c:forEach>
                 </table>
@@ -210,7 +243,7 @@
                                 <td>${room.roomType}</td>
                                 <td>${room.maxCapacity}</td>
                                 <td>${room.roomStatus}</td>
-                                <td><a href="${deleteLink}">Delete</a></td>
+                                <td><a class="btn" href="${deleteLink}">Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

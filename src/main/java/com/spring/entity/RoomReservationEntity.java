@@ -40,9 +40,9 @@ public class RoomReservationEntity {
     @Column(name = "Room_id")
     private int roomId;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "room_id")
-//    private RoomEntity roomEntity;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id")
+    private RoomEntity roomEntity;
 
     public int getReservationId() {
         return reservationId;
@@ -98,5 +98,13 @@ public class RoomReservationEntity {
 
     public void setReservationStatus(String reservationStatus) {
         this.reservationStatus = reservationStatus;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
     }
 }

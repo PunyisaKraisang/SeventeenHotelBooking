@@ -10,4 +10,6 @@ public interface AdminRoomService {
     public List<RoomEntity> getNonAvailableRooms();
     public List<RoomEntity> getAvailableRooms();
     public void saveUpdateRoom(RoomEntity room);
+    public void roomStatusEditing(int roomId, String statusChangeTo);
+    public void deleteRoom(int roomId);
 }
