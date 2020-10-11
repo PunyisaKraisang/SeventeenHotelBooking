@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Room")
@@ -52,8 +53,9 @@ public class RoomEntity implements Serializable {
     @Column(name = "hotel_id")
     private int hotelId;
 
-    @OneToOne(mappedBy = "roomEntity")
-    private RoomReservationEntity roomReservationEntity;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id", referencedColumnName = "room_id")
+    private List<RoomReservationEntity> roomReservationEntity;
 
 
     public int getRoomId() {
@@ -143,13 +145,11 @@ public class RoomEntity implements Serializable {
         this.hotelId = hotelId;
     }
 
-    public RoomReservationEntity getRoomReservationEntity() {
+    public List<RoomReservationEntity> getRoomReservationEntity() {
         return roomReservationEntity;
     }
 
-    public void setRoomReservationEntity(RoomReservationEntity roomReservationEntity) {
+    public void setRoomReservationEntity(List<RoomReservationEntity> roomReservationEntity) {
         this.roomReservationEntity = roomReservationEntity;
     }
-
-
 }
