@@ -1,29 +1,30 @@
 package com.spring.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.dto.KeywordCategory;
+import com.spring.model.MenuCheckoutListModel;
 import com.spring.model.MenuKeywordListModel;
-import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
 import com.spring.model.SearchMenuModel;
 import com.spring.service.RestaurantService;
 
 @Controller
+@RequestMapping("/restaurant")
 @SessionAttributes("keywordList")
 public class RestaurantController {
 
@@ -37,10 +38,11 @@ public class RestaurantController {
 		return new MenuKeywordListModel();
 	}
 	
-	@GetMapping("/restaurant")
+	@GetMapping
 	public String goToRestaurantPage(
 			@ModelAttribute(name = "searchModel") SearchMenuModel searchModel, 
 			@ModelAttribute("keywordList") MenuKeywordListModel keywordList,
+			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList,
 			Model model) {
 		
 		LOGGER.info("Enter first time without search criteria, default as recommended");
@@ -65,8 +67,11 @@ public class RestaurantController {
 		return "restaurant";
 	}
 	
-	@PostMapping("/restaurant")
-	public String searchMenu(@ModelAttribute(name = "searchModel") SearchMenuModel searchModel, Model model) {
+	@PostMapping
+	public String searchMenu(
+			@ModelAttribute(name = "searchModel") SearchMenuModel searchModel, 
+			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList,
+			Model model) {
 		
 		//TODO: Validate searchModel
 		LOGGER.info("Fetch menu list with criteria: " + searchModel);
@@ -76,5 +81,20 @@ public class RestaurantController {
 		model.addAttribute("menuList", menuList);
 		
 		return "restaurant";
+	}
+
+	@PostMapping("/checkout")
+	public String checkout(
+			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList, Model model) {
+		
+		LOGGER.info("Checkout with " + checkoutList.getItems().size() + " menu(s)");
+		
+		LOGGER.info("Retrieve ongoing or pending reservation for user: " + "dummy");
+		
+
+		LOGGER.info("Pass data to checkput page");
+		model.addAttribute("checkoutList", checkoutList);
+		
+		return "restaurantCheckout";
 	}
 }

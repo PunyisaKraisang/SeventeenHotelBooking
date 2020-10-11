@@ -55,6 +55,7 @@ function populateCart(cartMap) {
 	
 	
 	let total = 0;
+	let index = 0;
 	for (let [id, menu] of cartMap) {
 		let price = (Math.round(menu.qtt * menu.price * 100) / 100);
 		total += price;
@@ -62,9 +63,19 @@ function populateCart(cartMap) {
 			+ "<div class='row'>"
 				+ "<div class='col-7'>" + menu.name + "</div>"
 				+ "<div class='col-2'>x " + menu.qtt + "</div>" 
-				+ "<div class='col-2'>$" + price.toFixed(2) + "</div>" 
+				+ "<div class='col-2'>$<span class='text-right'>" + price.toFixed(2) + "</span></div>" 
 				+ "<div class='col-1'><a onClick='deleteFromCart(" + id + ")' title='Delete'><span class='icon-delete'></span></a></div>" 
 			+ "</div>";
+			
+		html = html 
+			+ "<div class='row'>"
+				+ "<input name='items["+ index +"].id' value='" + id + "' type='hidden' />"
+				+ "<input name='items["+ index +"].name' value='" + menu.name + "' type='hidden'/>"
+				+ "<input name='items["+ index +"].qtt' value='" + menu.qtt + "' type='hidden'/>" 
+				+ "<input name='items["+ index +"].price' value='" + price + "' type='hidden'/>" 
+			+ "</div>";
+			
+		index = index + 1;
 	}
 	
 	html = html 
@@ -72,8 +83,12 @@ function populateCart(cartMap) {
 		+ "<div class='row'>"
 			+ "<div class='col-7'></div>"
 			+ "<div class='col-2'>Total</div>" 
-			+ "<div class='col-3'>$" + total.toFixed(2) + "</div>" 
+			+ "<div class='col-2'>$<span class='text-right'>" + total.toFixed(2) + "</span></div>" 
+			+ "<div class='col-1'></div>"
 		+ "</div>";
+		
+	html = html + "<input name='totalPrice' value='" + total + "' type='hidden'/>"
+	
 	
 	document.querySelector("#cart-result").innerHTML = html;
 	
@@ -91,4 +106,6 @@ function deleteFromCart(id) {
 }
 
 
-
+$('.deliver-date').datepicker({
+	'autoclose': true
+});

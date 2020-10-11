@@ -39,7 +39,7 @@
 <body>
 
 	<!-- header nav bar -->
-	<jsp:include page="header.jsp" />
+	<jsp:include page="headerForSub.jsp" />
 
 	<div class="hero-wrap" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_1.jpg');">
 		<div class="overlay"></div>
@@ -61,126 +61,104 @@
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
 				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h2>Our Menu</h2>
+					<h2>Checkout Orders</h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-7">
+				<div class="col-lg-7 container ftco-animate">
+						
+					<c:forEach items="${checkoutList.items}" var="item" varStatus="status">
+						<div class="row">
+							<div class="col-8">${ item.name }</div>
+							<div class="col-2">x ${ item.qtt }</div>
+							<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${item.price}" type = "currency"/></span></div>
+						</div>
+					</c:forEach>
+					
+					<hr>
 					<div class="row">
-						
-						<c:if test="${ menuList != null && menuList.size() > 0 }">
-						
-							<c:forEach items="${menuList}" var="menu" varStatus="status">
-								<div class="pricing-entry col-11 d-flex ftco-animate">
-									<div class="img" 
-										 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
-									<div class="desc pl-3">
-										<div class="d-flex text align-items-center">
-											<h3>
-												<span>
-													${menu.name} 
-													<c:if test="${menu.recommended}">
-														<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
-													</c:if>
-												</span>
-											</h3>
-											<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
-										</div>
-										<div class="d-flex">
-											<div class="col-10" style="text-align: justify;">
-												<div class="menu-keyword">
-													<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
-														${ key.value }  
-														<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
-													</c:forEach>
-												</div>
-												
-												${menu.description}
-											</div>
-											<p class="col-2" style="text-align: right;">
-												<a onClick="addToCart(${menu.menuId}, '${menu.name}', ${menu.price})" title="Add to cart">
-													<span class="icon-shopping-cart"></span>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-							
-						</c:if>
-						
-						<c:if test="${ menuList == null || menuList.size() == 0 }">
-							<div class="ftco-animate" style="margin: 2rem auto;">0 result matches criteria</div>
-						</c:if>
+						<div class="col-8">Tax 6%</div>
+						<div class="col-2"></div>
+						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*0.06}" type = "currency"/></span></div>
 					</div>
-				</div>
-				<div class="col-lg-5 sidebar">
-					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Search</h3>
-						<form:form action="restaurant" method="post" modelAttribute="searchModel">
-							<div class="fields">
-								<div class="form-group">
-									<form:input type="text" path="name"
-										class="form-control" placeholder="By name" />
-								</div>
-								<div class="form-group">
-									<div class="select-wrap one-third">
-										<div class="icon">
-											<span class="ion-ios-arrow-down"></span>
-										</div>
-										<form:select path="ethnic" class="form-control">
-											<option value="">By ethnic</option>
-											<c:forEach items="${ keywordList.ethnicKeywords }" var="keyword">
-												<option value="${ keyword.keywordId }">${ keyword.value }</option>
-											</c:forEach>
-										</form:select>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="select-wrap one-third">
-										<div class="icon">
-											<span class="ion-ios-arrow-down"></span>
-										</div>
-										<form:select path="dietary" class="form-control">
-											<option value="">By dietary</option>
-											<c:forEach items="${ keywordList.dietaryKeywords }" var="keyword">
-												<option value="${ keyword.keywordId }">${ keyword.value }</option>
-											</c:forEach>
-										</form:select>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="range-slider">
-										<div>By price</div>
-										<span> 
-											<form:input path="min" type="number" value="5" min="0" max="1200" class="form-number"/> - 
-											<form:input path="max" type="number" value="100" min="0" max="1200" class="form-number"/>
-										</span> 
-									</div>
-								</div>
-								<div class="form-group" style="padding-top: 1.5rem">
-									<input type="submit" value="Search"
-										class="btn btn-primary py-3 px-5">
-								</div>
-							</div>
-						</form:form>
+					<div class="row">
+						<div class="col-8">Service Fee 15%</div>
+						<div class="col-2"></div>
+						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*0.15}" type = "currency"/></span></div>
 					</div>
 					
-					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Cart</h3>
-						<form:form action="restaurant/checkout" method="post" modelAttribute="checkoutList">
-							<div id="cart-result">
-							</div>
-							
-							<div class="form-group" style="padding-top: 1.5rem">
-								<input type="submit" value="Checkout" id="checkout-btn"
-									class="btn btn-primary py-3 px-5">
-							</div>
-						</form:form>
+					<hr>
+					<div class="row total-price">
+						<div class="col-8"></div>
+						<div class="col-2">Total</div>
+						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*1.21}" type = "currency"/></span></div>
 					</div>
 					
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-7 container ftco-animate menu-order">
+					<form:form action="">
+						<c:forEach items="${checkoutList.items}" var="item" varStatus="loop" >
+							<div class="row">
+								<input name="items[${loop.index}].menuId" value="${item.id}" type="hidden" />
+								<input name="items[${loop.index}].quantity" value="${item.qtt}" type="hidden"/>
+							</div>
+						</c:forEach>
+						<input name="tax" value="${checkoutList.totalPrice*0.06}" type="hidden" />
+						<input name="serviceCharge" value="${checkoutList.totalPrice*0.15}" type="hidden" />
+						<input name="totalBill" value="${checkoutList.totalPrice*1.21}" type="hidden" />
+						
+						<div class="col-md-12 properties-single ftco-animate mt-5 fadeInUp ftco-animated">
+							<h5 class="mb-4">Deliver Detail</h5>
+		          			<div class="row mb-4">
+		          				<div class="col-4">Pick reservation</div>
+								<div class="col-8">
+									<div class="form-check">
+										<input type="radio" id="no-rev" name="reservationId" value="" class="form-check-input" checked />
+										<label class="form-check-label" for="no-rev">
+											no reservation
+										</label>
+									</div>
+								</div>
+		          			</div>
+		          			
+		          			<div class="row mb-4">
+		          				<div class="col-4">Pick deliver date</div>
+								<div class="col-8">
+									<input type="text" id="deliverDate" name="deliverDate" class="form-control deliver-date" />
+								</div>
+		          			</div>
+		          			
+		          			<c:set var="timeList" value="${[ 6, 8, 10, 12, 14, 16, 18, 20]}" scope="application" />
+		          			<div class="row mb-4">
+		          				<div class="col-4">Pick deliver time</div>
+								<div class="col-8">
+									<c:forEach items="${timeList}" var="time" varStatus="loop" >
+										<div class="form-check">
+											<c:if test="${ loop.first }">
+												<input type="radio" id="time${time}" name="time" value="${time}" class="form-check-input" checked />
+											</c:if>
+											<c:if test="${ !loop.first }">
+												<input type="radio" id="time${time}" name="time" value="${time}" class="form-check-input" />
+											</c:if>
+											<label class="form-check-label" for="time${time}">
+												${time}:00 - ${time+2}:00
+											</label>
+										</div>
+									</c:forEach>
+								</div>
+		          			</div>
+		          			
+		          		</div>
+
+						<div class="form-group" style="padding-top: 1.5rem">
+							<input type="submit" value="Place Order" class="btn btn-primary py-3 px-5">
+						</div>
+					</form:form>
+				</div>
+			</div>
+			
 		</div>
 	</section>
 
