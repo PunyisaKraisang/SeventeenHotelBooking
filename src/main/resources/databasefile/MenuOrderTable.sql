@@ -1,4 +1,3 @@
-DROP TABLE Menu_Order;
 -- Table Creation
 CREATE TABLE Menu_Order (
     Order_id NUMBER,

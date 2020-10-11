@@ -1,102 +1,140 @@
 package com.spring.entity;
 
-import javax.persistence.*;
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
-@Entity @Table(name = "Room_reservation")
-public class RoomReservationEntity {
-    @Id @Column(name = "reservation_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reservationId;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-    @Column(name = "Checkin_time")
-    //@Temporal(TemporalType.DATE)
-    private Date checkinTime;
+@Entity
+@Table(name = "room_reservation")
 
-    @Column(name = "Checkout_time")
-    //@Temporal(TemporalType.DATE)
-    private Date checkoutTime;
+public class RoomReservationEntity implements Serializable{
+	
+	private static final long serialVersionUID = -8696179071054771098L;
 
-    @Column(name = "Tax")
-    private float tax;
+	@Id
+	@Column(name = "reservation_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "reservationIdSeq")
+	@SequenceGenerator(
+			name = "reservationIdSeq",
+			sequenceName = "reservation_id",
+			initialValue = 1000,
+			allocationSize = 1
+	)
+	private int reservationId;
+	
+	@Column(name = "room_id")
+	private int roomId;
+	
+	@Column(name = "checkin_time")
+	private Date checkInTime;
+	
+	@Column(name = "checkout_time")
+	private Date checkOutTime;
 
-    @Column(name = "Service_charge")
-    private float serviceCharge;
+	@Column(name = "reservation_status", nullable = false)
+	private String reservationStatus;
+    
+	@Column(name = "tax", nullable = false, precision = 2)
+	private double tax;
+	
+	@Column(name = "service_charge", nullable = false, precision = 2)
+	private double serviceCharge;
+	
+	@Column(name = "total_bill", nullable = false, precision = 2)
+	private double totalBill;
 
-    @Column(name = "Total_bill")
-    private float totalBill;
+	
+	public RoomReservationEntity() {
+		super();
+	}
 
-    @Column(name = "Reservation_status")
-    private String reservationStatus;
+	public RoomReservationEntity(int reservationId, int roomId, Date checkInTime, Date checkOutTime,
+			String reservationStatus, double tax, double serviceCharge, double totalBill) {
+		super();
+		this.reservationId = reservationId;
+		this.roomId = roomId;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.reservationStatus = reservationStatus;
+		this.tax = tax;
+		this.serviceCharge = serviceCharge;
+		this.totalBill = totalBill;
+	}
 
-    public int getRoomId() {
-        return roomId;
-    }
+	public int getReservationId() {
+		return reservationId;
+	}
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
+	}
 
-    @Column(name = "Room_id")
-    private int roomId;
+	public int getRoomId() {
+		return roomId;
+	}
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "room_id")
-//    private RoomEntity roomEntity;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
 
-    public int getReservationId() {
-        return reservationId;
-    }
+	public Date getCheckInTime() {
+		return checkInTime;
+	}
 
-    public Date getCheckinTime() {
-        return checkinTime;
-    }
+	public void setCheckInTime(Date checkInTime) {
+		this.checkInTime = checkInTime;
+	}
 
-    public Date getCheckoutTime() {
-        return checkoutTime;
-    }
+	public Date getCheckOutTime() {
+		return checkOutTime;
+	}
 
-    public float getTax() {
-        return tax;
-    }
+	public void setCheckOutTime(Date checkOutTime) {
+		this.checkOutTime = checkOutTime;
+	}
 
-    public float getServiceCharge() {
-        return serviceCharge;
-    }
+	public String getReservationStatus() {
+		return reservationStatus;
+	}
 
-    public float getTotalBill() {
-        return totalBill;
-    }
+	public void setReservationStatus(String reservationStatus) {
+		this.reservationStatus = reservationStatus;
+	}
 
-    public String getReservationStatus() {
-        return reservationStatus;
-    }
+	public double getTax() {
+		return tax;
+	}
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
-    }
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
 
-    public void setCheckinTime(Date checkinTime) {
-        this.checkinTime = checkinTime;
-    }
+	public double getServiceCharge() {
+		return serviceCharge;
+	}
 
-    public void setCheckoutTime(Date checkoutTime) {
-        this.checkoutTime = checkoutTime;
-    }
+	public void setServiceCharge(double serviceCharge) {
+		this.serviceCharge = serviceCharge;
+	}
 
-    public void setTax(float tax) {
-        this.tax = tax;
-    }
+	public double getTotalBill() {
+		return totalBill;
+	}
 
-    public void setServiceCharge(float serviceCharge) {
-        this.serviceCharge = serviceCharge;
-    }
-
-    public void setTotalBill(float totalBill) {
-        this.totalBill = totalBill;
-    }
-
-    public void setReservationStatus(String reservationStatus) {
-        this.reservationStatus = reservationStatus;
-    }
+	public void setTotalBill(double totalBill) {
+		this.totalBill = totalBill;
+	}
+	
+	
+    
+  
 }

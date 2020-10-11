@@ -65,75 +65,69 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-7">
+				<div class="col-lg-9">
 					<div class="row">
-						
-						<c:if test="${ menuList != null && menuList.size() > 0 }">
-						
-							<c:forEach items="${menuList}" var="menu" varStatus="status">
-								<div class="pricing-entry col-11 d-flex ftco-animate">
-									<div class="img" 
-										 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
-									<div class="desc pl-3">
-										<div class="d-flex text align-items-center">
-											<h3>
-												<span>
-													${menu.name} 
-													<c:if test="${menu.recommended}">
-														<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
-													</c:if>
-												</span>
-											</h3>
-											<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
-										</div>
-										<div class="d-flex">
-											<div class="col-10" style="text-align: justify;">
-												<div class="menu-keyword">
-													<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
-														${ key.value }  
-														<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
-													</c:forEach>
-												</div>
-												
-												${menu.description}
+					
+						<c:forEach items="${menuList}" var="menu" varStatus="status">
+							<div class="pricing-entry col-11 d-flex ftco-animate">
+								<div class="img" 
+									 style="background-image: url(<spring:eval expression="@environment.getProperty('s3.menu.img.url')"/>${menu.menuId}.jpg);"></div>
+								<div class="desc pl-3">
+									<div class="d-flex text align-items-center">
+										<h3>
+											<span>
+												${menu.name} 
+												<c:if test="${menu.recommended}">
+													<span class="icon-star-o" style="font-size: 0.75em; padding:0"></span>
+												</c:if>
+											</span>
+										</h3>
+										<span class="price"><fmt:formatNumber value = "${menu.price}" type = "currency"/></span>
+									</div>
+									<div class="d-flex">
+										<div class="col-10" style="text-align: justify;">
+											<div class="menu-keyword">
+												<c:forEach items="${menu.keywords}" var="key" varStatus="loop">
+													${ key.value }  
+													<c:if test="${!loop.last}"><span class="icon-stop2"></span></c:if>
+												</c:forEach>
 											</div>
-											<p class="col-2" style="text-align: right;">
-												<a onClick="addToCart(${menu.menuId}, '${menu.name}', ${menu.price})" title="Add to cart">
-													<span class="icon-shopping-cart"></span>
-												</a>
-											</p>
+											
+											${menu.description}
 										</div>
+										<p class="col-2" style="text-align: right;">
+											<a onClick="clickMe(${menu.menuId})" title="Add to cart"><span class="icon-shopping-cart"></span></a>
+										</p>
 									</div>
 								</div>
-							</c:forEach>
-							
-						</c:if>
+							</div>
+						</c:forEach>
 						
-						<c:if test="${ menuList == null || menuList.size() == 0 }">
-							<div class="ftco-animate" style="margin: 2rem auto;">0 result matches criteria</div>
-						</c:if>
 					</div>
 				</div>
-				<div class="col-lg-5 sidebar">
+				<div class="col-lg-3 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Search</h3>
+						<h3 class="heading mb-4">Advanced Search</h3>
 						<form:form action="restaurant" method="post" modelAttribute="searchModel">
 							<div class="fields">
 								<div class="form-group">
 									<form:input type="text" path="name"
-										class="form-control" placeholder="By name" />
+										class="form-control" placeholder="Search by name" />
 								</div>
 								<div class="form-group">
 									<div class="select-wrap one-third">
 										<div class="icon">
 											<span class="ion-ios-arrow-down"></span>
 										</div>
-										<form:select path="ethnic" class="form-control">
-											<option value="">By ethnic</option>
-											<c:forEach items="${ keywordList.ethnicKeywords }" var="keyword">
-												<option value="${ keyword.keywordId }">${ keyword.value }</option>
-											</c:forEach>
-										</form:select>
+										<select name="" id="" class="form-control">
+											<option value="">Room Type</option>
+											<option value="">Suite</option>
+											<option value="">Family Room</option>
+											<option value="">Deluxe Room</option>
+											<option value="">Classic Room</option>
+											<option value="">Superior Room</option>
+											<option value="">Luxury Room</option>
+										</select>
 									</div>
 								</div>
 								<div class="form-group">
@@ -141,44 +135,51 @@
 										<div class="icon">
 											<span class="ion-ios-arrow-down"></span>
 										</div>
-										<form:select path="dietary" class="form-control">
-											<option value="">By dietary</option>
-											<c:forEach items="${ keywordList.dietaryKeywords }" var="keyword">
-												<option value="${ keyword.keywordId }">${ keyword.value }</option>
-											</c:forEach>
-										</form:select>
+										<select name="" id="" class="form-control">
+											<option value="">0 Adult</option>
+											<option value="">1 Adult</option>
+											<option value="">2 Adult</option>
+											<option value="">3 Adult</option>
+											<option value="">4 Adult</option>
+											<option value="">5 Adult</option>
+											<option value="">6 Adult</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="select-wrap one-third">
+										<div class="icon">
+											<span class="ion-ios-arrow-down"></span>
+										</div>
+										<select name="" id="" class="form-control">
+											<option value="">0 Children</option>
+											<option value="">1 Children</option>
+											<option value="">2 Children</option>
+											<option value="">3 Children</option>
+											<option value="">4 Children</option>
+											<option value="">5 Children</option>
+											<option value="">6 Children</option>
+										</select>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="range-slider">
-										<div>By price</div>
-										<span> 
-											<form:input path="min" type="number" value="5" min="0" max="1200" class="form-number"/> - 
-											<form:input path="max" type="number" value="100" min="0" max="1200" class="form-number"/>
-										</span> 
+										<span> <input type="number" value="25000" min="0"
+											max="120000" /> - <input type="number" value="50000" min="0"
+											max="120000" />
+										</span> <input value="1000" min="0" max="120000" step="500"
+											type="range" /> <input value="50000" min="0" max="120000"
+											step="500" type="range" />
+										</svg>
 									</div>
 								</div>
-								<div class="form-group" style="padding-top: 1.5rem">
+								<div class="form-group">
 									<input type="submit" value="Search"
 										class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
 						</form:form>
 					</div>
-					
-					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Cart</h3>
-						<div>
-							<div id="cart-result">
-							</div>
-							
-							<div class="form-group" style="padding-top: 1.5rem">
-								<input type="submit" value="Checkout" id="checkout-btn"
-									class="btn btn-primary py-3 px-5">
-							</div>
-						</div>
-					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -196,6 +197,12 @@
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
+
+	<script>
+		function clickMe(id) {
+			alert(id);
+		}
+	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
@@ -208,10 +215,11 @@
 	<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
+	<!-- <script src="${pageContext.request.contextPath}/resources/js/jquery.timepicker.min.js"></script> -->
 	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script> -->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/js/custom-script.js"></script>
 
 </body>
 </html>

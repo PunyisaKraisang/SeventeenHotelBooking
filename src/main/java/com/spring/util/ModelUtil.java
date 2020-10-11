@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 import com.spring.dto.SearchMenu;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuKeywordEntity;
+import com.spring.entity.RoomEntity;
 import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
+import com.spring.model.RoomModel;
 import com.spring.model.SearchMenuModel;
 
 public final class ModelUtil {
@@ -35,11 +37,23 @@ public final class ModelUtil {
 	}
 	
 	public static SearchMenu parse(SearchMenuModel from) {
-		return new SearchMenu(from.getName(),
-				(from.getEthnic() != null && !from.getEthnic().isEmpty()) ? Integer.parseInt(from.getEthnic()) : -1,
-				(from.getDietary() != null && !from.getDietary().isEmpty()) ? Integer.parseInt(from.getDietary()) : -1,
-				from.getMin(),
-				from.getMax(),
+		return new SearchMenu(
+				from.getName(),
 				from.isRecommended());
+	}
+	
+	public static RoomModel parse(RoomEntity from) {
+		RoomModel model = new RoomModel();
+		model.setRoomId(from.getRoomId());
+		model.setRoomFloor(from.getRoomFloor());
+		model.setRoomPrice(from.getRoomPrice());
+		model.setRoomNumber(from.getRoomNumber());
+		model.setRoomStatus(from.isRoomStatus());
+		model.setBedNumber(from.getBedNumber());
+		model.setRoomView(from.getRoomView());
+		model.setMaxCapacity(from.getMaxCapacity());
+		model.setBathtub(from.isBathtub());
+		model.setHotelId(from.getHotelId());
+		return model;
 	}
 }
