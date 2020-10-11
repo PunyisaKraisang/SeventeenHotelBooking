@@ -2,6 +2,7 @@ package com.spring.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity @Table(name = "Room_reservation")
 public class RoomReservationEntity {
@@ -46,9 +47,8 @@ public class RoomReservationEntity {
     @Column(name = "Room_id")
     private int roomId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "room_id")
-    private RoomEntity roomEntity;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private RoomEntity roomEntity;
 
     public int getReservationId() {
         return reservationId;
@@ -106,11 +106,11 @@ public class RoomReservationEntity {
         this.reservationStatus = reservationStatus;
     }
 
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
-    }
-
-    public void setRoomEntity(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
-    }
+//    public RoomEntity getRoomEntity() {
+//        return roomEntity;
+//    }
+//
+//    public void setRoomEntity(RoomEntity roomEntity) {
+//        this.roomEntity = roomEntity;
+//    }
 }
