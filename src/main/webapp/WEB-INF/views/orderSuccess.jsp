@@ -61,108 +61,22 @@
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
 				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h2>Checkout Orders</h2>
+					<h2>Order Success</h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-7 container ftco-animate">
-						
-					<c:forEach items="${checkoutList.items}" var="item" varStatus="status">
-						<div class="row">
-							<div class="col-8">${ item.name }</div>
-							<div class="col-2">x ${ item.qtt }</div>
-							<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${item.price}" type = "currency"/></span></div>
-						</div>
-					</c:forEach>
-					
-					<hr>
-					<div class="row">
-						<div class="col-8">Tax 6%</div>
-						<div class="col-2"></div>
-						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*0.06}" type = "currency"/></span></div>
+				<div class="col-lg-7 container ftco-animate" style="text-align: center">
+					<div style="margin: 2rem auto;">
+						Thank you for dining with us! See you at the hotel!
 					</div>
-					<div class="row">
-						<div class="col-8">Service Fee 15%</div>
-						<div class="col-2"></div>
-						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*0.15}" type = "currency"/></span></div>
-					</div>
-					
-					<hr>
-					<div class="row total-price">
-						<div class="col-8"></div>
-						<div class="col-2">Total</div>
-						<div class="col-2"><span class="text-right"><fmt:formatNumber value = "${checkoutList.totalPrice*1.21}" type = "currency"/></span></div>
-					</div>
-					
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-7 container ftco-animate menu-order">
-					<form:form action="order" method="post" modelAttribute="menuOrder">
-						<c:forEach items="${checkoutList.items}" var="item" varStatus="loop" >
-							<div class="row">
-								<input name="items[${loop.index}].menuId" value="${item.id}" type="hidden" />
-								<input name="items[${loop.index}].quantity" value="${item.qtt}" type="hidden"/>
-							</div>
-						</c:forEach>
-						<input name="tax" value="${checkoutList.totalPrice*0.06}" type="hidden" />
-						<input name="serviceCharge" value="${checkoutList.totalPrice*0.15}" type="hidden" />
-						<input name="totalBill" value="${checkoutList.totalPrice*1.21}" type="hidden" />
-						
-						<div class="col-md-12 properties-single ftco-animate mt-5 fadeInUp ftco-animated">
-							<h5 class="mb-4">Deliver Detail</h5>
-		          			<div class="row mb-4">
-		          				<div class="col-4">Pick reservation</div>
-								<div class="col-8">
-									<div class="form-check">
-										<input type="radio" id="no-rev" name="reservationId" value="-1" class="form-check-input" checked />
-										<label class="form-check-label" for="no-rev">
-											no reservation
-										</label>
-									</div>
-								</div>
-		          			</div>
-		          			
-		          			<div class="row mb-4">
-		          				<div class="col-4">Pick deliver date</div>
-								<div class="col-8">
-									<input type="text" id="deliverDate" name="deliverDate" class="form-control deliver-date" />
-								</div>
-		          			</div>
-		          			
-		          			<c:set var="timeList" value="${[ 6, 8, 10, 12, 14, 16, 18, 20]}" scope="application" />
-		          			<div class="row mb-4">
-		          				<div class="col-4">Pick deliver time</div>
-								<div class="col-8">
-									<c:forEach items="${timeList}" var="time" varStatus="loop" >
-										<div class="form-check">
-											<c:if test="${ loop.first }">
-												<input type="radio" id="time${time}" name="deliverTime" value="${time}" class="form-check-input" checked />
-											</c:if>
-											<c:if test="${ !loop.first }">
-												<input type="radio" id="time${time}" name="deliverTime" value="${time}" class="form-check-input" />
-											</c:if>
-											<label class="form-check-label" for="time${time}">
-												${time}:00 - ${time+2}:00
-											</label>
-										</div>
-									</c:forEach>
-								</div>
-		          			</div>
-		          			
-		          		</div>
-
-						<div class="form-group" style="padding-top: 1.5rem">
-							<input type="submit" value="Place Order" class="btn btn-primary py-3 px-5">
-						</div>
-					</form:form>
-				</div>
-			</div>
+			
 		</div>
 	</section>
 
 	<!-- footer -->
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">

@@ -16,6 +16,7 @@ import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuKeywordEntity;
 import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
+import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
 import com.spring.util.ModelUtil;
 
@@ -51,4 +52,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 		LOGGER.info("Fetch menu keywords success: " + category);
 		return modelList;
 	}
+	
+//	@Transactional
+//	public void makeOrder(SaveMenuOrderModel orderModel) {
+//		LOGGER.info("Make order");
+//		
+//		List<KeywordCategory> keywords = new ArrayList<KeywordCategory>();
+//		keywords.add(category);
+//		List<MenuKeywordEntity> entityList = menuRepository.fetchKeyword(keywords);
+//		List<MenuKeywordModel> modelList = entityList.stream().map(ModelUtil::parse).collect(Collectors.toList());
+//
+//		LOGGER.info("Make order success");
+//		return modelList;
+//	}
 }
