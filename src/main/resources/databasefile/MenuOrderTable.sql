@@ -30,5 +30,22 @@ INSERT INTO Menu_Order VALUES (2, 'dummy', '07-OCT-2020', 3.52, 3.00, 27.54);
 -- Show data
 SELECT * FROM Menu_Order;
 select * from menu_order_item;
+select moi.order_id
+        , m.name as menu_name
+        , c.first_name
+        , c.last_name
+        , moi.quantity
+        , moi.expected_deviler_datetime
+        , moi.status
+from menu_order_item moi
+inner join menu m on m.menu_id = moi.menu_id
+inner join menu_order mo on mo.order_id = moi.order_id
+inner join customer c on c.username = mo.username
+where moi.devilered_datetime is null 
+and moi.status = 'pending'
+order by moi.expected_deviler_datetime, m.name;
+
 
 commit;
+
+

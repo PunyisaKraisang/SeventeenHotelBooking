@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import com.spring.dto.MenuOrderItemInfo;
 import com.spring.dto.SearchMenu;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuKeywordEntity;
@@ -14,6 +15,7 @@ import com.spring.entity.MenuOrderEntity;
 import com.spring.entity.MenuOrderItemEntity;
 import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
+import com.spring.model.MenuOrderItemInfoModel;
 import com.spring.model.SaveMenuOrderItemModel;
 import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
@@ -74,6 +76,22 @@ public final class ModelUtil {
 		to.setQuantity(from.getQuantity());
 		to.setExpectedDeliverDate(expectedDate);
 		to.setStaus("pending");
+		return to;
+	}
+	
+	public static MenuOrderItemInfoModel parse(MenuOrderItemInfo from) {
+		
+		MenuOrderItemInfoModel to = new MenuOrderItemInfoModel();
+		to.setOrderId(from.getOrderId());
+		to.setMenuId(from.getMenuId());
+		to.setMenuName(from.getMenuName());
+		to.setCustomerName(from.getCustomerFirstName() + " " + from.getCustomerLastName());
+		to.setQuantity(from.getQuantity());
+		to.setStatus(from.getStatus());
+		
+		java.util.Date utilDate = new java.util.Date(from.getExpectedDeliverDate().getTime());
+		String dateString = MODEL_FORMAT.format(utilDate);
+		to.setExpectedDeliverDateTime(dateString);
 		return to;
 	}
 	

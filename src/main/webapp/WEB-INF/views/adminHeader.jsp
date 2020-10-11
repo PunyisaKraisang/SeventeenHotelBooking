@@ -15,7 +15,7 @@
         class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
         id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="home">Hotel Administration</a>
+        <a class="navbar-brand" href="hotelStatus">Hotel Administration</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#ftco-nav" aria-controls="ftco-nav"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
                 <li class="nav-item"><a href="adminRoom" class="nav-link">Room</a></li>
                 <li class="nav-item"><a href="adminCar" class="nav-link">Car</a></li>
                 <li class="nav-item"><a href="adminMenu" class="nav-link">Food</a></li>
+                <li class="nav-item"><a href="adminOrder" class="nav-link">Order</a></li>
                 <li class="nav-item"><a href="adminAdd" class="nav-link">Add</a> </li>
                 <li class="nav-item"><a href="home" class="nav-link">Logout</a> </li>
             </ul>
