@@ -7,44 +7,35 @@ public class SaveMenuOrderModel implements Serializable {
 
 	private static final long serialVersionUID = -87677725146936168L;
 	
-	private double tax;
-	private double serviceCharge;
-	private double totalBill;
-	private int reservationId;
+	private float tax;
+	private float serviceCharge;
+	private float totalBill;
 	private String deliverDate;
 	private int deliverTime;
 	private List<SaveMenuOrderItemModel> items;
 	
-	public double getTax() {
+	public float getTax() {
 		return tax;
 	}
 	
-	public void setTax(double tax) {
+	public void setTax(float tax) {
 		this.tax = tax;
 	}
 	
-	public double getServiceCharge() {
+	public float getServiceCharge() {
 		return serviceCharge;
 	}
 	
-	public void setServiceCharge(double serviceCharge) {
+	public void setServiceCharge(float serviceCharge) {
 		this.serviceCharge = serviceCharge;
 	}
 	
-	public double getTotalBill() {
+	public float getTotalBill() {
 		return totalBill;
 	}
 	
-	public void setTotalBill(double totalBill) {
+	public void setTotalBill(float totalBill) {
 		this.totalBill = totalBill;
-	}
-	
-	public int getReservationId() {
-		return reservationId;
-	}
-	
-	public void setReservationId(int reservationId) {
-		this.reservationId = reservationId;
 	}
 	
 	public String getDeliverDate() {
@@ -69,14 +60,6 @@ public class SaveMenuOrderModel implements Serializable {
 	
 	public void setItems(List<SaveMenuOrderItemModel> items) {
 		this.items = items;
-	}
-
-	@Override
-	public String toString() {
-		return "SaveMenuOrderModel [tax=" + tax + ", serviceCharge=" + serviceCharge + ", totalBill=" + totalBill
-				+ ", reservationId=" + reservationId + ", "
-				+ (deliverDate != null ? "deliverDate=" + deliverDate + ", " : "") + "deliverTime=" + deliverTime + ", "
-				+ (items != null ? "items=" + items : "") + "]";
 	}
 	
 }

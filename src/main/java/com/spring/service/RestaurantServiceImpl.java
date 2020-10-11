@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.dao.MenuOrderRepository;
 import com.spring.dao.MenuRepository;
 import com.spring.dto.KeywordCategory;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuKeywordEntity;
+import com.spring.entity.MenuOrderEntity;
 import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
 import com.spring.model.SaveMenuOrderModel;
@@ -27,6 +29,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Autowired
 	private MenuRepository menuRepository;
+	
+	@Autowired
+	private MenuOrderRepository menuOrderRepository;
 	
 	@Override
 	@Transactional
@@ -53,16 +58,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return modelList;
 	}
 	
-//	@Transactional
-//	public void makeOrder(SaveMenuOrderModel orderModel) {
-//		LOGGER.info("Make order");
-//		
-//		List<KeywordCategory> keywords = new ArrayList<KeywordCategory>();
-//		keywords.add(category);
-//		List<MenuKeywordEntity> entityList = menuRepository.fetchKeyword(keywords);
-//		List<MenuKeywordModel> modelList = entityList.stream().map(ModelUtil::parse).collect(Collectors.toList());
-//
-//		LOGGER.info("Make order success");
-//		return modelList;
-//	}
+	@Transactional
+	public void makeOrder(String username, SaveMenuOrderModel orderModel) {
+		LOGGER.info("Make order");
+		
+		menuOrderRepository.save(ModelUtil.parse(username, orderModel));
+
+		LOGGER.info("Make order success");
+	}
 }

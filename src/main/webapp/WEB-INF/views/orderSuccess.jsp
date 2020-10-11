@@ -87,6 +87,10 @@
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
+	<script>
+		sessionStorage.removeItem("cartMap");
+	</script>
+	
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
@@ -101,8 +105,6 @@
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/js/custom-script.js"></script>
 
 </body>
 </html>

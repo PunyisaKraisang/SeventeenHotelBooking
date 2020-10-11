@@ -103,7 +103,7 @@ public class RestaurantController {
 		
 		//TODO: Validate menuOrder
 		
-//		LOGGER.info("Order with " + menuOrder.getItems().size() + " menu(s)");
+		service.makeOrder("dummy", menuOrder);
 		
 		LOGGER.info("Save order success");
 		return "orderSuccess";

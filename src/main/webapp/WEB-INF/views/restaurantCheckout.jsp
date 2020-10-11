@@ -111,17 +111,6 @@
 						
 						<div class="col-md-12 properties-single ftco-animate mt-5 fadeInUp ftco-animated">
 							<h5 class="mb-4">Deliver Detail</h5>
-		          			<div class="row mb-4">
-		          				<div class="col-4">Pick reservation</div>
-								<div class="col-8">
-									<div class="form-check">
-										<input type="radio" id="no-rev" name="reservationId" value="-1" class="form-check-input" checked />
-										<label class="form-check-label" for="no-rev">
-											no reservation
-										</label>
-									</div>
-								</div>
-		          			</div>
 		          			
 		          			<div class="row mb-4">
 		          				<div class="col-4">Pick deliver date</div>
