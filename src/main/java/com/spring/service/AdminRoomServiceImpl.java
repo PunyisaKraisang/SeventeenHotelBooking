@@ -36,4 +36,10 @@ public class AdminRoomServiceImpl implements AdminRoomService {
     public void saveUpdateRoom(RoomEntity room) {
         adminRoomDAO.saveUpdateRoom(room);
     }
+
+    @Override @Transactional
+    public void roomStatusEditing(int roomId, String statusChangeTo) { adminRoomDAO.roomStatusEditing(roomId, statusChangeTo); }
+
+    @Override @Transactional
+    public void deleteRoom(int roomId) { adminRoomDAO.deleteRoom(roomId); }
 }

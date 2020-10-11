@@ -55,4 +55,24 @@ public class AdminRoomDAOImpl extends BaseRepository implements AdminRoomDAO {
         query.where(condition);
         return getSession().createQuery(query).getResultList();
     }
+
+    @Override
+    public void roomStatusEditing(int roomId, String statusChangeTo) {
+        String updateHQL = "UPDATE RoomEntity r SET r.roomStatus = :status WHERE r.roomId = :id";
+        Query query = getSession().createQuery(updateHQL);
+        query.setParameter("status", statusChangeTo);
+        query.setParameter("id", roomId);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void deleteRoom(int roomId) {
+        CriteriaBuilder cb = getSession().getCriteriaBuilder();
+        CriteriaQuery<RoomEntity> query = cb.createQuery(RoomEntity.class);
+        Root<RoomEntity> room = query.from(RoomEntity.class);
+        Predicate condition = cb.equal(room.get("roomId"), roomId);
+        query.where(condition);
+        RoomEntity delete = getSession().createQuery(query).getSingleResult();
+        getSession().delete(delete);
+    }
 }

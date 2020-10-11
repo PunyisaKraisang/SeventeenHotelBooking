@@ -10,4 +10,6 @@ public interface AdminRoomDAO {
     public void saveUpdateRoom(RoomEntity room);
     public List<RoomEntity> getNonAvailableRooms();
     public List<RoomEntity> getAvailableRooms();
+    public void roomStatusEditing(int roomId, String statusChangeTo);
+    public void deleteRoom(int roomId);
 }
