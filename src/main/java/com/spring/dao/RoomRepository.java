@@ -6,7 +6,7 @@ import com.spring.entity.RoomEntity;
 import com.spring.model.RoomModel;
 
 public interface RoomRepository {
-	//List<RoomEntity> fetch();
+	
 	List<RoomEntity> getAllRooms();
 	
 	List<RoomEntity> getRoomsMeetRequirment(int numberOfPeople, String roomType);

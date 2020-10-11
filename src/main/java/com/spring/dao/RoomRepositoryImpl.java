@@ -22,16 +22,6 @@ public class RoomRepositoryImpl extends BaseRepository implements RoomRepository
 
 	private static final Logger LOGGER = Logger.getLogger(RoomRepositoryImpl.class);
 	
-	//public List<RoomEntity> fetch() {
-		//CriteriaBuilder builder = getSession().getCriteriaBuilder();
-		//CriteriaQuery<RoomEntity> query = builder.createQuery(RoomEntity.class);
-		//Root<RoomEntity> root = query.from(RoomEntity.class);
-		//query.select(root);
-		//List<RoomEntity> result = getSession().createQuery(query).getResultList();
-		
-		//LOGGER.info("Fetch success with " + result.size() + " items in list");
-		//return result;
-	//}
 	@Override
     public List<RoomEntity> getAllRooms() {
         Query query = getSession().createQuery("SELECT r FROM RoomEntity r ORDER BY r.roomId", RoomEntity.class);

@@ -28,7 +28,6 @@ public class RoomsServiceImpl implements RoomsService{
 
 	@Override
 	public List<RoomEntity> getRoomsMeetRequirment(int numberOfPeople, String roomType) {
-		// TODO Auto-generated method stub
 		return roomRepository.getRoomsMeetRequirment(numberOfPeople, roomType);
 	}
 
@@ -37,14 +36,4 @@ public class RoomsServiceImpl implements RoomsService{
 		roomRepository.bookRoom(roomId, checkinDate, checkoutDate);
 	}
 
-	//@Transactional
-	//public List<RoomModel> fetchRoom() {
-		
-		//LOGGER.info("Fetch all room");
-		//List<RoomEntity> entityList = roomRepository.fetch();
-		//List<RoomModel> modelList = entityList.stream().map(ModelUtil::parse).collect(Collectors.toList());
-
-		//LOGGER.info("Fetch all room success");
-		//return modelList;
-	//}
 }

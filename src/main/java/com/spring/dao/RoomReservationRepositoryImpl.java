@@ -20,7 +20,6 @@ public class RoomReservationRepositoryImpl extends BaseRepository implements Roo
 
 	@Override
 	public void addReservation(RoomReservationEntity reservation) {
-		// TODO Auto-generated method stub
 		
 	}
 

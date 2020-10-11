@@ -31,10 +31,7 @@ public class RoomsController {
 	@GetMapping("/rooms")
 	public String goToReservarionRoomPage(Model model) {
 		 List<RoomEntity> rooms = service.getAllRooms();
-	        //System.out.println(rooms.size());
-	        // List<RoomReservationEntity> reservations = adminRoomReservationService.getReservationList();
 	        model.addAttribute("roomList", rooms);
-	        // model.addAttribute("reservationList", reservations);
 	        return "rooms";
 	}
     @PostMapping("/rooms")
@@ -44,17 +41,12 @@ public class RoomsController {
     		                  @RequestParam int numberOfPeople,
 	                          Model model) {
         System.out.println("u: " + roomType + ", p: " + numberOfPeople);
-        //AdminEntity admin = adminLoginService.getAdmin(username, password);
     	List<RoomEntity> rooms = service.getRoomsMeetRequirment(numberOfPeople, roomType);
-	        //System.out.println(rooms.size());
-	        // List<RoomReservationEntity> reservations = adminRoomReservationService.getReservationList();
 	    model.addAttribute("roomList", rooms);
 	    model.addAttribute("checkinDate", checkinDate);
 	    model.addAttribute("checkoutDate", checkoutDate);
-		// model.addAttribute("reservationList", reservations);
 	    return "rooms";
-        //session.setAttribute("loggedAdmin", true);
-        //return "redirect:/hotelStatus";
+ 
     }
     @PostMapping("/bookRoom")
 	public String getRoomDetail(@RequestParam int roomIdSelected,
