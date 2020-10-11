@@ -89,9 +89,6 @@ public class RestaurantController {
 		
 		LOGGER.info("Checkout with " + checkoutList.getItems().size() + " menu(s)");
 		
-		LOGGER.info("Retrieve ongoing or pending reservation for user: " + "dummy");
-		//TODO: Make search
-
 		LOGGER.info("Pass data to checkput page");
 		model.addAttribute("checkoutList", checkoutList);
 		
