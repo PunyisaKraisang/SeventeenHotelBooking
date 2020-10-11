@@ -44,7 +44,7 @@ CREATE TABLE Room_Reservation (
     CONSTRAINT fk_room_id FOREIGN KEY(Room_id) REFERENCES Room(Room_id),
     CONSTRAINT fk_username FOREIGN KEY(username) REFERENCES customer(username)
 );
-
+select * from room_reservation;
 -- Insert some data
 -- Room_Property
 --INSERT INTO Room_Property VALUES (1, 1, 'Ocean', 1, 'No');

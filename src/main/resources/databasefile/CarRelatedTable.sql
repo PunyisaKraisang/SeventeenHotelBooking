@@ -7,11 +7,17 @@ CREATE TABLE Car (
     Mileage FLOAT,
     AC VARCHAR(20),
     Car_manual VARCHAR(20),
-    Trunk_size FLOAT
+    Trunk_size FLOAT,
+    Car_status VARCHAR(20)
 );
 CREATE SEQUENCE carIdSeq
 START WITH 1000
 INCREMENT BY 1;
 
 INSERT INTO Car
-VALUES(1, 'Lexus', 'Coupe', 20.5, 5000, 'Yes', 'Yes', 116);
+VALUES(carIdSeq.NEXTVAL, 'Lexus', 'Coupe', 20.5, 5000, 'Yes', 'Yes', 116, 'Unavailable');
+
+INSERT INTO Car
+VALUES(carIdSeq.NEXTVAL, 'Ford', 'SUV', 30, 8000, 'Yes', 'Yes', 116, 'Available');
+
+select * from car;
