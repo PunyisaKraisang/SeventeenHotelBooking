@@ -6,7 +6,13 @@ import java.sql.Date;
 @Entity @Table(name = "Room_reservation")
 public class RoomReservationEntity {
     @Id @Column(name = "reservation_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reservationIdSeq")
+    @SequenceGenerator(
+            name = "reservationIdSeq",
+            sequenceName = "reservationIdSeq",
+            initialValue = 1000,
+            allocationSize = 1
+    )
     private int reservationId;
 
     @Column(name = "Checkin_time")

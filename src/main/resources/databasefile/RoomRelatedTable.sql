@@ -16,6 +16,10 @@ CREATE TABLE Room (
     Bathtub NUMBER(1) DEFAULT 1,
     CONSTRAINT pk_room_id PRIMARY KEY(Room_id)
 );
+-- Room_id sequence
+CREATE SEQUENCE roomIdSeq
+START WITH 1000
+INCREMENT BY 1;
 -- Room property table
 --CREATE TABLE Room_Property (
 --    Room_type NUMBER,

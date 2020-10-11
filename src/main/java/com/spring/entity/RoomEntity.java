@@ -12,7 +12,13 @@ public class RoomEntity implements Serializable {
 
     @Id
     @Column(name = "room_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roomIdSeq")
+    @SequenceGenerator(
+            name = "roomIdSeq",
+            sequenceName = "roomIdSeq",
+            initialValue = 1000,
+            allocationSize = 1
+    )
     private int roomId;
 
     @Column(name = "room_floor")
@@ -40,8 +46,8 @@ public class RoomEntity implements Serializable {
     private int maxCapacity;
 
     @Column(name = "bathtub")
-    @Type(type = "true_false")
-    private boolean bathtub;
+    //@Type(type = "true_false")
+    private int bathtub;
 
     @Column(name = "hotel_id")
     private int hotelId;
@@ -122,10 +128,10 @@ public class RoomEntity implements Serializable {
     }
 
 
-    public boolean isBathtub() {
+    public int getBathtub() {
         return bathtub;
     }
-    public void setBathtub(boolean bathtub) {
+    public void setBathtub(int bathtub) {
         this.bathtub = bathtub;
     }
 
@@ -144,4 +150,6 @@ public class RoomEntity implements Serializable {
     public void setRoomReservationEntity(RoomReservationEntity roomReservationEntity) {
         this.roomReservationEntity = roomReservationEntity;
     }
+
+
 }

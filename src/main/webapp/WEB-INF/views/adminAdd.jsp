@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Osrio
-  Date: 10/10/2020
-  Time: 14:29
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -64,80 +58,125 @@
                 </div>
             </div>
             <div class="container">
-                <form action="${pageContext.request.contextPath}/adminAdd/addRoom" method="post">
+                <%--@elvariable id="newRoom" type="com.spring.entity.RoomEntity"--%>
+                <f:form action="${pageContext.request.contextPath}/adminAdd/addRoom" method="post" modelAttribute="newRoom">
                     <div class="row justify-content-center mb-5 pb-3">
                         <div class="col-md-7 heading-section text-center ftco-animate">
                             <h3>Add New Room</h3>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="roomFloor">Room Floor</label>
-                        <input type="text" class="form-control" id="roomFloor" placeholder="e.g 1">
+                        <f:label for="roomFloor" path="roomFloor">Room Floor</f:label>
+                        <f:input type="text" class="form-control" id="roomFloor" placeholder="e.g 1" path="roomFloor"/>
                     </div>
                     <div class="form-group">
-                        <label for="roomNumber">Room Number</label>
-                        <input type="text" class="form-control" id=roomNumber placeholder="e.g 101">
+                        <f:label for="roomNumber" path="roomNumber">Room Number</f:label>
+                        <f:input type="text" class="form-control" id="roomNumber" placeholder="e.g 101" path="roomNumber"/>
                     </div>
                     <div class="form-group">
-                        <label for="roomPrice">Price</label>
-                        <input type="text" class="form-control" id="roomPrice" placeholder="e.g 86.3">
+                        <f:label for="roomPrice" path="roomPrice">Price</f:label>
+                        <f:input type="text" class="form-control" id="roomPrice" placeholder="e.g 86.3" path="roomPrice"/>
                     </div>
                     <div class="form-group">
-                        <label for="roomType">Type</label>
-                        <input type="text" class="form-control" id="roomType" placeholder="e.g Single">
+                        <f:label for="roomType" path="roomType">Type</f:label>
+                        <f:input type="text" class="form-control" id="roomType" placeholder="e.g Single" path="roomType"/>
                     </div>
                     <div class="form-group">
-                        <label for="roomStatus" class="form-group">Status</label>
-                        <input type="text" class="form-control" id="roomStatus" placeholder="e.g Available">
+                        <f:label path="roomStatus" for="roomStatus" class="form-group">Status</f:label>
+                        <f:input path="roomStatus" type="text" class="form-control" id="roomStatus" placeholder="e.g Available"/>
                     </div>
                     <div class="form-group">
-                        <label for="hotelId" class="form-group">Hotel ID</label>
-                        <input type="text" class="form-control" id="hotelId" placeholder="e.g 1">
+                        <f:label path="hotelId" for="hotelId" class="form-group">Hotel ID</f:label>
+                        <f:input path="hotelId" type="text" class="form-control" id="hotelId" placeholder="e.g 1"/>
                     </div>
                     <div class="form-group">
-                        <label for="bedNumber" class="form-group">Number of Beds</label>
-                        <input type="text" class="form-control" id="bedNumber" placeholder="e.g 1">
+                        <f:label path="bedNumber" for="bedNumber" class="form-group">Number of Beds</f:label>
+                        <f:input path="bedNumber" type="text" class="form-control" id="bedNumber" placeholder="e.g 1"/>
                     </div>
                     <div class="form-group">
-                        <label for="roomView" class="form-group">Outside View</label>
-                        <input type="text" class="form-control" id="roomView" placeholder="e.g City">
+                        <f:label path="roomView" for="roomView" class="form-group">Outside View</f:label>
+                        <f:input path="roomView" type="text" class="form-control" id="roomView" placeholder="e.g City"/>
                     </div>
                     <div class="form-group">
-                        <label for="maxCapacity" class="form-group">Max Capacity</label>
-                        <input type="text" class="form-control" id="maxCapacity" placeholder="e.g 1">
+                        <f:label path="maxCapacity" for="maxCapacity" class="form-group">Max Capacity</f:label>
+                        <f:input path="maxCapacity" type="text" class="form-control" id="maxCapacity" placeholder="e.g 1"/>
                     </div>
                     <div class="form-group">
-                        <label for="bathtub" class="form-group">Bathtub</label>
-                        <input type="text" class="form-control" id="bathtub" placeholder="e.g 1">
+                        <f:label path="bathtub" for="bathtub" class="form-group">Bathtub</f:label>
+                        <f:input path="bathtub" type="text" class="form-control" id="bathtub" placeholder="e.g 1"/>
                     </div>
                     <button type="submit" class="btn btn-info">Add New Room</button>
-                </form>
+                </f:form>
             </div>
+<%--            <div class="container">--%>
+<%--                &lt;%&ndash;@elvariable id="newDish" type="com.spring.entity.MenuEntity"&ndash;%&gt;--%>
+<%--                <f:form action="${pageContext.request.contextPath}/adminAdd/addFood" method="post" modelAttribute="newDish">--%>
+<%--                    <div class="row justify-content-center mb-5 pb-3">--%>
+<%--                        <div class="col-md-7 heading-section text-center ftco-animate">--%>
+<%--                            <h3>Add New Food</h3>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <f:label for="foodName" path="name">Food Name</f:label>--%>
+<%--                        <f:input path="name" type="text" class="form-control" id="foodName" placeholder="e.g Mashed Potato"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <f:label path="price" for="foodPrice">Price</f:label>--%>
+<%--                        <f:input path="price" type="text" class="form-control" id="foodPrice" placeholder="e.g 6.99"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <f:label path="recommneded" for="foodRecommendation">Recommendation</f:label>--%>
+<%--                        <f:input path="recommended" type="text" class="form-control" id="foodRecommendation" placeholder="e.g 0"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <f:label path="description" for="foodDesc">Type</f:label>--%>
+<%--                        <f:input path="description" type="text" class="form-control" id="foodDesc" placeholder="e.g Mashed potato with butter, milk, salt and pepper"/>--%>
+<%--                    </div>--%>
+<%--                    <button type="submit" class="btn btn-info">Add New Dish</button>--%>
+<%--                </f:form>--%>
+<%--            </div>--%>
             <div class="container">
-                <form action="${pageContext.request.contextPath}/adminAdd/addFood" method="post">
+                <%--@elvariable id="newCar" type="com.spring.entity.CarEntity"--%>
+                <f:form action="${pageContext.request.contextPath}/adminAdd/addCar" method="post" modelAttribute="newCar">
                     <div class="row justify-content-center mb-5 pb-3">
                         <div class="col-md-7 heading-section text-center ftco-animate">
-                            <h3>Add New Food</h3>
+                            <h3>Add New Car</h3>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="foodName">Food Name</label>
-                        <input type="text" class="form-control" id="foodName" placeholder="e.g Mashed Potato">
+                        <f:label path="carName" for="carName">Car Name</f:label>
+                        <f:input path="carName" class="form-control" id="carName"/>
                     </div>
                     <div class="form-group">
-                        <label for="foodPrice">Price</label>
-                        <input type="text" class="form-control" id=foodPrice placeholder="e.g 6.99">
+                        <f:label path="carType" for="carType">Car Type</f:label>
+                        <f:input class="form-control" id="carName" path="carType"/>
                     </div>
                     <div class="form-group">
-                        <label for="foodRecommendation">Recommendation</label>
-                        <input type="text" class="form-control" id="foodRecommendation" placeholder="e.g 0">
+                        <f:label path="carPrice" for="carPrice">Car Price</f:label>
+                        <f:input class="form-control" id="carPrice" path="carPrice"/>
                     </div>
                     <div class="form-group">
-                        <label for="foodDesc">Type</label>
-                        <input type="text" class="form-control" id="foodDesc" placeholder="e.g Mashed potato with butter, milk, salt and pepper">
+                        <f:label path="mileage" for="mileage">Mileage</f:label>
+                        <f:input class="form-control" id="mileage" path="mileage"/>
                     </div>
-                    <button type="submit" class="btn btn-info">Add New Dish</button>
-                </form>
+                    <div class="form-group">
+                        <f:label path="ac" for="ac">AC</f:label>
+                        <f:input class="form-control" id="ac" path="ac"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="manual" for="manual">Car Manual</f:label>
+                        <f:input class="form-control" id="manual" path="manual"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="trunkSize" for="trunkSize">Trunk Size</f:label>
+                        <f:input class="form-control" id="trunkSize" path="trunkSize"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="carStatus" for="carStatus">Availability</f:label>
+                        <f:input class="form-control" id="carStatus" path="carStatus"/>
+                    </div>
+                    <button type="submit" class="btn btn-info">Add New Car</button>
+                </f:form>
             </div>
         </div>
     </section>
