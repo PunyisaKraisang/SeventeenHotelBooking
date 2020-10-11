@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" style="text-align: center;">
             <table class="table table-hover">
                 <thead>
 	                <tr>
@@ -74,11 +74,14 @@
 	                        <td>${order.quantity}</td>
 	                        <td>${order.expectedDeliverDateTime}</td>
 	                        <td>${order.status}</td>
-	                        <td><a class="btn" href="${deliverLink}">Deliver</a></td>
+	                        <td><a href="${deliverLink}">Deliver</a></td>
 	                    </tr>
 	                </c:forEach>
                 </tbody>
             </table>
+        	<c:if test="${ orderList == null || orderList.size() == 0}">
+        		<div class="ftco-animate" style="margin: 2rem auto;">No current pending order</div>
+        	</c:if>
         </div>
     </section>
 

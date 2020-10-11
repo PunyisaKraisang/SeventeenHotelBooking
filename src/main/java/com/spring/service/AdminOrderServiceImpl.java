@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.dao.MenuOrderRepository;
+import com.spring.dto.DeliverMenuOrderItem;
 import com.spring.dto.MenuOrderItemInfo;
+import com.spring.entity.MenuOrderItemEntity;
 import com.spring.model.MenuOrderItemInfoModel;
 import com.spring.util.ModelUtil;
 
@@ -31,5 +34,18 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		
 		LOGGER.info("Fetch pending order success");
 		return models;
+	}
+	
+	@Transactional
+	public void deliverOrder(DeliverMenuOrderItem orderItem) {
+		
+		MenuOrderItemEntity entity = menuOrderRepository.loadOrderItem(orderItem.getOrderId(), orderItem.getMenuId());
+		
+		// Set status and update deliver time
+		entity.setDeliveredDate(new Timestamp(System.currentTimeMillis()));
+		entity.setStatus("delivered");
+		menuOrderRepository.saveOrUpdate(entity);
+		
+		LOGGER.info("Fetch pending order success");
 	}
 }

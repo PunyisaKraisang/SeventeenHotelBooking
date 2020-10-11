@@ -2,14 +2,25 @@ package com.spring.dao;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.dto.MenuOrderItemInfo;
+import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuOrderEntity;
+import com.spring.entity.MenuOrderItemEntity;
 
 @Repository
 @Transactional
@@ -18,9 +29,6 @@ public class MenuOrderRepositoryImpl extends BaseRepository implements MenuOrder
 	private static final Logger LOGGER = Logger.getLogger(MenuOrderRepositoryImpl.class);
 	
 	public void save(MenuOrderEntity menuOrder) {
-		
-		System.out.println(menuOrder);
-		
 		LOGGER.info("Save menu order");
 		getSession().save(menuOrder);
 		LOGGER.info("Save menu order success");
@@ -71,6 +79,35 @@ public class MenuOrderRepositoryImpl extends BaseRepository implements MenuOrder
 		
 		LOGGER.info("Fetch menu order info success with " + result.size() + " items in list");
 		return result;
+	}
+
+	@Override
+	public MenuOrderItemEntity loadOrderItem(int orderId, int menuId) {
+		LOGGER.info("Load menu order item");
+		
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<MenuOrderItemEntity> query = builder.createQuery(MenuOrderItemEntity.class);
+		Root<MenuOrderItemEntity> root = query.from(MenuOrderItemEntity.class);
+		
+		// Add in criteria by menu ID 
+		Predicate andClause =  builder.and(
+				builder.equal(root.get("orderId"), orderId), 
+				builder.equal(root.get("menuId"), menuId));
+		
+		query.select(root).where(andClause);
+		
+		// Fetch result
+		List<MenuOrderItemEntity> result = getSession().createQuery(query).getResultList();
+
+		LOGGER.info("Load menu order item success");
+		return result.get(0);
+	}
+
+	@Override
+	public void saveOrUpdate(MenuOrderItemEntity menuOrderItem) {
+		LOGGER.info("Save menu order");
+		getSession().saveOrUpdate(menuOrderItem);
+		LOGGER.info("Save menu order success");
 	}
 
 }

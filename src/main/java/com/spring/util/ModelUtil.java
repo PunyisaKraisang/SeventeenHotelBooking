@@ -75,7 +75,7 @@ public final class ModelUtil {
 		to.setMenuId(from.getMenuId());
 		to.setQuantity(from.getQuantity());
 		to.setExpectedDeliverDate(expectedDate);
-		to.setStaus("pending");
+		to.setStatus("pending");
 		return to;
 	}
 	

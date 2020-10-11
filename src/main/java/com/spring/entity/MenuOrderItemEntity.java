@@ -31,10 +31,10 @@ public class MenuOrderItemEntity implements Serializable {
 	private Timestamp expectedDeliverDate;
 	
 	@Column(name = "Devilered_datetime")
-	private Timestamp deliveredDeliverDate;
+	private Timestamp deliveredDate;
 	
 	@Column(name = "Status")
-	private String staus;
+	private String status;
 
 	public int getOrderId() {
 		return orderId;
@@ -68,20 +68,20 @@ public class MenuOrderItemEntity implements Serializable {
 		this.expectedDeliverDate = expectedDeliverDate;
 	}
 
-	public Timestamp getDeliveredDeliverDate() {
-		return deliveredDeliverDate;
+	public Timestamp getDeliveredDate() {
+		return deliveredDate;
 	}
 
-	public void setDeliveredDeliverDate(Timestamp deliveredDeliverDate) {
-		this.deliveredDeliverDate = deliveredDeliverDate;
+	public void setDeliveredDate(Timestamp deliveredDate) {
+		this.deliveredDate = deliveredDate;
 	}
 
-	public String getStaus() {
-		return staus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStaus(String staus) {
-		this.staus = staus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
