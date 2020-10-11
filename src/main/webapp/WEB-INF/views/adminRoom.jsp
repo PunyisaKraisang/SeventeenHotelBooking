@@ -79,10 +79,14 @@
                         </tr>
                         <tr>
                             <th scope="col">Room Id</th>
+                            <th scope="col">Hotel Id</th>
                             <th scope="col">Room Number</th>
+                            <th scope="col">Floor</th>
                             <th scope="col">Price</th>
                             <th scope="col">Room Type</th>
+                            <th scope="col">View</th>
                             <th scope="col">Max Capacity</th>
+                            <th scope="col">Bathtub</th>
                             <th scope="col">Status</th>
                             <th scope="col">Check in</th>
                         </tr>
@@ -94,10 +98,14 @@
                             </c:url>
                             <tr>
                                 <td>${room.roomId}</td>
+                                <th>${room.hotelId}</th>
                                 <td>${room.roomNumber}</td>
+                                <th>${room.roomFloor}</th>
                                 <td>${room.roomPrice}</td>
                                 <td>${room.roomType}</td>
+                                <td>${room.roomView}</td>
                                 <td>${room.maxCapacity}</td>
+                                <td>${room.bathtub}</td>
                                 <td>${room.roomStatus}</td>
                                 <td><a class="btn" href="${checkinLink}">Check in</a></td>
                             </tr>
@@ -155,10 +163,14 @@
                     </div>
                     <tr>
                         <th scope="col">Room Id</th>
+                        <th scope="col">Hotel Id</th>
                         <th scope="col">Room Number</th>
+                        <th scope="col">Floor</th>
                         <th scope="col">Price</th>
                         <th scope="col">Room Type</th>
+                        <th scope="col">View</th>
                         <th scope="col">Max Capacity</th>
+                        <th scope="col">Bathtub</th>
                         <th scope="col">Status</th>
                         <th scope="col">Maintenance</th>
                         <th scope="col">Cleaning</th>
@@ -176,10 +188,14 @@
                         </c:url>
                         <tr>
                             <td>${room.roomId}</td>
+                            <th>${room.hotelId}</th>
                             <td>${room.roomNumber}</td>
+                            <th>${room.roomFloor}</th>
                             <td>${room.roomPrice}</td>
                             <td>${room.roomType}</td>
+                            <td>${room.roomView}</td>
                             <td>${room.maxCapacity}</td>
+                            <td>${room.bathtub}</td>
                             <td>${room.roomStatus}</td>
                             <c:choose>
                                 <c:when test="${room.roomStatus.equals('Occupied')}">
@@ -208,7 +224,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h2>Delete Room</h2>
+                    <h2>Edit / Delete Room</h2>
                 </div>
             </div>
             <div class="container">
@@ -223,26 +239,39 @@
                         </tr>
                         <tr>
                             <th scope="col">Room Id</th>
+                            <th scope="col">Hotel Id</th>
                             <th scope="col">Room Number</th>
+                            <th scope="col">Floor</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Room Type</th>
+                            <th scope="col">View</th>
                             <th scope="col">Max Capacity</th>
+                            <th scope="col">Bathtub</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="room" items="${allRooms}">
+                            <c:url var="editLink" value="/adminRoom/edit">
+                                <c:param name="roomId" value="${room.roomId}"/>
+                            </c:url>
                             <c:url var="deleteLink" value="/adminRoom/delete">
                                 <c:param name="roomId" value="${room.roomId}"/>
                             </c:url>
                             <tr>
                                 <td>${room.roomId}</td>
+                                <th>${room.hotelId}</th>
                                 <td>${room.roomNumber}</td>
+                                <th>${room.roomFloor}</th>
                                 <td>${room.roomPrice}</td>
                                 <td>${room.roomType}</td>
+                                <td>${room.roomView}</td>
                                 <td>${room.maxCapacity}</td>
+                                <td>${room.bathtub}</td>
                                 <td>${room.roomStatus}</td>
+                                <th><a class="btn" href="${editLink}">Edit</a></th>
                                 <td><a class="btn" href="${deleteLink}">Delete</a></td>
                             </tr>
                         </c:forEach>

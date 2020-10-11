@@ -41,8 +41,8 @@
                     class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-12 ftco-animate text-center">
                     <div class="text mb-5 pb-3">
-                        <h1 class="mb-3">Editing Car Details</h1>
-                        <h2>Car Editing</h2>
+                        <h1 class="mb-3">Editing Room Information</h1>
+                        <h2>Room Editing</h2>
                     </div>
                 </div>
             </div>
@@ -56,47 +56,35 @@
                 <h3>Editing Information</h3>
             </div>
         </div>
-        <c:url var="editLink" value="/adminCar/edit">
-            <c:param name="carId" value="${updatingCar.carId}"/>
+        <c:url var="editLink" value="/adminRoom/edit">
+            <c:param name="roomId" value="${updatingRoom.roomId}"/>
         </c:url>
-        <%--@elvariable id="updatingDish" type="com.spring.entity.CarEntity"--%>
-        <f:form action="${editLink}" method="post" modelAttribute="updatingCar">
+        <%--@elvariable id="updatingDish" type="com.spring.entity.RoomEntity"--%>
+        <f:form action="${editLink}" method="post" modelAttribute="updatingRoom">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Edit Car Information</h3>
+                    <h3>Edit Room Information</h3>
                 </div>
             </div>
             <div class="form-group">
-                <f:label for="carName" path="carName">Car Name</f:label>
-                <f:input path="carName" type="text" class="form-control" id="carName" value="${updatingCar.carName}"/>
+                <f:label for="roomPrice" path="roomPrice">Price</f:label>
+                <f:input path="roomPrice" type="text" class="form-control" id="roomPrice" value="${updatingRoom.roomPrice}"/>
             </div>
             <div class="form-group">
-                <f:label path="carType" for="carType">Type</f:label>
-                <f:input path="carType" type="text" class="form-control" id="carType" value="${updatingCar.carType}"/>
+                <f:label for="roomType" path="roomType">Type</f:label>
+                <f:input path="roomType" type="text" class="form-control" id="roomType" value="${updatingRoom.roomType}"/>
             </div>
             <div class="form-group">
-                <f:label path="carPrice" for="carPrice">Price</f:label>
-                <f:input path="carPrice" type="text" class="form-control" id="foodRecommendation" value="${updatingCar.carPrice}"/>
+                <f:label path="bedNumber" for="bedNumber">Bed Number</f:label>
+                <f:input path="bedNumber" type="text" class="form-control" id="bedNumber" value="${updatingRoom.bedNumber}"/>
             </div>
             <div class="form-group">
-                <f:label path="carStatus" for="carStatus">Status</f:label>
-                <f:input path="carStatus" type="text" class="form-control" id="carStatus" value="${updatingCar.carStatus}"/>
+                <f:label path="maxCapacity" for="maxCapacity">Max Capacity</f:label>
+                <f:input path="maxCapacity" type="text" class="form-control" id="maxCapacity" value="${updatingRoom.maxCapacity}"/>
             </div>
             <div class="form-group">
-                <f:label path="mileage" for="mileage">Mileage</f:label>
-                <f:input path="mileage" type="text" class="form-control" id="mileage" value="${updatingCar.mileage}"/>
-            </div>
-            <div class="form-group">
-                <f:label path="ac" for="ac">AC</f:label>
-                <f:input path="ac" type="text" class="form-control" id="ac" value="${updatingCar.ac}"/>
-            </div>
-            <div class="form-group">
-                <f:label path="manual" for="manual">Manual</f:label>
-                <f:input path="manual" type="text" class="form-control" id="manual" value="${updatingCar.manual}"/>
-            </div>
-            <div class="form-group">
-                <f:label path="trunkSize" for="trunkSize">Trunk Size</f:label>
-                <f:input path="trunkSize" type="text" class="form-control" id="trunkSize" value="${updatingCar.trunkSize}"/>
+                <f:label path="bathtub" for="bathtub">Bathtub</f:label>
+                <f:input path="bathtub" type="text" class="form-control" id="bathtub" value="${updatingRoom.bathtub}"/>
             </div>
             <button type="submit" class="btn btn-info">Update</button>
         </f:form>

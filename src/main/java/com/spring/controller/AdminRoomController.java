@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -63,6 +60,19 @@ public class AdminRoomController {
             model.addAttribute("deleteFailed", "Delete room failed");
             return "redirect:/adminRoom";
         }
+    }
+
+    @GetMapping("edit")
+    public String editRoomForm(Model model, int roomId) {
+        RoomEntity updatingRoom = adminRoomService.getRoomById(roomId);
+        model.addAttribute("updatingRoom", updatingRoom);
+        return "adminRoomEditing";
+    }
+
+    @PostMapping("edit")
+    public String editRoom(@ModelAttribute("updatingRoom") RoomEntity room, int roomId) {
+        adminRoomService.updatingExistRoom(room);
+        return "redirect:/adminRoom";
     }
 
     @GetMapping("maintenance")

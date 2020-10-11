@@ -42,4 +42,10 @@ public class AdminRoomServiceImpl implements AdminRoomService {
 
     @Override @Transactional
     public void deleteRoom(int roomId) { adminRoomDAO.deleteRoom(roomId); }
+
+    @Override @Transactional
+    public RoomEntity getRoomById(int roomId) { return adminRoomDAO.getRoomById(roomId); }
+
+    @Override @Transactional
+    public void updatingExistRoom(RoomEntity room) { adminRoomDAO.updatingExistRoom(room); }
 }

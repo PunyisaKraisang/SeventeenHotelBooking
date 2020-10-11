@@ -67,12 +67,28 @@ public class AdminRoomDAOImpl extends BaseRepository implements AdminRoomDAO {
 
     @Override
     public void deleteRoom(int roomId) {
+        RoomEntity delete = getRoomById(roomId);
+        getSession().delete(delete);
+    }
+
+    @Override
+    public RoomEntity getRoomById(int roomId) {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<RoomEntity> query = cb.createQuery(RoomEntity.class);
         Root<RoomEntity> room = query.from(RoomEntity.class);
         Predicate condition = cb.equal(room.get("roomId"), roomId);
         query.where(condition);
-        RoomEntity delete = getSession().createQuery(query).getSingleResult();
-        getSession().delete(delete);
+        return getSession().createQuery(query).getSingleResult();
+    }
+
+    @Override
+    public void updatingExistRoom(RoomEntity room) {
+        RoomEntity existingRoom = getRoomById(room.getRoomId());
+        existingRoom.setBathtub(room.getBathtub());
+        existingRoom.setBedNumber(room.getBedNumber());
+        existingRoom.setMaxCapacity(room.getMaxCapacity());
+        existingRoom.setRoomPrice(room.getRoomPrice());
+        existingRoom.setRoomType(room.getRoomType());
+        getSession().update(existingRoom);
     }
 }
