@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -23,9 +25,22 @@ public class AdminCarController {
         return "adminCar";
     }
 
-    @GetMapping("edit")
+    @GetMapping("availability")
     public String changeCarAvailability(int carId) {
         adminCarService.changeCarStatus(carId);
+        return "redirect:/adminCar";
+    }
+
+    @GetMapping("edit")
+    public String editCarInfo(Model model, int carId) {
+        CarEntity updatingCar = adminCarService.getCarById(carId);
+        model.addAttribute("updatingCar", updatingCar);
+        return "adminCarEditing";
+    }
+
+    @PostMapping("edit")
+    public String editCar(@ModelAttribute("updatingCar") CarEntity car) {
+        adminCarService.updateExistingCar(car);
         return "redirect:/adminCar";
     }
 

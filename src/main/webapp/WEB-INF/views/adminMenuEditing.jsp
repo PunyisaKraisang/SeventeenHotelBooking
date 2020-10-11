@@ -53,14 +53,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h2>Hotel Menu</h2>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Current Menu</h3>
+                    <h3>Editing Information</h3>
                 </div>
             </div>
             <c:url var="editLink" value="/adminMenu/edit">

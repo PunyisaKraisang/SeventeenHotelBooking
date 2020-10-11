@@ -9,4 +9,6 @@ public interface AdminCarDAO {
     public void changeAvailability(int carId);
     public void deleteCar(int carId);
     public void saveUpdateCar(CarEntity car);
+    public CarEntity getCarById(int carId);
+    public void updateExistingCar(CarEntity car);
 }
