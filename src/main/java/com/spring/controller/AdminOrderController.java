@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import com.spring.dto.DeliverMenuOrderItem;
 import com.spring.model.MenuOrderItemInfoModel;
 import com.spring.service.AdminOrderService;
 
@@ -35,8 +36,10 @@ public class AdminOrderController {
     @GetMapping("deliver")
     public String deliverOrder(int orderId, int menuId) {
     	LOGGER.info("Deliver order=" + orderId + ", menu=" + menuId);
-//        adminCarService.changeCarStatus(carId);
-
+    	
+    	DeliverMenuOrderItem orderItem = new DeliverMenuOrderItem(orderId, menuId);
+    	orderService.deliverOrder(orderItem);
+    	
     	LOGGER.info("Redirect to order page");
         return "redirect:/adminOrder";
     }

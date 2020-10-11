@@ -74,7 +74,7 @@
 	                        <td>${order.quantity}</td>
 	                        <td>${order.expectedDeliverDateTime}</td>
 	                        <td>${order.status}</td>
-	                        <td><a class="btn" href="${deliverLink}">Deliver</a></td>
+	                        <td><a href="${deliverLink}">Deliver</a></td>
 	                    </tr>
 	                </c:forEach>
                 </tbody>
