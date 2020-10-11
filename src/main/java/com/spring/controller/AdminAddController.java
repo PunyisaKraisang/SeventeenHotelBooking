@@ -26,7 +26,7 @@ public class AdminAddController {
     public String addForms(Model model) {
         model.addAttribute("newRoom", new RoomEntity());
         model.addAttribute("newCar", new CarEntity());
-        //model.addAttribute("newDish", new MenuEntity());
+        model.addAttribute("newDish", new MenuEntity());
         return "adminAdd";
     }
 

@@ -108,33 +108,33 @@
                     <button type="submit" class="btn btn-info">Add New Room</button>
                 </f:form>
             </div>
-<%--            <div class="container">--%>
-<%--                &lt;%&ndash;@elvariable id="newDish" type="com.spring.entity.MenuEntity"&ndash;%&gt;--%>
-<%--                <f:form action="${pageContext.request.contextPath}/adminAdd/addFood" method="post" modelAttribute="newDish">--%>
-<%--                    <div class="row justify-content-center mb-5 pb-3">--%>
-<%--                        <div class="col-md-7 heading-section text-center ftco-animate">--%>
-<%--                            <h3>Add New Food</h3>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-group">--%>
-<%--                        <f:label for="foodName" path="name">Food Name</f:label>--%>
-<%--                        <f:input path="name" type="text" class="form-control" id="foodName" placeholder="e.g Mashed Potato"/>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-group">--%>
-<%--                        <f:label path="price" for="foodPrice">Price</f:label>--%>
-<%--                        <f:input path="price" type="text" class="form-control" id="foodPrice" placeholder="e.g 6.99"/>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-group">--%>
-<%--                        <f:label path="recommneded" for="foodRecommendation">Recommendation</f:label>--%>
-<%--                        <f:input path="recommended" type="text" class="form-control" id="foodRecommendation" placeholder="e.g 0"/>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-group">--%>
-<%--                        <f:label path="description" for="foodDesc">Type</f:label>--%>
-<%--                        <f:input path="description" type="text" class="form-control" id="foodDesc" placeholder="e.g Mashed potato with butter, milk, salt and pepper"/>--%>
-<%--                    </div>--%>
-<%--                    <button type="submit" class="btn btn-info">Add New Dish</button>--%>
-<%--                </f:form>--%>
-<%--            </div>--%>
+            <div class="container">
+                <%--@elvariable id="newDish" type="com.spring.entity.MenuEntity"--%>
+                <f:form action="${pageContext.request.contextPath}/adminAdd/addFood" method="post" modelAttribute="newDish">
+                    <div class="row justify-content-center mb-5 pb-3">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h3>Add New Food</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <f:label for="foodName" path="name">Food Name</f:label>
+                        <f:input path="name" type="text" class="form-control" id="foodName" placeholder="e.g Mashed Potato"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="price" for="foodPrice">Price</f:label>
+                        <f:input path="price" type="text" class="form-control" id="foodPrice" placeholder="e.g 6.99"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="isRecommended" for="foodRecommendation">Recommendation</f:label>
+                        <f:input path="isRecommended" type="text" class="form-control" id="foodRecommendation" placeholder="e.g 0"/>
+                    </div>
+                    <div class="form-group">
+                        <f:label path="description" for="foodDesc">Type</f:label>
+                        <f:input path="description" type="text" class="form-control" id="foodDesc" placeholder="e.g Mashed potato with butter, milk, salt and pepper"/>
+                    </div>
+                    <button type="submit" class="btn btn-info">Add New Dish</button>
+                </f:form>
+            </div>
             <div class="container">
                 <%--@elvariable id="newCar" type="com.spring.entity.CarEntity"--%>
                 <f:form action="${pageContext.request.contextPath}/adminAdd/addCar" method="post" modelAttribute="newCar">
