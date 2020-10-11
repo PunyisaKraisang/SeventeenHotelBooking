@@ -4,16 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
@@ -25,7 +16,13 @@ public class MenuEntity implements Serializable {
 
 	@Id
 	@Column(name = "menu_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menuIdSeq")
+	@SequenceGenerator(
+			name = "menuIdSeq",
+			sequenceName = "menuIdSeq",
+			initialValue = 1000,
+			allocationSize = 1
+	)
 	private int menuId;
 	
 	@Column(name = "name", nullable = false)
