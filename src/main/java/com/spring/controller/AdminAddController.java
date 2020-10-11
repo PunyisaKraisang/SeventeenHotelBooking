@@ -4,14 +4,12 @@ import com.spring.entity.CarEntity;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.RoomEntity;
 import com.spring.service.AdminCarService;
-import com.spring.service.AdminFoodService;
+import com.spring.service.AdminMenuService;
 import com.spring.service.AdminRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/adminAdd")
@@ -24,7 +22,7 @@ public class AdminAddController {
     private AdminCarService adminCarService;
 
     @Autowired
-    private AdminFoodService adminFoodService;
+    private AdminMenuService adminMenuService;
 
     @GetMapping("")
     public String addForms(Model model) {
@@ -59,8 +57,8 @@ public class AdminAddController {
     public String addFoodForm(@ModelAttribute("newDish") MenuEntity food) { return "adminAdd"; }
 
     @PostMapping("addFood")
-    @ResponseBody
     public String addFood(@ModelAttribute("newDish") MenuEntity food) {
+        adminMenuService.saveUpdateFood(food);
         return "redirect:/adminMenu";
     }
 }

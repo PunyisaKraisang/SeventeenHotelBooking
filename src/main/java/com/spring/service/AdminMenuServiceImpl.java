@@ -18,4 +18,13 @@ public class AdminMenuServiceImpl implements AdminMenuService {
     public List<MenuEntity> listAllFoods() {
         return adminMenuDAO.listAllFoods();
     }
+
+    @Override
+    @Transactional
+    public void saveUpdateFood(MenuEntity food) {
+        adminMenuDAO.saveUpdateFood(food);
+    }
+
+    @Override @Transactional
+    public void deleteFood(int menuId) { adminMenuDAO.deleteFood(menuId); }
 }

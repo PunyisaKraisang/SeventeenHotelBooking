@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -25,14 +24,13 @@ public class AdminMenuController {
     }
 
     @GetMapping("edit")
-    @ResponseBody
     public String editFood() {
-        return "editing...";
+        return "adminMenuEditing";
     }
 
     @GetMapping("delete")
-    @ResponseBody
-    public String deleteFood() {
-        return "deleting...";
+    public String deleteFood(int menuId) {
+        adminMenuService.deleteFood(menuId);
+        return "redirect:/adminMenu";
     }
 }
