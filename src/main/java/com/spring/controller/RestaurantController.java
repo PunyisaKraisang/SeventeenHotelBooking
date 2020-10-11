@@ -5,21 +5,19 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.dto.KeywordCategory;
 import com.spring.model.MenuCheckoutListModel;
 import com.spring.model.MenuKeywordListModel;
 import com.spring.model.MenuModel;
+import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
 import com.spring.service.RestaurantService;
 
@@ -85,16 +83,29 @@ public class RestaurantController {
 
 	@PostMapping("/checkout")
 	public String checkout(
-			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList, Model model) {
+			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList,
+			@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, 
+			Model model) {
 		
 		LOGGER.info("Checkout with " + checkoutList.getItems().size() + " menu(s)");
 		
 		LOGGER.info("Retrieve ongoing or pending reservation for user: " + "dummy");
-		
+		//TODO: Make search
 
 		LOGGER.info("Pass data to checkput page");
 		model.addAttribute("checkoutList", checkoutList);
 		
 		return "restaurantCheckout";
+	}
+
+	@PostMapping("/order")
+	public String order(@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, Model model) {
+		
+		//TODO: Validate menuOrder
+		
+//		LOGGER.info("Order with " + menuOrder.getItems().size() + " menu(s)");
+		
+		LOGGER.info("Save order success");
+		return "orderSuccess";
 	}
 }
