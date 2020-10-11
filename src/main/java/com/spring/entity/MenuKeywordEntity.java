@@ -9,7 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "menu_keyword")
-public class MenuKeywordEntity {
+public class
+MenuKeywordEntity {
 
 	@Id
 	@Column(name = "keyword_id")

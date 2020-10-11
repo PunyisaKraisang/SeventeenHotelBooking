@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,20 +44,41 @@ public class AdminRoomController {
     }
 
     @GetMapping("checkin")
-    @ResponseBody
-    public String roomCheckin() {
-        return "admin";
+    public String roomCheckin(int roomId, Model model) {
+        try {
+            adminRoomService.roomStatusEditing(roomId, "Occupied");
+            return "redirect:/adminRoom";
+        } catch (Exception e) {
+            model.addAttribute("checkInFailed", "Checkin Failed");
+            return "redirect:/adminRoom";
+        }
     }
 
     @GetMapping("delete")
-    @ResponseBody
-    public String deleteRoom() {
-        return "deleting...";
+    public String deleteRoom(int roomId, Model model) {
+        try {
+            adminRoomService.deleteRoom(roomId);
+            return "redirect:/adminRoom";
+        } catch (Exception e) {
+            model.addAttribute("deleteFailed", "Delete room failed");
+            return "redirect:/adminRoom";
+        }
     }
 
-    @GetMapping("editStatus")
-    @ResponseBody
-    public String editStatus() { return "link works"; }
+    @GetMapping("maintenance")
+    public String roomMaintaining(int roomId, Model model) {
+        return roomStatusEditing(roomId, "Maintaining", model);
+    }
+
+    @GetMapping("cleaning")
+    public String roomCleaning(int roomId, Model model) {
+        return roomStatusEditing(roomId, "Cleaning", model);
+    }
+
+    @GetMapping("ready")
+    public String roomReadyToUse(int roomId, Model model) {
+        return roomStatusEditing(roomId, "Available", model);
+    }
 
     @GetMapping("reservation/checkin")
     @ResponseBody
@@ -68,5 +90,23 @@ public class AdminRoomController {
     @ResponseBody
     public String reservationCheckout() {
         return "Check out... chenge reservation status";
+    }
+
+    private String roomStatusEditing(int roomId, String option, Model model) {
+        try {
+            if (option.equalsIgnoreCase("maintaining")) {
+                adminRoomService.roomStatusEditing(roomId, "Maintaining");
+                return "redirect:/adminRoom";
+            } else if (option.equalsIgnoreCase("cleaning")) {
+                adminRoomService.roomStatusEditing(roomId, "Cleaning");
+                return "redirect:/adminRoom";
+            } else {
+                adminRoomService.roomStatusEditing(roomId, "Available");
+                return "redirect:/adminRoom";
+            }
+        } catch (Exception e) {
+            model.addAttribute("roomStatusEditingFailed", "Fail to edit room status");
+            return "redirect:/adminRoom";
+        }
     }
 }

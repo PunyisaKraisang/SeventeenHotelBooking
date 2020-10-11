@@ -40,7 +40,7 @@ public class MenuEntity implements Serializable {
 	@Column(name = "recommended")
 	@Type(type = "numeric_boolean")
 	private boolean isRecommended;
-	
+
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "menu_keyword_map",
 			joinColumns = {@JoinColumn(name = "menu_id")},
@@ -79,13 +79,15 @@ public class MenuEntity implements Serializable {
 		this.description = description;
 	}
 
-	public boolean isRecommended() {
+	public boolean getIsRecommended() {
 		return isRecommended;
 	}
 
 	public void setRecommended(boolean isRecommended) {
 		this.isRecommended = isRecommended;
 	}
+
+	public boolean isRecommended() { return isRecommended; }
 
 	public Set<MenuKeywordEntity> getKeywords() {
 		return keywords;

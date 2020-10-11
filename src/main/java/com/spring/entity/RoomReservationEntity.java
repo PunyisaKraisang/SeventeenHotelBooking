@@ -6,7 +6,13 @@ import java.sql.Date;
 @Entity @Table(name = "Room_reservation")
 public class RoomReservationEntity {
     @Id @Column(name = "reservation_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reservationIdSeq")
+    @SequenceGenerator(
+            name = "reservationIdSeq",
+            sequenceName = "reservationIdSeq",
+            initialValue = 1000,
+            allocationSize = 1
+    )
     private int reservationId;
 
     @Column(name = "Checkin_time")
@@ -40,9 +46,9 @@ public class RoomReservationEntity {
     @Column(name = "Room_id")
     private int roomId;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "room_id")
-//    private RoomEntity roomEntity;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id")
+    private RoomEntity roomEntity;
 
     public int getReservationId() {
         return reservationId;
@@ -98,5 +104,13 @@ public class RoomReservationEntity {
 
     public void setReservationStatus(String reservationStatus) {
         this.reservationStatus = reservationStatus;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
     }
 }
