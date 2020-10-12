@@ -22,6 +22,11 @@ import com.spring.model.SaveMenuOrderItemModel;
 import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
 
+import com.spring.dto.SearchCar;
+import com.spring.entity.CarEntity;
+import com.spring.model.CarModel;
+import com.spring.model.SearchCarModel;
+
 public final class ModelUtil {
 	
 	private static final SimpleDateFormat MODEL_FORMAT = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -132,5 +137,23 @@ public final class ModelUtil {
 		
 		Timestamp expectedDate = utilDate != null ? new Timestamp(utilDate.getTime()) : null;
 		return expectedDate;
+	}
+	
+	public static CarModel parse(CarEntity from) {
+		CarModel model = new CarModel();
+		model.setCarId(from.getCarId());
+		model.setCarName(from.getCarName());
+		model.setCarType(from.getCarType());
+		model.setCarPrice(from.getCarPrice());
+		model.setMileage(from.getMileage());
+		model.setAc(from.getAc());
+		model.setManual(from.getManual());
+		model.setTrunkSize(from.getTrunkSize());
+		model.setCarStatus(from.getCarStatus());
+		return model;
+	}
+	
+	public static SearchCar parse(SearchCarModel from) {
+		return new SearchCar(from.getCarName());
 	}
 }
