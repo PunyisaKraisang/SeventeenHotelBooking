@@ -1,14 +1,11 @@
 package com.spring.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
 public class AccountEntity {
-	
+
 	@Id
 	@Column(name = "customer_id")
 	private int customerId;
@@ -18,6 +15,11 @@ public class AccountEntity {
 	
 	@Column(name = "password")
 	private String password;
+
+	@OneToOne(mappedBy = "account")
+	@JoinColumn(name = "customer_id", unique = true)
+	@MapsId
+	private CustomerEntity customer;
 
 	public int getCustomerId() {
 		return customerId;
@@ -43,4 +45,11 @@ public class AccountEntity {
 		this.password = password;
 	}
 
+	public CustomerEntity getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
+	}
 }

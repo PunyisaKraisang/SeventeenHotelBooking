@@ -1,6 +1,5 @@
 package com.spring.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,7 +7,6 @@ import java.sql.Date;
 @Entity @Table(name = "customer")
 public class CustomerEntity {
     @Id @Column(name = "customer_id")
-    @PrimaryKeyJoinColumn
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_seq")
     @SequenceGenerator(
             name = "customer_id_seq",
@@ -36,7 +34,8 @@ public class CustomerEntity {
     @Column(name = "email_address")
     private String emailAddress;
 
-    @OneToOne(targetEntity = AccountEntity.class, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private AccountEntity account;
 
     public String getUsername() {
