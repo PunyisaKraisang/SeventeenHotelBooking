@@ -87,7 +87,7 @@
 		          		</div>
 
 						<div class="form-group" style="padding-top: 1.5rem">
-							<span class="signin-link">Do not have account? <a href="#">Sign up here</a></span>
+							<span class="signin-link">Do not have account? <a href="signup">Sign up here</a></span>
 							<input type="submit" value="Log in" class="btn btn-primary py-3 px-5 buttom-right">
 						</div>
 					</form:form>

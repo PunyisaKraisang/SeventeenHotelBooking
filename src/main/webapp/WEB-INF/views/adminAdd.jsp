@@ -32,25 +32,23 @@
 <body>
     <!-- header nav bar -->
     <jsp:include page="adminHeader.jsp" />
-
-    <section class="home-slider owl-carousel">
-        <div class="slider-item"
-             style="background-image: url(${pageContext.request.contextPath}/resources/images/bg_1.jpg);">
-            <div class="overlay"></div>
-            <div class="container">
-                <div
-                        class="row no-gutters slider-text align-items-center justify-content-center">
-                    <div class="col-md-12 ftco-animate text-center">
-                        <div class="text mb-5 pb-3">
-                            <h1 class="mb-3">Add Services</h1>
-                            <h2>Add New Room, Food, or Car</h2>
-                        </div>
+    <div class="hero-wrap" style="background-color: #4c463b; height: 90px; width:100%">
+        <div class="overlay"></div>
+        <div class="container">
+        </div>
+    </div>
+    <section class="ftco-section">
+        <div class="container">
+            <div
+                    class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-12 ftco-animate text-center">
+                    <div class="text mb-5 pb-3">
+                        <h1 class="mb-3">Add Services</h1>
+                        <h2>Add New Room, Food, or Car</h2>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
