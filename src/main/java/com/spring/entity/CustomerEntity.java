@@ -1,14 +1,24 @@
 package com.spring.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity @Table(name = "customer")
-public class CustomerEntiry {
-    @Id @Column(name = "username")
+public class CustomerEntity {
+    @Id @Column(name = "customer_id")
+    @PrimaryKeyJoinColumn
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_seq")
+    @SequenceGenerator(
+            name = "customer_id_seq",
+            sequenceName = "customer_id_seq",
+            initialValue = 100,
+            allocationSize = 1
+    )
+    private int customerId;
+
+    @Column(name = "username")
     private String username;
 
     @Column(name = "first_name")
@@ -26,8 +36,19 @@ public class CustomerEntiry {
     @Column(name = "email_address")
     private String emailAddress;
 
+    @OneToOne(targetEntity = AccountEntity.class, cascade = CascadeType.ALL)
+    private AccountEntity account;
+
     public String getUsername() {
         return username;
+    }
+
+    public AccountEntity getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountEntity account) {
+        this.account = account;
     }
 
     public void setUsername(String username) {
@@ -72,5 +93,13 @@ public class CustomerEntiry {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 }
