@@ -89,7 +89,7 @@ public class MenuOrderRepositoryImpl extends BaseRepository implements MenuOrder
 		CriteriaQuery<MenuOrderItemEntity> query = builder.createQuery(MenuOrderItemEntity.class);
 		Root<MenuOrderItemEntity> root = query.from(MenuOrderItemEntity.class);
 		
-		// Add in criteria by menu ID 
+		// Add criteria by order ID and menu ID 
 		Predicate andClause =  builder.and(
 				builder.equal(root.get("orderId"), orderId), 
 				builder.equal(root.get("menuId"), menuId));
@@ -97,10 +97,10 @@ public class MenuOrderRepositoryImpl extends BaseRepository implements MenuOrder
 		query.select(root).where(andClause);
 		
 		// Fetch result
-		List<MenuOrderItemEntity> result = getSession().createQuery(query).getResultList();
+		MenuOrderItemEntity result = getSession().createQuery(query).getSingleResult();
 
 		LOGGER.info("Load menu order item success");
-		return result.get(0);
+		return result;
 	}
 
 	@Override

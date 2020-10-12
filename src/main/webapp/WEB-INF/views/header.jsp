@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,17 @@
 					<li class="nav-item"><a href="#" class="nav-link">Rental</a></li>
 					<li class="nav-item"><a href="restaurant" class="nav-link">Restaurant</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<li class="nav-item"><a href="login" class="nav-link">Login</a></li>
-					<li class="nav-item"><a href="admin" class="nav-link">Admin</a> </li>
+					<c:choose>
+					    <c:when test="${accountModel != null && not empty accountModel.username}">
+							<li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+					    </c:when>
+					    <c:otherwise>
+							<li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+							<li class="nav-item"><a href="admin" class="nav-link">Admin</a> </li>
+					    </c:otherwise>
+					</c:choose>
+					<c:out value="${accountModel}"></c:out>
+					<c:out value="${accountModel.username}"></c:out>
 				</ul>
 			</div>
 		</div>

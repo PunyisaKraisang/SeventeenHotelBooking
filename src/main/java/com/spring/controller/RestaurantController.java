@@ -71,7 +71,6 @@ public class RestaurantController {
 			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList,
 			Model model) {
 		
-		//TODO: Validate searchModel
 		LOGGER.info("Fetch menu list with criteria: " + searchModel);
 		List<MenuModel> menuList = service.fetchMenu(searchModel);
 		

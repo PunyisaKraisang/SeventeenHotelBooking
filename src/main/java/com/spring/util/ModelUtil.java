@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 
 import com.spring.dto.MenuOrderItemInfo;
 import com.spring.dto.SearchMenu;
+import com.spring.entity.AccountEntity;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.MenuKeywordEntity;
 import com.spring.entity.MenuOrderEntity;
 import com.spring.entity.MenuOrderItemEntity;
+import com.spring.model.AccountModel;
 import com.spring.model.MenuKeywordModel;
 import com.spring.model.MenuModel;
 import com.spring.model.MenuOrderItemInfoModel;
@@ -92,6 +94,12 @@ public final class ModelUtil {
 		java.util.Date utilDate = new java.util.Date(from.getExpectedDeliverDate().getTime());
 		String dateString = MODEL_FORMAT.format(utilDate);
 		to.setExpectedDeliverDateTime(dateString);
+		return to;
+	}
+	
+	public static AccountModel parse(AccountEntity from) {	
+		AccountModel to = new AccountModel();
+		to.setUsername(from.getUsername());
 		return to;
 	}
 	

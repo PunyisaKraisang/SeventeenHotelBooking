@@ -61,7 +61,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-7 container ftco-animate menu-order">
-					<form:form action="login" method="post" modelAttribute="accountModel">
+				
+					<c:if test="${ error != null }">
+						<div class="alert alert-danger" role="alert">
+							<strong>${ error }</strong>
+						</div>
+					</c:if>
+					
+					<form:form action="login" method="post" modelAttribute="loginModel">
 					
 						<div class="col-md-12 properties-single ftco-animate mt-5 fadeInUp ftco-animated">
 		          			<div class="row mb-4">
