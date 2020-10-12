@@ -104,6 +104,20 @@ public final class ModelUtil {
 		return to;
 	}
 	
+	public static boolean isLogin(AccountModel accountModel) {
+		
+		if (accountModel == null) {
+			return false;
+		}
+		
+		if (accountModel.getUsername() == null) {
+			return false;
+		}
+		
+		return !accountModel.getUsername().isEmpty() 
+				&& accountModel.getCustomerId() != 0;
+	}
+	
 	private static Timestamp getExpectedDeliveryDate(String date, int time) {
 		String timeStr = time < 10? ("0" + time) : "" + time;
 		String expectedDateString = date + " " + timeStr + ":00:00";
