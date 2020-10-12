@@ -12,40 +12,29 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class AdminMenuDAOImpl extends BaseRepository implements AdminMenuDAO {
+public class AdminMenuDAOImpl extends BaseRepository implements AdminDAO<MenuEntity> {
     @Override
-    public List<MenuEntity> listAllFoods() {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<MenuEntity> query = cb.createQuery(MenuEntity.class);
-        Root<MenuEntity> foods = query.from(MenuEntity.class);
-        query.select(foods);
-        query.orderBy(cb.asc(foods.get("menuId")));
-        return getSession().createQuery(query).getResultList();
+    public List<MenuEntity> fetchAll() {
+        return fetchAll(getSession(), MenuEntity.class, "menuId");
     }
     @Override
-    public void saveUpdateFood(MenuEntity food) {
-        getSession().saveOrUpdate(food);
+    public void saveNewEntity(MenuEntity food) {
+        saveNewEntity(getSession(), food);
     }
 
     @Override
-    public void deleteFood(int menuId) {
-        MenuEntity target = getFoodById(menuId);
-        getSession().delete(target);
+    public void deleteEntity(int menuId) {
+        deleteEntity(getSession(), menuId);
     }
 
     @Override
-    public MenuEntity getFoodById(int menuId) {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<MenuEntity> cq = cb.createQuery(MenuEntity.class);
-        Root<MenuEntity> foods = cq.from(MenuEntity.class);
-        Predicate condition = cb.equal(foods.get("menuId"), menuId);
-        cq.where(condition);
-        return getSession().createQuery(cq).getSingleResult();
+    public MenuEntity getById(int menuId) {
+        return getById(getSession(), MenuEntity.class, menuId, "menuId");
     }
 
     @Override
-    public void updateExistingDish(MenuEntity food) {
-        MenuEntity existingDish = getFoodById(food.getMenuId());
+    public void updateExistEntity(MenuEntity food) {
+        MenuEntity existingDish = getById(food.getMenuId());
         existingDish.setDescription(food.getDescription());
         //existingDish.setKeywords(food.getKeywords());
         existingDish.setName(food.getName());

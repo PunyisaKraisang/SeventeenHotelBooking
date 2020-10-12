@@ -5,5 +5,5 @@ import com.spring.entity.AdminEntity;
 import java.util.List;
 
 public interface AdministrationService {
-    public List<AdminEntity> getAllAdmins();
+    List<AdminEntity> getAllAdmins();
 }

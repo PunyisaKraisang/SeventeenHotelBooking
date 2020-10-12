@@ -22,25 +22,25 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
     @Override
     @Transactional
-    public List<AdminEntity> fetch() {
-        return adminLoginDAO.getAllAdmins();
+    public List<AdminEntity> fetchAll() {
+        return adminLoginDAO.fetchAll();
     }
 
     @Override
     @Transactional
-    public void addAdmin(AdminEntity admin) {
-        adminLoginDAO.save(admin);
+    public void saveNewEntity(AdminEntity admin) {
+        adminLoginDAO.saveNewEntity(admin);
     }
 
     @Override
     @Transactional
-    public void updateAdmin(AdminEntity admin) {
-        adminLoginDAO.update(admin);
+    public void deleteEntity(int adminId) {
+        adminLoginDAO.deleteEntity(adminId);
     }
 
-    @Override
-    @Transactional
-    public void deleteAdmin(AdminEntity admin) {
-        adminLoginDAO.delete(admin);
-    }
+    @Override @Transactional
+    public AdminEntity getById(int id) { return adminLoginDAO.getById(id); }
+
+    @Override @Transactional
+    public void updateExistEntity(AdminEntity admin) { adminLoginDAO.updateExistEntity(admin); }
 }

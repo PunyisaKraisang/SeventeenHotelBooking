@@ -20,7 +20,7 @@ public class AdminCarController {
 
     @GetMapping("")
     public String listCar(Model model) {
-        List<CarEntity> cars = adminCarService.listAllCars();
+        List<CarEntity> cars = adminCarService.fetchAll();
         model.addAttribute("carList", cars);
         return "adminCar";
     }
@@ -33,20 +33,20 @@ public class AdminCarController {
 
     @GetMapping("edit")
     public String editCarInfo(Model model, int carId) {
-        CarEntity updatingCar = adminCarService.getCarById(carId);
+        CarEntity updatingCar = adminCarService.getById(carId);
         model.addAttribute("updatingCar", updatingCar);
         return "adminCarEditing";
     }
 
     @PostMapping("edit")
     public String editCar(@ModelAttribute("updatingCar") CarEntity car) {
-        adminCarService.updateExistingCar(car);
+        adminCarService.updateExistEntity(car);
         return "redirect:/adminCar";
     }
 
     @GetMapping("delete")
     public String deleteCar(int carId) {
-        adminCarService.deleteCar(carId);
+        adminCarService.deleteEntity(carId);
         return "redirect:/adminCar";
     }
 }

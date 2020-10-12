@@ -6,6 +6,7 @@ import com.spring.entity.RoomEntity;
 import com.spring.service.AdminCarService;
 import com.spring.service.AdminMenuService;
 import com.spring.service.AdminRoomService;
+import com.spring.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class AdminAddController {
     private AdminCarService adminCarService;
 
     @Autowired
-    private AdminMenuService adminMenuService;
+    private AdminService<MenuEntity> adminMenuService;
 
     @GetMapping("")
     public String addForms(Model model) {
@@ -40,7 +41,7 @@ public class AdminAddController {
     @PostMapping("addRoom")
     public String addRoom(@ModelAttribute("newRoom") RoomEntity room, Model model) {
         //model.addAttribute("newRoom", new RoomEntity());
-        adminRoomService.saveUpdateRoom(room);
+        adminRoomService.saveNewEntity(room);
         return "redirect:/adminRoom";
     }
 
@@ -49,7 +50,7 @@ public class AdminAddController {
 
     @PostMapping("addCar")
     public String addCar(@ModelAttribute("newCar") CarEntity car) {
-        adminCarService.saveUpdateCar(car);
+        adminCarService.saveNewEntity(car);
         return "redirect:/adminCar";
     }
 
@@ -58,7 +59,7 @@ public class AdminAddController {
 
     @PostMapping("addFood")
     public String addFood(@ModelAttribute("newDish") MenuEntity food) {
-        adminMenuService.saveUpdateFood(food);
+        adminMenuService.saveNewEntity(food);
         return "redirect:/adminMenu";
     }
 }

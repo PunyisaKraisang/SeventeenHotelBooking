@@ -4,10 +4,7 @@ import com.spring.entity.AdminEntity;
 
 import java.util.List;
 
-public interface AdminLoginService {
-    public List<AdminEntity> fetch();
-    public boolean getAdmin(String username, String password);
-    public void addAdmin(AdminEntity admin);
-    public void updateAdmin(AdminEntity admin);
-    public void deleteAdmin(AdminEntity admin);
+public interface AdminLoginService extends AdminService<AdminEntity> {
+    boolean getAdmin(String username, String password);
+    //void updateAdmin(AdminEntity admin);
 }

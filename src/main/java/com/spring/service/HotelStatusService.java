@@ -5,6 +5,6 @@ import com.spring.model.RoomModel;
 
 import java.util.List;
 
-public interface HotelStatusService {
-    public List<RoomEntity> getAllRooms();
+public interface HotelStatusService{
+    public List<RoomEntity> fetchAll();
 }

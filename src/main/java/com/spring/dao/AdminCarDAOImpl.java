@@ -15,18 +15,13 @@ import java.util.List;
 @Repository
 public class AdminCarDAOImpl extends BaseRepository implements AdminCarDAO {
     @Override
-    public List<CarEntity> listAllCars() {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<CarEntity> query = cb.createQuery(CarEntity.class);
-        Root<CarEntity> cars = query.from(CarEntity.class);
-        query.select(cars);
-        query.orderBy(cb.asc(cars.get("carId")));
-        return getSession().createQuery(query).getResultList();
+    public List<CarEntity> fetchAll() {
+        return fetchAll(getSession(), CarEntity.class, "carId");
     }
 
     @Override
     public void changeAvailability(int carId) {
-        CarEntity updatingCar = getCarById(carId);
+        CarEntity updatingCar = getById(carId);
         String updateHQL = "UPDATE CarEntity c SET c.carStatus = :status WHERE c.carId = :id";
         Query query = getSession().createQuery(updateHQL);
         if (updatingCar.getCarStatus().equalsIgnoreCase("available")) {
@@ -39,27 +34,21 @@ public class AdminCarDAOImpl extends BaseRepository implements AdminCarDAO {
     }
 
     @Override
-    public void deleteCar(int carId) {
-        CarEntity deleteCar = getCarById(carId);
-        getSession().delete(deleteCar);
+    public void deleteEntity(int carId) {
+        deleteEntity(getSession(), carId);
     }
 
     @Override
-    public void saveUpdateCar(CarEntity car) { getSession().saveOrUpdate(car); }
+    public void saveNewEntity(CarEntity car) { saveNewEntity(getSession(), car); }
 
     @Override
-    public CarEntity getCarById(int carId) {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<CarEntity> cq = cb.createQuery(CarEntity.class);
-        Root<CarEntity> cars = cq.from(CarEntity.class);
-        Predicate condition = cb.equal(cars.get("carId"), carId);
-        cq.where(condition);
-        return getSession().createQuery(cq).getSingleResult();
+    public CarEntity getById(int carId) {
+        return getById(getSession(), CarEntity.class, carId, "carId");
     }
 
     @Override
-    public void updateExistingCar(CarEntity car) {
-        CarEntity existingCar = getCarById(car.getCarId());
+    public void updateExistEntity(CarEntity car) {
+        CarEntity existingCar = getById(car.getCarId());
         existingCar.setAc(car.getAc());
         existingCar.setCarName(car.getCarName());
         existingCar.setCarPrice(car.getCarPrice());

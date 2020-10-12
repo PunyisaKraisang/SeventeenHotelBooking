@@ -5,13 +5,9 @@ import com.spring.model.RoomModel;
 
 import java.util.List;
 
-public interface AdminRoomService {
-    public List<RoomEntity> getAllRooms();
-    public List<RoomEntity> getNonAvailableRooms();
-    public List<RoomEntity> getAvailableRooms();
-    public void saveUpdateRoom(RoomEntity room);
-    public void roomStatusEditing(int roomId, String statusChangeTo);
-    public void deleteRoom(int roomId);
-    public RoomEntity getRoomById(int roomId);
-    public void updatingExistRoom(RoomEntity room);
+public interface AdminRoomService extends AdminService<RoomEntity> {
+    List<RoomEntity> getNonAvailableRooms();
+    List<RoomEntity> getAvailableRooms();
+    void roomStatusEditing(int roomId, String statusChangeTo);
+    //void updatingExistRoom(RoomEntity room);
 }

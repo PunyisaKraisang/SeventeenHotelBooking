@@ -20,20 +20,13 @@ import java.util.List;
 public class AdminRoomDAOImpl extends BaseRepository implements AdminRoomDAO {
     private static final Logger LOGGER = Logger.getLogger(MenuRepositoryImpl.class);
     @Override
-    public List<RoomEntity> getAllRooms() {
-//        Query query = getSession().createQuery("SELECT r FROM RoomEntity r ORDER BY r.roomId", RoomEntity.class);
-//        return (List<RoomEntity>) query.getResultList();
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<RoomEntity> query = cb.createQuery(RoomEntity.class);
-        Root<RoomEntity> room = query.from(RoomEntity.class);
-        query.select(room);
-        query.orderBy(cb.asc(room.get("roomId")));
-        return getSession().createQuery(query).getResultList();
+    public List<RoomEntity> fetchAll() {
+        return fetchAll(getSession(), RoomEntity.class, "roomId");
     }
 
     @Override
-    public void saveUpdateRoom(RoomEntity room) {
-        getSession().saveOrUpdate(room);
+    public void saveNewEntity(RoomEntity room) {
+        saveNewEntity(getSession(), room);
     }
 
     @Override
@@ -66,24 +59,18 @@ public class AdminRoomDAOImpl extends BaseRepository implements AdminRoomDAO {
     }
 
     @Override
-    public void deleteRoom(int roomId) {
-        RoomEntity delete = getRoomById(roomId);
-        getSession().delete(delete);
+    public void deleteEntity(int roomId) {
+        deleteEntity(getSession(), roomId);
     }
 
     @Override
-    public RoomEntity getRoomById(int roomId) {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<RoomEntity> query = cb.createQuery(RoomEntity.class);
-        Root<RoomEntity> room = query.from(RoomEntity.class);
-        Predicate condition = cb.equal(room.get("roomId"), roomId);
-        query.where(condition);
-        return getSession().createQuery(query).getSingleResult();
+    public RoomEntity getById(int roomId) {
+        return getById(getSession(), RoomEntity.class, roomId, "roomId");
     }
 
     @Override
-    public void updatingExistRoom(RoomEntity room) {
-        RoomEntity existingRoom = getRoomById(room.getRoomId());
+    public void updateExistEntity(RoomEntity room) {
+        RoomEntity existingRoom = getById(room.getRoomId());
         existingRoom.setBathtub(room.getBathtub());
         existingRoom.setBedNumber(room.getBedNumber());
         existingRoom.setMaxCapacity(room.getMaxCapacity());

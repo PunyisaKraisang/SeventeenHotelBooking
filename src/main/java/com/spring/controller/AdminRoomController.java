@@ -28,11 +28,11 @@ public class AdminRoomController {
 
     @GetMapping("")
     public String roomList(Model model) {
-        List<RoomEntity> allRooms = adminRoomService.getAllRooms();
+        List<RoomEntity> allRooms = adminRoomService.fetchAll();
         List<RoomEntity> availableRooms = adminRoomService.getAvailableRooms();
         List<RoomEntity> nonAvailableRooms = adminRoomService.getNonAvailableRooms();
         //System.out.println(rooms.size());
-        List<RoomReservationEntity> reservations = adminRoomReservationService.getReservationList();
+        List<RoomReservationEntity> reservations = adminRoomReservationService.fetchAll();
         model.addAttribute("allRooms", allRooms);
         model.addAttribute("roomList", availableRooms);
         model.addAttribute("nonAvailableList", nonAvailableRooms);
@@ -54,7 +54,7 @@ public class AdminRoomController {
     @GetMapping("delete")
     public String deleteRoom(int roomId, Model model) {
         try {
-            adminRoomService.deleteRoom(roomId);
+            adminRoomService.deleteEntity(roomId);
             return "redirect:/adminRoom";
         } catch (Exception e) {
             model.addAttribute("deleteFailed", "Delete room failed");
@@ -64,14 +64,14 @@ public class AdminRoomController {
 
     @GetMapping("edit")
     public String editRoomForm(Model model, int roomId) {
-        RoomEntity updatingRoom = adminRoomService.getRoomById(roomId);
+        RoomEntity updatingRoom = adminRoomService.getById(roomId);
         model.addAttribute("updatingRoom", updatingRoom);
         return "adminRoomEditing";
     }
 
     @PostMapping("edit")
     public String editRoom(@ModelAttribute("updatingRoom") RoomEntity room, int roomId) {
-        adminRoomService.updatingExistRoom(room);
+        adminRoomService.updateExistEntity(room);
         return "redirect:/adminRoom";
     }
 
@@ -91,15 +91,25 @@ public class AdminRoomController {
     }
 
     @GetMapping("reservation/checkin")
-    @ResponseBody
-    public String reservationCheckin() {
-        return "Check in... change reservation status";
+    public String reservationCheckin(int reservationId, Model model) {
+        try {
+            adminRoomReservationService.changeStatus(reservationId, "In Room");
+            return "redirect:/adminRoom";
+        } catch (Exception e) {
+            model.addAttribute("checkinFailed", "Checkin Failed");
+            return "redirect:/adminRoom";
+        }
     }
 
     @GetMapping("reservation/checkout")
-    @ResponseBody
-    public String reservationCheckout() {
-        return "Check out... chenge reservation status";
+    public String reservationCheckout(int reservationId, Model model) {
+        try {
+            adminRoomReservationService.changeStatus(reservationId, "Complete");
+            return "redirect:/adminRoom";
+        } catch (Exception e) {
+            model.addAttribute("checkoutFailed", "checkout Failed");
+            return "redirect:/adminRoom";
+        }
     }
 
     private String roomStatusEditing(int roomId, String option, Model model) {

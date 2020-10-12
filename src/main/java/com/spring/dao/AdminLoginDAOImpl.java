@@ -3,6 +3,7 @@ package com.spring.dao;
 import com.spring.dao.AdminLoginDAO;
 import com.spring.dao.BaseRepository;
 import com.spring.entity.AdminEntity;
+import com.spring.entity.MenuEntity;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,27 +33,31 @@ public class AdminLoginDAOImpl extends BaseRepository implements AdminLoginDAO {
     }
 
     @Override
-    public List<AdminEntity> getAllAdmins() {
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<AdminEntity> query = cb.createQuery(AdminEntity.class);
-        Root<AdminEntity> root = query.from(AdminEntity.class);
-        query.select(root);
-        List<AdminEntity> result = getSession().createQuery(query).getResultList();
-        return result;
+    public List<AdminEntity> fetchAll() {
+        return fetchAll(getSession(), AdminEntity.class, "id");
     }
 
     @Override
-    public void save(AdminEntity admin) {
-        getSession().save(admin);
+    public AdminEntity getById(int adminId) {
+        return getById(getSession(), AdminEntity.class, adminId, "adminId");
     }
 
     @Override
-    public void delete(AdminEntity admin) {
-        getSession().delete(admin);
+    public void saveNewEntity(AdminEntity admin) {
+        saveNewEntity(getSession(), admin);
     }
 
     @Override
-    public void update(AdminEntity admin) {
-        getSession().update(admin);
+    public void updateExistEntity(AdminEntity adminEntity) {
+        AdminEntity existingAdmin = getById(adminEntity.getId());
+        existingAdmin.setUsername(adminEntity.getUsername());
+        existingAdmin.setPassword(adminEntity.getPassword());
+        getSession().update(existingAdmin);
     }
+
+    @Override
+    public void deleteEntity(int adminId) {
+        deleteEntity(getSession(), adminId);
+    }
+
 }

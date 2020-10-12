@@ -5,5 +5,8 @@ import com.spring.entity.RoomReservationEntity;
 import java.util.List;
 
 public interface AdminRoomReservationDAO {
-    public List<RoomReservationEntity> getReservationList();
+    List<RoomReservationEntity> fetchAll();
+    RoomReservationEntity getById(int rid);
+    void deleteEntity(int rid);
+    void changeStatus(int rid, String statusChangeTo);
 }

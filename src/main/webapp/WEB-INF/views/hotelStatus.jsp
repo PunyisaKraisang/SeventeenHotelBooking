@@ -39,67 +39,113 @@
 <!-- header nav bar -->
 <jsp:include page="adminHeader.jsp" />
 
-<section class="home-slider owl-carousel">
-    <div class="slider-item"
-         style="background-image: url(${pageContext.request.contextPath}/resources/images/bg_1.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div
-                    class="row no-gutters slider-text align-items-center justify-content-center">
-                <div class="col-md-12 ftco-animate text-center">
-                    <div class="text mb-5 pb-3">
-                        <h1 class="mb-3">Hotel Status</h1>
-                        <h2>Summary Information of Hotel</h2>
-                    </div>
+<div class="hero-wrap" style="background-color: #4c463b; height: 90px; width:100%">
+    <div class="overlay"></div>
+    <div class="container">
+    </div>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-12 ftco-animate text-center">
+                <div class="text mb-5 pb-3">
+                    <h1 class="mb-3">Hotel Status</h1>
+                    <h2>Summary Information of Hotel</h2>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <h2>Hotel Room Information</h2>
             </div>
         </div>
-        <div class="container">
+    </div>
     <div class="container">
-        <table class="table table-hover">
-<%--            <thead>--%>
-<%--                <tr>--%>
-<%--                    <div class="row justify-content-center mb-5 pb-3">--%>
-<%--                        <div class="col-md-7 heading-section text-center ftco-animate">--%>
-<%--                            <h3>Hotel Room Information</h3>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </tr>--%>
-<%--            </thead>--%>
-            <tbody>
+        <div class="container">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Total Rooms</th>
+                        <td>${roomInfo.get("totalNum")}</td>
+                    </tr>
+                    <tr>
+                        <th>Available Rooms</th>
+                        <td>${roomInfo.get("avaNum")}</td>
+                    </tr>
+                    <tr>
+                        <th>Occupied Room</th>
+                        <td>${roomInfo.get("occNum")}</td>
+                    </tr>
+                    <tr>
+                        <th>Room with Cleaning</th>
+                        <td>${roomInfo.get("cleanNum")}</td>
+                    </tr>
+                    <tr>
+                        <th>Room with Maintaining</th>
+                        <td>${roomInfo.get("maintainNum")}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>Hotel Menu Information</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            <table class="table table-hover">
+                <tbody>
                 <tr>
-                    <th>Total Rooms</th>
-                    <td>${roomNums}</td>
+                    <th>Total Foods</th>
+                    <td>${foodInfo.get("totalNum")}</td>
                 </tr>
                 <tr>
-                    <th>Available Rooms</th>
-                    <td>${availableNums}</td>
+                    <th>Average Cost</th>
+                    <td>${foodInfo.get("avgCost")}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>Hotel Car Rental Information</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th>Total Car</th>
+                    <td>${carInfo.get("totalNum")}</td>
                 </tr>
                 <tr>
-                    <th>Occupied Room</th>
-                    <td>${occupiedNums}</td>
+                    <th>Available Cars</th>
+                    <td>${carInfo.get("avaNum")}</td>
                 </tr>
                 <tr>
-                    <th>Room with Cleaning</th>
-                    <td>${cleaningNums}</td>
+                    <th>Non-available Cars</th>
+                    <td>${carInfo.get("unavaNum")}</td>
                 </tr>
                 <tr>
-                    <th>Room with Maintaining</th>
-                    <td>${maintainingNums}</td>
+                    <th>Average cost pre day</th>
+                    <td>${carInfo.get("avgCost")}</td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
+
 
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>

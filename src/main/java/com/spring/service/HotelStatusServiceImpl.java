@@ -15,7 +15,7 @@ public class HotelStatusServiceImpl implements HotelStatusService {
     private AdminRoomDAO adminRoomDAO;
 
     @Override @Transactional
-    public List<RoomEntity> getAllRooms() {
-        return adminRoomDAO.getAllRooms();
+    public List<RoomEntity> fetchAll() {
+        return adminRoomDAO.fetchAll();
     }
 }

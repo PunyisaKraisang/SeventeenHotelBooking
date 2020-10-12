@@ -1,14 +1,11 @@
 package com.spring.dao;
 
 import com.spring.entity.CarEntity;
+import com.spring.service.AdminService;
 
 import java.util.List;
 
-public interface AdminCarDAO {
-    public List<CarEntity> listAllCars();
-    public void changeAvailability(int carId);
-    public void deleteCar(int carId);
-    public void saveUpdateCar(CarEntity car);
-    public CarEntity getCarById(int carId);
-    public void updateExistingCar(CarEntity car);
+public interface AdminCarDAO extends AdminDAO<CarEntity> {
+    void changeAvailability(int carId);
+    //void updateExistingCar(CarEntity car);
 }

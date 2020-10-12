@@ -18,8 +18,8 @@ public class AdminRoomServiceImpl implements AdminRoomService {
     private AdminRoomDAO adminRoomDAO;
 
     @Override @Transactional
-    public List<RoomEntity> getAllRooms() {
-        return adminRoomDAO.getAllRooms();
+    public List<RoomEntity> fetchAll() {
+        return adminRoomDAO.fetchAll();
     }
 
     @Override @Transactional
@@ -33,19 +33,19 @@ public class AdminRoomServiceImpl implements AdminRoomService {
     }
 
     @Override @Transactional
-    public void saveUpdateRoom(RoomEntity room) {
-        adminRoomDAO.saveUpdateRoom(room);
+    public void saveNewEntity(RoomEntity room) {
+        adminRoomDAO.saveNewEntity(room);
     }
 
     @Override @Transactional
     public void roomStatusEditing(int roomId, String statusChangeTo) { adminRoomDAO.roomStatusEditing(roomId, statusChangeTo); }
 
     @Override @Transactional
-    public void deleteRoom(int roomId) { adminRoomDAO.deleteRoom(roomId); }
+    public void deleteEntity(int roomId) { adminRoomDAO.deleteEntity(roomId); }
 
     @Override @Transactional
-    public RoomEntity getRoomById(int roomId) { return adminRoomDAO.getRoomById(roomId); }
+    public RoomEntity getById(int roomId) { return adminRoomDAO.getById(roomId); }
 
     @Override @Transactional
-    public void updatingExistRoom(RoomEntity room) { adminRoomDAO.updatingExistRoom(room); }
+    public void updateExistEntity(RoomEntity room) { adminRoomDAO.updateExistEntity(room); }
 }

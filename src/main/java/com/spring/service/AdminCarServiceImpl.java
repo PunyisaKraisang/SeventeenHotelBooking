@@ -14,22 +14,22 @@ public class AdminCarServiceImpl implements AdminCarService {
     private AdminCarDAO adminCarDAO;
 
     @Override @Transactional
-    public List<CarEntity> listAllCars() {
-        return adminCarDAO.listAllCars();
+    public List<CarEntity> fetchAll() {
+        return adminCarDAO.fetchAll();
     }
 
     @Override @Transactional
     public void changeCarStatus(int carId) { adminCarDAO.changeAvailability(carId); }
 
     @Override @Transactional
-    public void deleteCar(int carId) { adminCarDAO.deleteCar(carId); }
+    public void deleteEntity(int carId) { adminCarDAO.deleteEntity(carId); }
 
     @Override @Transactional
-    public void saveUpdateCar(CarEntity car) { adminCarDAO.saveUpdateCar(car); }
+    public void saveNewEntity(CarEntity car) { adminCarDAO.saveNewEntity(car); }
 
     @Override @Transactional
-    public CarEntity getCarById(int carId) { return adminCarDAO.getCarById(carId); }
+    public CarEntity getById(int carId) { return adminCarDAO.getById(carId); }
 
     @Override @Transactional
-    public void updateExistingCar(CarEntity car) { adminCarDAO.updateExistingCar(car); }
+    public void updateExistEntity(CarEntity car) { adminCarDAO.updateExistEntity(car); }
 }

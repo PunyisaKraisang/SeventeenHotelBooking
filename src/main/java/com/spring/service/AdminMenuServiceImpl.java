@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import com.spring.dao.AdminDAO;
 import com.spring.dao.AdminMenuDAO;
 import com.spring.entity.MenuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,28 +10,28 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class AdminMenuServiceImpl implements AdminMenuService {
+public class AdminMenuServiceImpl implements AdminService<MenuEntity> {
     @Autowired
-    AdminMenuDAO adminMenuDAO;
+    AdminDAO<MenuEntity> adminDAO;
 
     @Override
     @Transactional
-    public List<MenuEntity> listAllFoods() {
-        return adminMenuDAO.listAllFoods();
+    public List<MenuEntity> fetchAll() {
+        return adminDAO.fetchAll();
     }
 
     @Override
     @Transactional
-    public void saveUpdateFood(MenuEntity food) {
-        adminMenuDAO.saveUpdateFood(food);
+    public void saveNewEntity(MenuEntity food) {
+        adminDAO.saveNewEntity(food);
     }
 
     @Override @Transactional
-    public void deleteFood(int menuId) { adminMenuDAO.deleteFood(menuId); }
+    public void deleteEntity(int menuId) { adminDAO.deleteEntity(menuId); }
 
     @Override @Transactional
-    public MenuEntity getFoodById(int menuId) { return adminMenuDAO.getFoodById(menuId); }
+    public MenuEntity getById(int menuId) { return adminDAO.getById(menuId); }
 
     @Override @Transactional
-    public void updateExistingDish(MenuEntity food) { adminMenuDAO.updateExistingDish(food); }
+    public void updateExistEntity(MenuEntity food) { adminDAO.updateExistEntity(food); }
 }

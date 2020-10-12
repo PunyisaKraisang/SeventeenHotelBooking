@@ -1,13 +1,10 @@
 package com.spring.dao;
 
 import com.spring.entity.MenuEntity;
+import com.spring.service.AdminService;
 
 import java.util.List;
 
-public interface AdminMenuDAO {
-    public List<MenuEntity> listAllFoods();
-    public void saveUpdateFood(MenuEntity food);
-    public void deleteFood(int menuId);
-    public MenuEntity getFoodById(int menuId);
-    public void updateExistingDish(MenuEntity food);
+public interface AdminMenuDAO extends AdminDAO<MenuEntity> {
+    //public void updateExistingDish(MenuEntity food);
 }
