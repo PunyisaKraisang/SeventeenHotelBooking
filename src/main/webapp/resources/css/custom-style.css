@@ -60,3 +60,8 @@
     box-shadow: none !important;
 }
 
+.error {
+	font-size: small;
+    font-style: italic;
+    color: #e07777;
+}

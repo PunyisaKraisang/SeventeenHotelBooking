@@ -115,7 +115,7 @@
 		          			<div class="row mb-4">
 		          				<div class="col-4">Pick deliver date</div>
 								<div class="col-8">
-									<input type="text" id="deliverDate" name="deliverDate" class="form-control deliver-date" />
+									<input type="text" id="deliverDate" name="deliverDate" class="form-control deliver-date" required/>
 								</div>
 		          			</div>
 		          			

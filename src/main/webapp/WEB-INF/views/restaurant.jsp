@@ -117,10 +117,10 @@
 				<div class="col-lg-5 sidebar">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">Search</h3>
-						<form:form action="restaurant" method="post" modelAttribute="searchModel">
+						<form:form action="restaurant" method="post" modelAttribute="searchModel" id="search-form">
 							<div class="fields">
 								<div class="form-group">
-									<form:input type="text" path="name"
+									<form:input type="text" path="name" id="name"
 										class="form-control" placeholder="By name" />
 								</div>
 								<div class="form-group">
@@ -209,6 +209,8 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/additional-methods.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/custom-script.js"></script>

@@ -98,8 +98,6 @@ public class RestaurantController {
 	@PostMapping("/order")
 	public String order(@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, Model model) {
 		
-		//TODO: Validate menuOrder
-		
 		service.makeOrder("dummy", menuOrder);
 		
 		LOGGER.info("Save order success");

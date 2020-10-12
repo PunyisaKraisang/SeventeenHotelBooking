@@ -106,6 +106,21 @@ function deleteFromCart(id) {
 }
 
 
-$('.deliver-date').datepicker({
-	'autoclose': true
+
+
+$(document).ready(function () {
+
+	$('.deliver-date').datepicker({
+		'autoclose': true
+	});
+
+    $('#search-form').validate({
+        rules: {
+            name: {
+                alphanumeric: true,
+                required: false
+            }
+        }
+    });
+
 });
