@@ -16,13 +16,8 @@ public class HomeController {
 		return "home";
 	}
 	
-
-	
 	@GetMapping("/admin")
 	public String goToAdminPage() {
 		return "admin";
 	}
-
-	@GetMapping("/success")
-	public String goToSuccessPage() {return "success";}
 }

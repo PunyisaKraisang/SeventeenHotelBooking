@@ -48,7 +48,7 @@ public class RoomsController {
 	    return "rooms";
  
     }
-    @PostMapping("/bookRoom")
+    @PostMapping("/login/bookRoom")
 	public String getRoomDetail(@RequestParam int roomIdSelected,
 								@RequestParam String checkinDate,
 								@RequestParam String checkoutDate,

@@ -10,7 +10,11 @@ create table menu (
     recommended number(1) default 0,
     description nvarchar2(500)
 );
-
+-- sequence for food
+create sequence menuIdSeq
+start with 1000
+increment by 1;
+--
 create table menu_keyword (
     keyword_id number(5) primary key,
     value nvarchar2(20) not null,
