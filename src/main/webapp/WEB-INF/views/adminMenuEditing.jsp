@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -47,7 +48,43 @@
                 </div>
             </div>
         </div>
-
+    </section>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h3>Editing Information</h3>
+                </div>
+            </div>
+            <c:url var="editLink" value="/adminMenu/edit">
+                <c:param name="menuId" value="${updatingDish.menuId}"/>
+            </c:url>
+            <%--@elvariable id="updatingDish" type="com.spring.entity.MenuEntity"--%>
+            <f:form action="${editLink}" method="post" modelAttribute="updatingDish">
+                <div class="row justify-content-center mb-5 pb-3">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h3>Edit Food Information</h3>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <f:label for="foodName" path="name">Food Name</f:label>
+                    <f:input path="name" type="text" class="form-control" id="foodName" value="${updatingDish.name}"/>
+                </div>
+                <div class="form-group">
+                    <f:label path="price" for="foodPrice">Price</f:label>
+                    <f:input path="price" type="text" class="form-control" id="foodPrice" value="${updatingDish.price}"/>
+                </div>
+                <div class="form-group">
+                    <f:label path="isRecommended" for="foodRecommendation">Recommendation</f:label>
+                    <f:input path="isRecommended" type="text" class="form-control" id="foodRecommendation" value="${updatingDish.isRecommended}"/>
+                </div>
+                <div class="form-group">
+                    <f:label path="description" for="foodDesc">Type</f:label>
+                    <f:input path="description" type="text" class="form-control" id="foodDesc" value="${updatingDish.description}"/>
+                </div>
+                <button type="submit" class="btn btn-info">Update</button>
+            </f:form>
+        </div>
     </section>
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>

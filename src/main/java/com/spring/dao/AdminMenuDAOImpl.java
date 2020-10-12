@@ -33,12 +33,24 @@ public class AdminMenuDAOImpl extends BaseRepository implements AdminMenuDAO {
         getSession().delete(target);
     }
 
-    private MenuEntity getFoodById(int menuId) {
+    @Override
+    public MenuEntity getFoodById(int menuId) {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<MenuEntity> cq = cb.createQuery(MenuEntity.class);
         Root<MenuEntity> foods = cq.from(MenuEntity.class);
         Predicate condition = cb.equal(foods.get("menuId"), menuId);
         cq.where(condition);
         return getSession().createQuery(cq).getSingleResult();
+    }
+
+    @Override
+    public void updateExistingDish(MenuEntity food) {
+        MenuEntity existingDish = getFoodById(food.getMenuId());
+        existingDish.setDescription(food.getDescription());
+        //existingDish.setKeywords(food.getKeywords());
+        existingDish.setName(food.getName());
+        existingDish.setPrice(food.getPrice());
+        existingDish.setRecommended(food.getIsRecommended());
+        getSession().update(existingDish);
     }
 }

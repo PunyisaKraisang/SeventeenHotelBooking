@@ -47,12 +47,27 @@ public class AdminCarDAOImpl extends BaseRepository implements AdminCarDAO {
     @Override
     public void saveUpdateCar(CarEntity car) { getSession().saveOrUpdate(car); }
 
-    private CarEntity getCarById(int carId) {
+    @Override
+    public CarEntity getCarById(int carId) {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<CarEntity> cq = cb.createQuery(CarEntity.class);
         Root<CarEntity> cars = cq.from(CarEntity.class);
         Predicate condition = cb.equal(cars.get("carId"), carId);
         cq.where(condition);
         return getSession().createQuery(cq).getSingleResult();
+    }
+
+    @Override
+    public void updateExistingCar(CarEntity car) {
+        CarEntity existingCar = getCarById(car.getCarId());
+        existingCar.setAc(car.getAc());
+        existingCar.setCarName(car.getCarName());
+        existingCar.setCarPrice(car.getCarPrice());
+        existingCar.setCarStatus(car.getCarStatus());
+        existingCar.setCarType(car.getCarType());
+        existingCar.setManual(car.getManual());
+        existingCar.setMileage(car.getMileage());
+        existingCar.setTrunkSize(car.getTrunkSize());
+        getSession().update(existingCar);
     }
 }

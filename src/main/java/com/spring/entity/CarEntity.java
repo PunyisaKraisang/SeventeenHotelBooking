@@ -36,7 +36,7 @@ public class CarEntity {
     @Column(name = "trunk_size")
     private float trunkSize;
 
-    @Column(name = "status")
+    @Column(name = "car_status")
     private String carStatus;
 
     public int getCarId() {

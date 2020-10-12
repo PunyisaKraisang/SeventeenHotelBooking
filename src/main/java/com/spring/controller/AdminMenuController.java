@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,8 +27,16 @@ public class AdminMenuController {
     }
 
     @GetMapping("edit")
-    public String editFood() {
+    public String editFoodForm(Model model, int menuId) {
+        MenuEntity updatingDish = adminMenuService.getFoodById(menuId);
+        model.addAttribute("updatingDish", updatingDish);
         return "adminMenuEditing";
+    }
+
+    @PostMapping("edit")
+    public String editFood(@ModelAttribute("updatingDish") MenuEntity food, int menuId) {
+        adminMenuService.updateExistingDish(food);
+        return "redirect:/adminMenu";
     }
 
     @GetMapping("delete")

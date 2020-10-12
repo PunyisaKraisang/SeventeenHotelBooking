@@ -129,7 +129,7 @@
                         <f:input path="isRecommended" type="text" class="form-control" id="foodRecommendation" placeholder="e.g 0"/>
                     </div>
                     <div class="form-group">
-                        <f:label path="description" for="foodDesc">Type</f:label>
+                        <f:label path="description" for="foodDesc">Description</f:label>
                         <f:input path="description" type="text" class="form-control" id="foodDesc" placeholder="e.g Mashed potato with butter, milk, salt and pepper"/>
                     </div>
                     <button type="submit" class="btn btn-info">Add New Dish</button>

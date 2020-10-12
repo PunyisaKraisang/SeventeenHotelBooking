@@ -26,4 +26,10 @@ public class AdminCarServiceImpl implements AdminCarService {
 
     @Override @Transactional
     public void saveUpdateCar(CarEntity car) { adminCarDAO.saveUpdateCar(car); }
+
+    @Override @Transactional
+    public CarEntity getCarById(int carId) { return adminCarDAO.getCarById(carId); }
+
+    @Override @Transactional
+    public void updateExistingCar(CarEntity car) { adminCarDAO.updateExistingCar(car); }
 }

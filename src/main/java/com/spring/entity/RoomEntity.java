@@ -47,8 +47,8 @@ public class RoomEntity implements Serializable {
     private int maxCapacity;
 
     @Column(name = "bathtub")
-    //@Type(type = "true_false")
-    private int bathtub;
+    @Type(type = "numeric_boolean")
+    private boolean bathtub;
 
     @Column(name = "hotel_id")
     private int hotelId;
@@ -130,12 +130,14 @@ public class RoomEntity implements Serializable {
     }
 
 
-    public int getBathtub() {
+    public boolean isBathtub() {
         return bathtub;
     }
-    public void setBathtub(int bathtub) {
+    public void setBathtub(boolean bathtub) {
         this.bathtub = bathtub;
     }
+
+    public boolean getBathtub() { return bathtub; }
 
 
     public int getHotelId() {

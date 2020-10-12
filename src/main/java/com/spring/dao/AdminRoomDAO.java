@@ -12,4 +12,6 @@ public interface AdminRoomDAO {
     public List<RoomEntity> getAvailableRooms();
     public void roomStatusEditing(int roomId, String statusChangeTo);
     public void deleteRoom(int roomId);
+    public RoomEntity getRoomById(int roomId);
+    public void updatingExistRoom(RoomEntity room);
 }

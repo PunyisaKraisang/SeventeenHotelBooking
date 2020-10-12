@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="t"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -28,8 +27,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-</head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"></head>
 <body>
 <!-- header nav bar -->
 <jsp:include page="adminHeader.jsp" />
@@ -43,8 +41,8 @@
                     class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-12 ftco-animate text-center">
                     <div class="text mb-5 pb-3">
-                        <h1 class="mb-3">Car Management</h1>
-                        <h2>View & Edit Car</h2>
+                        <h1 class="mb-3">Editing Car Details</h1>
+                        <h2>Car Editing</h2>
                     </div>
                 </div>
             </div>
@@ -55,73 +53,55 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <h2>Car Provided for Rental</h2>
+                <h3>Editing Information</h3>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <div class="row justify-content-center mb-5 pb-3">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-                        <h3>Car Rental</h3>
-                    </div>
+        <c:url var="editLink" value="/adminCar/edit">
+            <c:param name="carId" value="${updatingCar.carId}"/>
+        </c:url>
+        <%--@elvariable id="updatingDish" type="com.spring.entity.CarEntity"--%>
+        <f:form action="${editLink}" method="post" modelAttribute="updatingCar">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h3>Edit Car Information</h3>
                 </div>
-            </tr>
-            <tr>
-                <th scope="col">Car Id</th>
-                <th scope="col">Car Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Type</th>
-                <th scope="col">Mileage</th>
-                <th scope="col">AC</th>
-                <th scope="col">Manual</th>
-                <th scope="col">Trunk Size</th>
-                <th scope="col">Status</th>
-                <th scope="col">Change Availability</th>
-                <th scope="col">Edit Information</th>
-                <th scope="col">Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="car" items="${carList}">
-                <c:url var="changeAvailability" value="/adminCar/availability">
-                    <c:param name="carId" value="${car.carId}"/>
-                </c:url>
-                <c:url var="editLink" value="/adminCar/edit">
-                    <c:param name="carId" value="${car.carId}"/>
-                </c:url>
-                <c:url var="deleteLink" value="/adminCar/delete">
-                    <c:param name="carId" value="${car.carId}"/>
-                </c:url>
-                <tr>
-                    <td>${car.carId}</td>
-                    <td>${car.carName}</td>
-                    <td>${car.carPrice}</td>
-                    <td>${car.carType}</td>
-                    <td>${car.mileage}</td>
-                    <td>${car.ac}</td>
-                    <td>${car.manual}</td>
-                    <td>${car.trunkSize}</td>
-                    <td>${car.carStatus}</td>
-                    <c:choose>
-                        <c:when test="${car.carStatus.equals('Available')}">
-                            <td><a class="btn" href="${changeAvailability}">Disable</a></td>
-                        </c:when>
-                        <c:otherwise>
-                            <td><a class="btn" href="${changeAvailability}">Enable</a></td>
-                        </c:otherwise>
-                    </c:choose>
-                    <td><a class="btn" href="${editLink}">Edit</a></td>
-                    <td><a class="btn" href="${deleteLink}">Delete</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+            </div>
+            <div class="form-group">
+                <f:label for="carName" path="carName">Car Name</f:label>
+                <f:input path="carName" type="text" class="form-control" id="carName" value="${updatingCar.carName}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="carType" for="carType">Type</f:label>
+                <f:input path="carType" type="text" class="form-control" id="carType" value="${updatingCar.carType}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="carPrice" for="carPrice">Price</f:label>
+                <f:input path="carPrice" type="text" class="form-control" id="foodRecommendation" value="${updatingCar.carPrice}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="carStatus" for="carStatus">Status</f:label>
+                <f:input path="carStatus" type="text" class="form-control" id="carStatus" value="${updatingCar.carStatus}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="mileage" for="mileage">Mileage</f:label>
+                <f:input path="mileage" type="text" class="form-control" id="mileage" value="${updatingCar.mileage}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="ac" for="ac">AC</f:label>
+                <f:input path="ac" type="text" class="form-control" id="ac" value="${updatingCar.ac}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="manual" for="manual">Manual</f:label>
+                <f:input path="manual" type="text" class="form-control" id="manual" value="${updatingCar.manual}"/>
+            </div>
+            <div class="form-group">
+                <f:label path="trunkSize" for="trunkSize">Trunk Size</f:label>
+                <f:input path="trunkSize" type="text" class="form-control" id="trunkSize" value="${updatingCar.trunkSize}"/>
+            </div>
+            <button type="submit" class="btn btn-info">Update</button>
+        </f:form>
     </div>
 </section>
-
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>
 

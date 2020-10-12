@@ -27,4 +27,10 @@ public class AdminMenuServiceImpl implements AdminMenuService {
 
     @Override @Transactional
     public void deleteFood(int menuId) { adminMenuDAO.deleteFood(menuId); }
+
+    @Override @Transactional
+    public MenuEntity getFoodById(int menuId) { return adminMenuDAO.getFoodById(menuId); }
+
+    @Override @Transactional
+    public void updateExistingDish(MenuEntity food) { adminMenuDAO.updateExistingDish(food); }
 }
