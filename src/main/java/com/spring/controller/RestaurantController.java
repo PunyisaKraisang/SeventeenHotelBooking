@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.dto.KeywordCategory;
+import com.spring.model.AccountModel;
 import com.spring.model.MenuCheckoutListModel;
 import com.spring.model.MenuKeywordListModel;
 import com.spring.model.MenuModel;
 import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
 import com.spring.service.RestaurantService;
+import com.spring.util.ModelUtil;
 
 @Controller
 @RequestMapping("/restaurant")
@@ -82,9 +85,15 @@ public class RestaurantController {
 
 	@PostMapping("/checkout")
 	public String checkout(
+			@SessionAttribute(name = "accountModel", required = false) AccountModel accountModel,
 			@ModelAttribute("checkoutList") MenuCheckoutListModel checkoutList,
 			@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, 
 			Model model) {
+		
+		if (!ModelUtil.isLogin(accountModel)) {
+			LOGGER.info("No login user, redirect to login page");
+			return "redirect:/login";
+		}
 		
 		LOGGER.info("Checkout with " + checkoutList.getItems().size() + " menu(s)");
 		
@@ -95,9 +104,17 @@ public class RestaurantController {
 	}
 
 	@PostMapping("/order")
-	public String order(@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, Model model) {
+	public String order(
+			@SessionAttribute(name = "accountModel", required = false) AccountModel accountModel,
+			@ModelAttribute("menuOrder") SaveMenuOrderModel menuOrder, 
+			Model model) {
 		
-		service.makeOrder("dummy", menuOrder);
+		if (!ModelUtil.isLogin(accountModel)) {
+			LOGGER.info("No login user, redirect to login page");
+			return "redirect:/login";
+		}
+		
+		service.makeOrder(accountModel.getUsername(), menuOrder);
 		
 		LOGGER.info("Save order success");
 		return "orderSuccess";
