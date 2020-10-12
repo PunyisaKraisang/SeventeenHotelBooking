@@ -114,7 +114,7 @@ public class RestaurantController {
 			return "redirect:/login";
 		}
 		
-		service.makeOrder("dummy", menuOrder);
+		service.makeOrder(accountModel.getUsername(), menuOrder);
 		
 		LOGGER.info("Save order success");
 		return "orderSuccess";

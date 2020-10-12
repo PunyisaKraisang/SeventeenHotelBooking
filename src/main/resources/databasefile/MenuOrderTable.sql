@@ -31,6 +31,7 @@ INSERT INTO Menu_Order VALUES (2, 'dummy', '07-OCT-2020', 3.52, 3.00, 27.54);
 SELECT * FROM Menu_Order;
 select * from menu_order_item;
 select moi.order_id
+        , moi.menu_id
         , m.name as menu_name
         , c.first_name
         , c.last_name
@@ -44,6 +45,7 @@ inner join customer c on c.username = mo.username
 where moi.devilered_datetime is null 
 and moi.status = 'pending'
 order by moi.expected_deviler_datetime, m.name;
+
 
 
 commit;
