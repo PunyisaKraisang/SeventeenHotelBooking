@@ -100,6 +100,7 @@ public final class ModelUtil {
 	public static AccountModel parse(AccountEntity from) {	
 		AccountModel to = new AccountModel();
 		to.setUsername(from.getUsername());
+		to.setCustomerId(from.getCustomerId());
 		return to;
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.spring.model.AccountModel;
 import com.spring.model.LoginModel;
@@ -53,7 +54,20 @@ public class AuthenticationController {
 		}
 		
 		// Save account in session model
-		accountModel = account;
+		accountModel.setUsername(account.getUsername());;
+		accountModel.setCustomerId(account.getCustomerId());;
+		return "redirect:/home";
+	}
+
+	@GetMapping("logout")
+	public String logout(
+			@ModelAttribute("accountModel") AccountModel accountModel, 
+			SessionStatus status,
+			Model model) {
+		
+		LOGGER.info("Clear session for " + accountModel);
+		status.setComplete();
+		
 		return "redirect:/home";
 	}
 }

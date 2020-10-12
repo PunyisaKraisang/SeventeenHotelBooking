@@ -2,8 +2,17 @@ package com.spring.model;
 
 
 public class AccountModel {
-
+	
+	private int customerId;
 	private String username;
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 
 	public String getUsername() {
 		return username;
@@ -15,7 +24,7 @@ public class AccountModel {
 
 	@Override
 	public String toString() {
-		return "AccountModel [" + (username != null ? "username=" + username : "") + "]";
+		return "AccountModel [customerId=" + customerId + ", " + (username != null ? "username=" + username : "") + "]";
 	}
 	
 	

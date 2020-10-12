@@ -8,13 +8,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "account")
 public class AccountEntity {
-
+	
 	@Id
+	@Column(name = "customer_id")
+	private int customerId;
+	
 	@Column(name = "username")
 	private String username;
 	
 	@Column(name = "password")
 	private String password;
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 
 	public String getUsername() {
 		return username;
@@ -32,12 +43,4 @@ public class AccountEntity {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "AccountEntity [" + (username != null ? "username=" + username + ", " : "")
-				+ (password != null ? "password=" + password : "") + "]";
-	}
-	
-	
-	
 }

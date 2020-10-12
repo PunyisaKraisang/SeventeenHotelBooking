@@ -25,7 +25,6 @@
 					<li class="nav-item"><a href="rooms.html" class="nav-link">Rooms</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Rental</a></li>
 					<li class="nav-item"><a href="restaurant" class="nav-link">Restaurant</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 					<c:choose>
 					    <c:when test="${accountModel != null && not empty accountModel.username}">
 							<li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
@@ -35,8 +34,6 @@
 							<li class="nav-item"><a href="admin" class="nav-link">Admin</a> </li>
 					    </c:otherwise>
 					</c:choose>
-					<c:out value="${accountModel}"></c:out>
-					<c:out value="${accountModel.username}"></c:out>
 				</ul>
 			</div>
 		</div>

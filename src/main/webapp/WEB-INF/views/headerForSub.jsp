@@ -25,14 +25,15 @@
 					<li class="nav-item"><a href="rooms.html" class="nav-link">Rooms</a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Rental</a></li>
 					<li class="nav-item"><a href="../restaurant" class="nav-link">Restaurant</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<c:if test="${ accountModel == null || accountModel.username.isEmpty() }">
-						<li class="nav-item"><a href="../login" class="nav-link">Login</a></li>
-						<li class="nav-item"><a href="../admin" class="nav-link">Admin</a> </li>
-					</c:if>
-					<c:if test="${ accountModel != null && !accountModel.username.isEmpty() }">
-						<li class="nav-item"><a href="../logout" class="nav-link">Logout</a></li>
-					</c:if>
+					<c:choose>
+					    <c:when test="${accountModel != null && not empty accountModel.username}">
+							<li class="nav-item"><a href="../logout" class="nav-link">Logout</a></li>
+					    </c:when>
+					    <c:otherwise>
+							<li class="nav-item"><a href="../login" class="nav-link">Login</a></li>
+							<li class="nav-item"><a href="../admin" class="nav-link">Admin</a> </li>
+					    </c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
