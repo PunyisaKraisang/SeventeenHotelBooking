@@ -1,4 +1,5 @@
 drop table customer CASCADE CONSTRAINTS;
+drop table account;
 
 CREATE TABLE customer (
     username nvarchar2(10) primary key,
@@ -10,7 +11,8 @@ CREATE TABLE customer (
 );
 
 CREATE TABLE account (
-    username nvarchar2(10) primary key,
+    customer_id number primary key,
+    username nvarchar2(10) unique,
     password nvarchar2(20) not null
 );
 
@@ -22,3 +24,5 @@ insert into account (username, password)
 values ( 'dummy', 'dummy1234');
 
 select * from customer;
+select * from account;
+
