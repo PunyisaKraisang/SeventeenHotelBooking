@@ -9,8 +9,16 @@ CREATE TABLE customer (
     email_address nvarchar2(30)
 );
 
+CREATE TABLE account (
+    username nvarchar2(10) primary key,
+    password nvarchar2(20) not null
+);
+
 -- create dummy customer
 insert into customer (username, first_name, last_name, birth_date, phone, email_address) 
 values ( 'dummy', 'Dummif', 'Dummilastier', '01-JAN-1990', '1111111111', 'dummy@email.com');
+
+insert into account (username, password) 
+values ( 'dummy', 'dummy1234');
 
 select * from customer;
