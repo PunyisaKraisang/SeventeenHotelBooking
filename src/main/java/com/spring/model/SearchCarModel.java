@@ -8,10 +8,13 @@ public class SearchCarModel implements Serializable {
 	
 	private String carName;
 	
-	//Setter
-	public void setCarName(String carName) {this.carName = carName;}
+	//Constructor (for ModelUtil)
+	public SearchCarModel(String carName) {this.carName = carName;}
 	
 	//Getter
 	public String getCarName() {return carName;}
+	
+	//Setter
+	public void setCarName(String carName) {this.carName = carName;}
 
 }
