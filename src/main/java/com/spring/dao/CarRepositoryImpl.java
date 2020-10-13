@@ -15,24 +15,24 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.dto.SearchCar;
 import com.spring.entity.CarEntity;
+import com.spring.model.SearchCarModel;
 
 @Transactional
 @Repository
 public class CarRepositoryImpl extends BaseRepository implements CarRepository {
 	
 	//Fetch cars
-	public Set<CarEntity> fetch(SearchCar searchCar) {
+	public Set<CarEntity> fetch(SearchCarModel searchCarModel) {
 
-		Set<Integer> carIdSet = fetchCarId(searchCar);
+		Set<Integer> carIdSet = fetchCarId(searchCarModel);
 		Set<CarEntity> result = fetchCar(carIdSet);
 	
 		return result;
 	}
 	
 	//Retrieve car IDs
-	private Set<Integer> fetchCarId(SearchCar searchCar) {
+	private Set<Integer> fetchCarId(SearchCarModel searchCarModel) {
 		
 		//CriteriaBuilder class is used to construct criteria queries
 		//getSession() returns the current session
@@ -45,7 +45,7 @@ public class CarRepositoryImpl extends BaseRepository implements CarRepository {
 		Root<CarEntity> root = query.from(CarEntity.class);
 		
 		// Add search criteria
-		List<Predicate> predicate = buildCriteria(builder, searchCar, root);
+		List<Predicate> predicate = buildCriteria(builder, searchCarModel, root);
 		query.where(builder.and(predicate.toArray(new Predicate[predicate.size()])) );
 		
 		// Project only car ID
@@ -78,13 +78,13 @@ public class CarRepositoryImpl extends BaseRepository implements CarRepository {
 	}
 	
 	//Name search criteria
-	private List<Predicate> buildCriteria(CriteriaBuilder builder, SearchCar searchCar, Root<CarEntity> root) {
+	private List<Predicate> buildCriteria(CriteriaBuilder builder, SearchCarModel searchCarModel, Root<CarEntity> root) {
 		
 		List<Predicate> predicate = new ArrayList<>();
 		
 		
-		if (searchCar.getCarName() != null && !searchCar.getCarName().isEmpty()) {
-			predicate.add(builder.like(builder.lower(root.get("carName")), "%" + searchCar.getCarName().toLowerCase() + "%"));
+		if (searchCarModel.getCarName() != null && !searchCarModel.getCarName().isEmpty()) {
+			predicate.add(builder.like(builder.lower(root.get("carName")), "%" + searchCarModel.getCarName().toLowerCase() + "%"));
 		}
 		
 		return predicate;
