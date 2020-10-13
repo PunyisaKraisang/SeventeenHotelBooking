@@ -106,7 +106,7 @@
 		    	<div class="col-lg-3 sidebar">
 	      		<div class="sidebar-wrap bg-light ftco-animate">
 	      			<h3 class="heading mb-4">Search</h3>
-	      			<form:form action="car-rental" method="post" modelAttribute="searchCarModel">
+	      			<form:form action="car-rental" method="post" modelAttribute="carModel">
 	      				<div class="fields">
 		              		<div class="form-group">
 		                		<form:input type="text" path="carName" class="form-control" placeholder="Search Car"/>
@@ -152,25 +152,6 @@
   		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
   	</svg>
   </div>
-
-  <!-- Script Code -->
-  <script>
-  	function clickMe(id) {
-		alert(id);
-	}
-  	
-  	function booleanChanger(val) {
-  		if (val == true) {
-  			return "Yes";
-  		} else {
-  			return "False";
-  		}
-  	}
-  	
-  	function clickRent() {
-  		car.carStatus = 'unavailable';
-  	}
-  </script>
   
   <!-- Script Source -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
