@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.entity.RoomEntity;
 import com.spring.model.RoomModel;
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.hibernate.query.Query;
 
 
@@ -36,11 +36,9 @@ public class RoomRepositoryImpl extends BaseRepository implements RoomRepository
 
 	@Override
 	public void bookRoom(int roomId, String checkinDate, String checkoutDate) {
-        // Query query = getSession().createQuery("")
+        
 		Session session = getSession();
-
 		RoomReservationEntity roomReservationEntity = new RoomReservationEntity();
-		// roomReservationEntity.setReservationId((int)Math.random() * (1000000 - 100000 + 100000) + 100000); // generate random reservation id
 		roomReservationEntity.setCheckInTime(new Date(checkinDate));
 		roomReservationEntity.setCheckOutTime(new Date(checkoutDate));
 		roomReservationEntity.setReservationStatus("pending");
@@ -51,8 +49,6 @@ public class RoomRepositoryImpl extends BaseRepository implements RoomRepository
 
 		session.save(roomReservationEntity);
 
-		//Commit the transaction
-		// session.getTransaction().commit();
 	}
 
 
