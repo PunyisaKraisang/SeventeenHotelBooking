@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.model.CarModel;
-import com.spring.model.SearchCarModel;
 import com.spring.service.CarService;
 
 @Controller
@@ -23,9 +22,9 @@ public class CarController {
 	
 	//Access car rental page
 	@GetMapping
-	public String displayAllCars(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
+	public String displayAllCars(@ModelAttribute(name = "carModel") CarModel carModel, Model model) {
 		
-		List<CarModel> carList = carService.fetchCar(searchCarModel);
+		List<CarModel> carList = carService.fetchCar(carModel);
 		model.addAttribute("carList", carList);
 		
 		return "car-rental";
@@ -33,9 +32,9 @@ public class CarController {
 	
 	//Search car
 	@PostMapping
-	public String displaySearchedCars(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
+	public String displaySearchedCars(@ModelAttribute(name = "carModel") CarModel carModel, Model model) {
 		
-		List<CarModel> carList = carService.fetchCar(searchCarModel);
+		List<CarModel> carList = carService.fetchCar(carModel);
 		model.addAttribute("carList", carList);
 		
 		return "car-rental";
