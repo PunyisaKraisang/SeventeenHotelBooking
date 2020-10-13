@@ -22,7 +22,6 @@ import com.spring.model.SaveMenuOrderItemModel;
 import com.spring.model.SaveMenuOrderModel;
 import com.spring.model.SearchMenuModel;
 
-import com.spring.dto.SearchCar;
 import com.spring.entity.CarEntity;
 import com.spring.model.CarModel;
 import com.spring.model.SearchCarModel;
@@ -153,7 +152,7 @@ public final class ModelUtil {
 		return model;
 	}
 	
-	public static SearchCar parse(SearchCarModel from) {
-		return new SearchCar(from.getCarName());
+	public static SearchCarModel parse(CarModel from) {
+		return new SearchCarModel(from.getCarName());
 	}
 }
