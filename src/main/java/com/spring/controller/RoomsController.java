@@ -52,7 +52,6 @@ public class RoomsController {
 	    model.addAttribute("checkinDate", checkinDate);
 	    model.addAttribute("checkoutDate", checkoutDate);
 	    return "rooms";
- 
     }
    
 	
@@ -60,22 +59,16 @@ public class RoomsController {
 	public String getRoomDetail(@RequestParam int roomIdSelected,
 								@RequestParam String checkinDate,
 								@RequestParam String checkoutDate,
+								@SessionAttribute(name = "accountModel", required = false) AccountModel accountModel,
 	                            Model model) {
+    	if (!ModelUtil.isLogin(accountModel)) {
+			LOGGER.info("No login user, redirect to login page");
+			return "redirect:/login";
+			}
+    	
 		System.out.println("roomId: " + roomIdSelected);
         service.bookRoom(roomIdSelected, checkinDate, checkoutDate);
         return "success";
-	}
-    
-    @PostMapping("/book")
-	public String book(
-			@SessionAttribute(name = "accountModel", required = false) AccountModel accountModel,
-			Model model) {
-		
-		if (!ModelUtil.isLogin(accountModel)) {
-			LOGGER.info("No login user, redirect to login page");
-			return "redirect:/login";
-		}
-			return "success";
 	}
 	
 }
