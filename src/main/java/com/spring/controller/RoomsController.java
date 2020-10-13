@@ -61,7 +61,7 @@ public class RoomsController {
 	                            Model model) {
 		System.out.println("roomId: " + roomIdSelected);
         service.bookRoom(roomIdSelected, checkinDate, checkoutDate);
-        return "success";
+        return "rooms";
 	}
     
     @PostMapping("/bookRoom")
@@ -76,7 +76,7 @@ public class RoomsController {
 		LOGGER.info("Pass data to checkput page");
 	
 		
-		return "bookRoom";
+		return "success";
 	}
 	
 }
