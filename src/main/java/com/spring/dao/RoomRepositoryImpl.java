@@ -43,7 +43,7 @@ public class RoomRepositoryImpl extends BaseRepository implements RoomRepository
 		// roomReservationEntity.setReservationId((int)Math.random() * (1000000 - 100000 + 100000) + 100000); // generate random reservation id
 		roomReservationEntity.setCheckInTime(new Date(checkinDate));
 		roomReservationEntity.setCheckOutTime(new Date(checkoutDate));
-		roomReservationEntity.setReservationStatus("true");
+		roomReservationEntity.setReservationStatus("pending");
 		roomReservationEntity.setRoomId(roomId);
 		roomReservationEntity.setServiceCharge(0); // O dollars for now
 		roomReservationEntity.setTax(0); // 0 dollars for now
