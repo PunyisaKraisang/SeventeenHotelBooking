@@ -54,18 +54,20 @@ public class RoomsController {
 	    return "rooms";
  
     }
-    @PostMapping("/roomDetail")
+   
+	
+    @PostMapping("/bookRoom")
 	public String getRoomDetail(@RequestParam int roomIdSelected,
 								@RequestParam String checkinDate,
 								@RequestParam String checkoutDate,
 	                            Model model) {
 		System.out.println("roomId: " + roomIdSelected);
         service.bookRoom(roomIdSelected, checkinDate, checkoutDate);
-        return "rooms";
+        return "success";
 	}
     
-    @PostMapping("/bookRoom")
-	public String bookRoom(
+    @PostMapping("/book")
+	public String book(
 			@SessionAttribute(name = "accountModel", required = false) AccountModel accountModel,
 			Model model) {
 		
@@ -73,10 +75,7 @@ public class RoomsController {
 			LOGGER.info("No login user, redirect to login page");
 			return "redirect:/login";
 		}
-		LOGGER.info("Pass data to checkput page");
-	
-		
-		return "success";
+			return "success";
 	}
 	
 }
