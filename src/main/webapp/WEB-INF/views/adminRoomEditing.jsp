@@ -44,7 +44,6 @@
             <div class="col-md-12 ftco-animate text-center">
                 <div class="text mb-5 pb-3">
                     <h1 class="mb-3">Editing Room Information</h1>
-                    <h2>Room Editing</h2>
                 </div>
             </div>
         </div>
@@ -52,7 +51,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <h3>Editing Information</h3>
+                <h3>Editing Room${updatingRoom.roomNumber}</h3>
             </div>
         </div>
         <c:url var="editLink" value="/adminRoom/edit">
@@ -60,11 +59,6 @@
         </c:url>
         <%--@elvariable id="updatingDish" type="com.spring.entity.RoomEntity"--%>
         <f:form action="${editLink}" method="post" modelAttribute="updatingRoom">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Edit Room Information</h3>
-                </div>
-            </div>
             <div class="form-group">
                 <f:label for="roomPrice" path="roomPrice">Price</f:label>
                 <f:input path="roomPrice" type="text" class="form-control" id="roomPrice" value="${updatingRoom.roomPrice}"/>

@@ -31,29 +31,26 @@
 <body>
 <!-- header nav bar -->
 <jsp:include page="adminHeader.jsp" />
-
-<section class="home-slider owl-carousel">
-    <div class="slider-item"
-         style="background-image: url(${pageContext.request.contextPath}/resources/images/bg_1.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div
-                    class="row no-gutters slider-text align-items-center justify-content-center">
-                <div class="col-md-12 ftco-animate text-center">
-                    <div class="text mb-5 pb-3">
-                        <h1 class="mb-3">Editing Car Details</h1>
-                        <h2>Car Editing</h2>
-                    </div>
+<div class="hero-wrap" style="background-color: #4c463b; height: 90px; width:100%">
+    <div class="overlay"></div>
+    <div class="container">
+    </div>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div
+                class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-12 ftco-animate text-center">
+                <div class="text mb-5 pb-3">
+                    <h1 class="mb-3">Editing Car Information</h1>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <h3>Editing Information</h3>
+                <h3>Editing ${updatingCar.carName}</h3>
             </div>
         </div>
         <c:url var="editLink" value="/adminCar/edit">
@@ -61,11 +58,6 @@
         </c:url>
         <%--@elvariable id="updatingDish" type="com.spring.entity.CarEntity"--%>
         <f:form action="${editLink}" method="post" modelAttribute="updatingCar">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Edit Car Information</h3>
-                </div>
-            </div>
             <div class="form-group">
                 <f:label for="carName" path="carName">Car Name</f:label>
                 <f:input path="carName" type="text" class="form-control" id="carName" value="${updatingCar.carName}"/>

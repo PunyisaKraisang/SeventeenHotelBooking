@@ -42,8 +42,7 @@
                     class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-12 ftco-animate text-center">
                     <div class="text mb-5 pb-3">
-                        <h1 class="mb-3">Editing Dish Details</h1>
-                        <h2>Dish Editing</h2>
+                        <h1 class="mb-3">Editing Food Details</h1>
                     </div>
                 </div>
             </div>
@@ -51,7 +50,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h3>Editing Information</h3>
+                    <h3>Editing ${updatingDish.name}</h3>
                 </div>
             </div>
             <c:url var="editLink" value="/adminMenu/edit">
@@ -59,11 +58,6 @@
             </c:url>
             <%--@elvariable id="updatingDish" type="com.spring.entity.MenuEntity"--%>
             <f:form action="${editLink}" method="post" modelAttribute="updatingDish">
-                <div class="row justify-content-center mb-5 pb-3">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-                        <h3>Edit Food Information</h3>
-                    </div>
-                </div>
                 <div class="form-group">
                     <f:label for="foodName" path="name">Food Name</f:label>
                     <f:input path="name" type="text" class="form-control" id="foodName" value="${updatingDish.name}"/>

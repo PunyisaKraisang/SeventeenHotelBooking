@@ -81,27 +81,27 @@
                     </div>
                     <div class="form-group">
                         <f:label path="roomStatus" for="roomStatus" class="form-group">Status</f:label>
-                        <f:input path="roomStatus" type="text" class="form-control" id="roomStatus" placeholder="e.g Available"/>
+                        <f:input type="text" class="form-control" id="roomStatus" placeholder="e.g Available" path="roomStatus"/>
                     </div>
                     <div class="form-group">
                         <f:label path="hotelId" for="hotelId" class="form-group">Hotel ID</f:label>
-                        <f:input path="hotelId" type="text" class="form-control" id="hotelId" placeholder="e.g 1"/>
+                        <f:input type="text" class="form-control" id="hotelId" placeholder="e.g 1" path="hotelId"/>
                     </div>
                     <div class="form-group">
                         <f:label path="bedNumber" for="bedNumber" class="form-group">Number of Beds</f:label>
-                        <f:input path="bedNumber" type="text" class="form-control" id="bedNumber" placeholder="e.g 1"/>
+                        <f:input type="text" class="form-control" id="bedNumber" placeholder="e.g 1" path="bedNumber"/>
                     </div>
                     <div class="form-group">
                         <f:label path="roomView" for="roomView" class="form-group">Outside View</f:label>
-                        <f:input path="roomView" type="text" class="form-control" id="roomView" placeholder="e.g City"/>
+                        <f:input type="text" class="form-control" id="roomView" placeholder="e.g City" path="roomView"/>
                     </div>
                     <div class="form-group">
                         <f:label path="maxCapacity" for="maxCapacity" class="form-group">Max Capacity</f:label>
-                        <f:input path="maxCapacity" type="text" class="form-control" id="maxCapacity" placeholder="e.g 1"/>
+                        <f:input type="text" class="form-control" id="maxCapacity" placeholder="e.g 1" path="maxCapacity"/>
                     </div>
                     <div class="form-group">
                         <f:label path="bathtub" for="bathtub" class="form-group">Bathtub</f:label>
-                        <f:input path="bathtub" type="text" class="form-control" id="bathtub" placeholder="e.g 1"/>
+                        <f:input type="text" class="form-control" id="bathtub" placeholder="e.g 1" path="bathtub"/>
                     </div>
                     <button type="submit" class="btn btn-info">Add New Room</button>
                 </f:form>
@@ -143,35 +143,35 @@
                     </div>
                     <div class="form-group">
                         <f:label path="carName" for="carName">Car Name</f:label>
-                        <f:input path="carName" class="form-control" id="carName"/>
+                        <f:input path="carName" class="form-control" id="carName" placeholder="e.g Fiat Tipo"/>
                     </div>
                     <div class="form-group">
                         <f:label path="carType" for="carType">Car Type</f:label>
-                        <f:input class="form-control" id="carName" path="carType"/>
+                        <f:input class="form-control" id="carName" path="carType" placeholder="compact"/>
                     </div>
                     <div class="form-group">
                         <f:label path="carPrice" for="carPrice">Car Price</f:label>
-                        <f:input class="form-control" id="carPrice" path="carPrice"/>
+                        <f:input class="form-control" id="carPrice" path="carPrice" placeholder="28.3"/>
                     </div>
                     <div class="form-group">
                         <f:label path="mileage" for="mileage">Mileage</f:label>
-                        <f:input class="form-control" id="mileage" path="mileage"/>
+                        <f:input class="form-control" id="mileage" path="mileage" placeholder="5000"/>
                     </div>
                     <div class="form-group">
                         <f:label path="ac" for="ac">AC</f:label>
-                        <f:input class="form-control" id="ac" path="ac"/>
+                        <f:input class="form-control" id="ac" path="ac" placeholder="yes"/>
                     </div>
                     <div class="form-group">
                         <f:label path="manual" for="manual">Car Manual</f:label>
-                        <f:input class="form-control" id="manual" path="manual"/>
+                        <f:input class="form-control" id="manual" path="manual" placeholder="no"/>
                     </div>
                     <div class="form-group">
                         <f:label path="trunkSize" for="trunkSize">Trunk Size</f:label>
-                        <f:input class="form-control" id="trunkSize" path="trunkSize"/>
+                        <f:input class="form-control" id="trunkSize" path="trunkSize" placeholder="2.0"/>
                     </div>
                     <div class="form-group">
                         <f:label path="carStatus" for="carStatus">Availability</f:label>
-                        <f:input class="form-control" id="carStatus" path="carStatus"/>
+                        <f:input class="form-control" id="carStatus" path="carStatus" placeholder="available"/>
                     </div>
                     <button type="submit" class="btn btn-info">Add New Car</button>
                 </f:form>
