@@ -1,9 +1,7 @@
 package com.spring.service;
 
 import java.util.List;
-
 import com.spring.model.CarModel;
-import com.spring.model.SearchCarModel;
 
 public interface CarService {
 	
