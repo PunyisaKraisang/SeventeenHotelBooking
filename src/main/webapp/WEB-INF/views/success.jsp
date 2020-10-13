@@ -5,7 +5,7 @@
 </head>
 <body>
 <script>
-alert("Your reservation has created successful!")
+alert("Your reservation has been created successfully!")
 var url = window.location.href;
 var index = url.indexOf("bookRoom")
 var mainUrl = url.substring(0, index);
