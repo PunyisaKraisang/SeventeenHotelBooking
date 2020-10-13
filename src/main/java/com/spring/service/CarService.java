@@ -8,7 +8,7 @@ import com.spring.model.SearchCarModel;
 public interface CarService {
 	
 	//Retrieve cars
-	List<CarModel> fetchCar(SearchCarModel searchCarModel);
+	List<CarModel> fetchCar(CarModel carModel);
 	
 	//Change car table 'status' column 
 	public void changeCarStatus(int carId);
