@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.dao.CarRepository;
 import com.spring.entity.CarEntity;
 import com.spring.model.CarModel;
-import com.spring.model.SearchCarModel;
 import com.spring.util.ModelUtil;
 
 @Service
@@ -23,9 +22,9 @@ public class CarServiceImpl implements CarService {
 	//Retrieve cars
 	@Override
 	@Transactional
-	public List<CarModel> fetchCar(SearchCarModel searchCarModel) {
+	public List<CarModel> fetchCar(CarModel carModel) {
 		
-		Set<CarEntity> entityList = carRepository.fetch(ModelUtil.parse(searchCarModel));
+		Set<CarEntity> entityList = carRepository.fetch(ModelUtil.parse(carModel));
 		List<CarModel> modelList  = entityList.stream().map(ModelUtil::parse).collect(Collectors.toList());
 
 		return modelList;
