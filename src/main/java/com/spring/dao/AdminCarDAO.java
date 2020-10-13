@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface AdminCarDAO extends AdminDAO<CarEntity> {
     void changeAvailability(int carId);
-    //void updateExistingCar(CarEntity car);
 }

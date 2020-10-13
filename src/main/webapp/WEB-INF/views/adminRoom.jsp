@@ -129,8 +129,8 @@
                         <tr>
                             <td>${reservation.reservationId}</td>
                             <td>${reservation.roomId}</td>
-                            <td>${reservation.checkinTime}</td>
-                            <td>${reservation.checkoutTime}</td>
+                            <td>${reservation.checkInTime}</td>
+                            <td>${reservation.checkOutTime}</td>
                             <td>${reservation.totalBill}</td>
                             <td>${reservation.reservationStatus}</td>
                             <c:choose>

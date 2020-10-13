@@ -10,5 +10,4 @@ public interface AdminRoomDAO extends AdminDAO<RoomEntity> {
     List<RoomEntity> getNonAvailableRooms();
     List<RoomEntity> getAvailableRooms();
     void roomStatusEditing(int roomId, String statusChangeTo);
-    //void updatingExistRoom(RoomEntity room);
 }

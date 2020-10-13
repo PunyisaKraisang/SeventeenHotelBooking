@@ -4,9 +4,9 @@ import com.spring.entity.CarEntity;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.RoomEntity;
 import com.spring.service.AdminCarService;
-import com.spring.service.AdminMenuService;
 import com.spring.service.AdminRoomService;
 import com.spring.service.AdminService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +25,11 @@ public class AdminAddController {
     @Autowired
     private AdminService<MenuEntity> adminMenuService;
 
+    private static final Logger LOGGER = Logger.getLogger(AdminAddController.class);
+
     @GetMapping("")
     public String addForms(Model model) {
+        LOGGER.info("Pass entities to ModelAttribute");
         model.addAttribute("newRoom", new RoomEntity());
         model.addAttribute("newCar", new CarEntity());
         model.addAttribute("newDish", new MenuEntity());
@@ -40,7 +43,7 @@ public class AdminAddController {
 
     @PostMapping("addRoom")
     public String addRoom(@ModelAttribute("newRoom") RoomEntity room, Model model) {
-        //model.addAttribute("newRoom", new RoomEntity());
+        LOGGER.info("Adding a new room: " + room);
         adminRoomService.saveNewEntity(room);
         return "redirect:/adminRoom";
     }
@@ -50,6 +53,7 @@ public class AdminAddController {
 
     @PostMapping("addCar")
     public String addCar(@ModelAttribute("newCar") CarEntity car) {
+        LOGGER.info("Adding a new Car: " + car);
         adminCarService.saveNewEntity(car);
         return "redirect:/adminCar";
     }
@@ -59,6 +63,7 @@ public class AdminAddController {
 
     @PostMapping("addFood")
     public String addFood(@ModelAttribute("newDish") MenuEntity food) {
+        LOGGER.info("Adding a new dish: " + food);
         adminMenuService.saveNewEntity(food);
         return "redirect:/adminMenu";
     }

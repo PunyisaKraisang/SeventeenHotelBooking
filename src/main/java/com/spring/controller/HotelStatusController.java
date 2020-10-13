@@ -4,6 +4,7 @@ import com.spring.entity.CarEntity;
 import com.spring.entity.MenuEntity;
 import com.spring.entity.RoomEntity;
 import com.spring.service.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +25,12 @@ public class HotelStatusController {
     @Autowired
     private AdminService<MenuEntity> adminMenuService;
 
-    //@GetMapping("/hotelStatus")
-    //public String hotelStatus() {
-    //    return "hotelStatus";
-    //}
+    private static final Logger LOGGER = Logger.getLogger(HotelStatusController.class);
 
     @GetMapping("/hotelStatus")
     public String showHotelStatus(Model model) {
         Map<String, Integer> roomInfo = getRoomInformation();
+        LOGGER.info("Pass value through model");
         model.addAttribute("roomInfo", roomInfo);
         model.addAttribute("foodInfo", getFoodInformation());
         model.addAttribute("carInfo", getCarInformation());
@@ -39,6 +38,7 @@ public class HotelStatusController {
     }
 
     private Map<String, Integer> getRoomInformation() {
+        LOGGER.info("Get list of rooms");
         List<RoomEntity> roomList = adminRoomService.fetchAll();
         int roomNums = 0;
         int occupiedNums = 0;
@@ -66,6 +66,7 @@ public class HotelStatusController {
         return roomInfo;
     }
     private Map<String, Integer> getFoodInformation() {
+        LOGGER.info("Get list of foods");
         List<MenuEntity> foodList = adminMenuService.fetchAll();
         int total = foodList.size();
         int cost = 0;
@@ -79,6 +80,7 @@ public class HotelStatusController {
         return foodInfo;
     }
     private Map<String, Integer> getCarInformation() {
+        LOGGER.info("Get list of cars");
         List<CarEntity> carList = adminCarService.fetchAll();
         int avaNum = 0, unavaNum = 0, cost = 0;
         int carNum = 0;
