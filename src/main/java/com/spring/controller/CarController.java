@@ -23,7 +23,7 @@ public class CarController {
 	
 	//Access car rental page
 	@GetMapping
-	public String goToCarRentalPage(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
+	public String displayAllCars(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
 		
 		List<CarModel> carList = carService.fetchCar(searchCarModel);
 		model.addAttribute("carList", carList);
@@ -33,7 +33,7 @@ public class CarController {
 	
 	//Search car
 	@PostMapping
-	public String searchCar(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
+	public String displaySearchedCars(@ModelAttribute(name = "searchCarModel") SearchCarModel searchCarModel, Model model) {
 		
 		List<CarModel> carList = carService.fetchCar(searchCarModel);
 		model.addAttribute("carList", carList);
